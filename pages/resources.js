@@ -10,12 +10,12 @@ export default function Index({ preview, page }) {
     <>
       <Layout preview={preview}>
         <Head>
-          <title>DoTEC</title>
+          <title>DoTEC | Resources</title>
         </Head>
         {page && (
           <Container>
             <section
-              className='min-h-screen px-5'
+              className='h-96 px-5'
               style={{
                 backgroundImage: `url("${page.header.image.url}")`,
                 backgroundSize: 'cover',
@@ -25,7 +25,7 @@ export default function Index({ preview, page }) {
               <PageHeader
                 text={page.header.text}
                 subtext={page.header.subtext}
-                link={page.header.link}
+                image={page.header.image}
               />
             </section>
           </Container>
@@ -36,7 +36,7 @@ export default function Index({ preview, page }) {
 }
 
 export async function getStaticProps({ preview = false }) {
-  const name = 'Home';
+  const name = 'Resources';
   const page = (await getPage(name, preview)) ?? [];
 
   return {
