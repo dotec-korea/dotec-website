@@ -5,7 +5,7 @@ export default function PageHeader({ text, subtext, link }) {
     <div className='relative py-20'>
       <div className='relative xl:container m-auto px-6 md:px-12 lg:px-6'>
         {text && (
-          <h1 className='sm:mx-auto sm:w-10/12 md:w-2/3 font-black text-white text-5xl text-center sm:text-5xl md:text-6xl lg:text-left lg:w-5/12 lg:ml-0 lg:leading-tight'>
+          <h1 className='sm:mx-auto sm:w-10/12 md:w-2/3 font-bold uppercase text-white text-5xl text-center sm:text-5xl md:text-6xl lg:text-left lg:w-5/12 lg:ml-0 lg:leading-tight'>
             {text}
           </h1>
         )}

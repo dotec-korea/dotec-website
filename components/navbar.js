@@ -9,7 +9,7 @@ const Navbar = () => {
             <div className='w-full items-center flex justify-between lg:w-auto'>
               <Link className='relative z-10' href='/' aria-label='logo'>
                 <div className='mr-5 h-6 sm:h-9 text-white text-xl font-black'>
-                  DoTEC
+                  <img src='/DoTEC.png' alt='logo' className='h-full' />
                 </div>
               </Link>
             </div>

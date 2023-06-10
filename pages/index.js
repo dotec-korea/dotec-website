@@ -1,11 +1,14 @@
 import Container from '../components/container';
 import Layout from '../components/layout';
-import { getPage } from '../lib/api';
+import { getPageAndFacilities, getPageProductsAndFacilities } from '../lib/api';
 import Head from 'next/head';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
+import Summary from '../components/summary';
+import Facility from '../components/facility';
+import ProductRange from '../components/product-range';
 
-export default function Index({ preview, page }) {
+export default function Index({ preview, page, productRange, facilities }) {
   return (
     <>
       <Layout preview={preview}>
@@ -17,9 +20,9 @@ export default function Index({ preview, page }) {
             <section
               className='min-h-screen px-5'
               style={{
-                backgroundImage: `url("${page.header.image.url}")`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                center/cover 
+                url("${page.header.image.url}")`,
               }}>
               <Navbar />
               <PageHeader
@@ -28,6 +31,14 @@ export default function Index({ preview, page }) {
                 link={page.header.link}
               />
             </section>
+            <Summary
+              title={page.summary.title}
+              summary={page.summary.summary}
+              link={page.summary.link}
+              image={page.summary.image.url}
+            />
+            <ProductRange productRange={productRange} />
+            <Facility facilities={facilities} />
           </Container>
         )}
       </Layout>
@@ -37,9 +48,10 @@ export default function Index({ preview, page }) {
 
 export async function getStaticProps({ preview = false }) {
   const name = 'Home';
-  const page = (await getPage(name, preview)) ?? [];
+  const { page, productRange, facilities } =
+    (await getPageProductsAndFacilities(name, preview)) ?? [];
 
   return {
-    props: { preview, page },
+    props: { preview, page, productRange, facilities },
   };
 }

@@ -4,8 +4,9 @@ import { getPage } from '../lib/api';
 import Head from 'next/head';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
+import Quote from '../components/quote';
 
-export default function Index({ preview, page }) {
+export default function Resources({ preview, page }) {
   return (
     <>
       <Layout preview={preview}>
@@ -17,9 +18,9 @@ export default function Index({ preview, page }) {
             <section
               className='h-96 px-5'
               style={{
-                backgroundImage: `url("${page.header.image.url}")`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                center/cover 
+                url("${page.header.image.url}")`,
               }}>
               <Navbar />
               <PageHeader
@@ -28,6 +29,7 @@ export default function Index({ preview, page }) {
                 image={page.header.image}
               />
             </section>
+            <Quote />
           </Container>
         )}
       </Layout>
