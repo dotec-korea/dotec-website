@@ -14,7 +14,8 @@
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.43.9"
+    "react-hook-form": "^7.43.9",
+    "react-icons": "^4.9.0"
   },
   "devDependencies": {
     "autoprefixer": "10.4.2",
