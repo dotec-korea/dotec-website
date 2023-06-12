@@ -16,7 +16,7 @@ export default function Index({ preview, page, productRange, facilities }) {
           <title>DoTEC</title>
         </Head>
         {page && (
-          <Container>
+          <>
             <section
               className='min-h-screen px-5'
               style={{
@@ -39,7 +39,7 @@ export default function Index({ preview, page, productRange, facilities }) {
             />
             <ProductRange productRange={productRange} />
             <Facility facilities={facilities} />
-          </Container>
+          </>
         )}
       </Layout>
     </>

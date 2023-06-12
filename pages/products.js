@@ -13,22 +13,20 @@ export default function Products({ preview, page }) {
           <title>DoTEC | Products</title>
         </Head>
         {page && (
-          <Container>
-            <section
-              className='h-96 px-5'
-              style={{
-                background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+          <section
+            className='px-5'
+            style={{
+              background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                 center/cover 
                 url("${page.header.image.url}")`,
-              }}>
-              <Navbar />
-              <PageHeader
-                text={page.header.text}
-                subtext={page.header.subtext}
-                image={page.header.image}
-              />
-            </section>
-          </Container>
+            }}>
+            <Navbar />
+            <PageHeader
+              text={page.header.text}
+              subtext={page.header.subtext}
+              image={page.header.image}
+            />
+          </section>
         )}
       </Layout>
     </>

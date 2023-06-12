@@ -23,7 +23,8 @@ export default function Facility({ facilities }) {
 
   return (
     <section
-      className='py-20'
+      id='facility'
+      className='py-20 mb-20'
       style={{
         background: `linear-gradient(
       to right, 

@@ -6,17 +6,17 @@ import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
 import Quote from '../components/quote';
 
-export default function Resources({ preview, page }) {
+export default function Certification({ preview, page }) {
   return (
     <>
       <Layout preview={preview}>
         <Head>
-          <title>DoTEC | Resources</title>
+          <title>DoTEC | Certification</title>
         </Head>
         {page && (
           <Container>
             <section
-              className='h-96 px-5'
+              className='px-5'
               style={{
                 background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                 center/cover 

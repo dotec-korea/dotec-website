@@ -1,10 +1,10 @@
 export default function CeoGreetings() {
   return (
-    <section>
-      <h3 className='p-8 mx-auto xl:p-12 pt-0 xl:pt-0 text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl'>
+    <section id='ceo-greetings' className='bg-gray-100'>
+      <h3 className='p-8 mx-auto xl:p-12 text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl'>
         Ceo Greetings
       </h3>
-      <div className='w-full bg-gray-100 p-8 mx-auto xl:p-12 flex justify-center'>
+      <div className='w-full  p-8 mx-auto xl:p-12 flex justify-center'>
         <div className='w-2/3'>
           <div className='grid justify-center md:grid-cols-2 gap-5 lg:gap-7'>
             <div className='w-full'>

@@ -16,7 +16,7 @@ export default function About({ preview, page, facilities }) {
           <title>DoTEC | About Us</title>
         </Head>
         {page && (
-          <Container>
+          <>
             <section
               className='px-5'
               style={{
@@ -39,7 +39,7 @@ export default function About({ preview, page, facilities }) {
             />
             <CeoGreetings />
             <Facility facilities={facilities} />
-          </Container>
+          </>
         )}
       </Layout>
     </>

@@ -1,8 +1,6 @@
-import Image from 'next/image';
-
 export default function Summary({ title, summary, link, image }) {
   return (
-    <section className='py-20 bg-white'>
+    <section id='summary' className='py-20 bg-white'>
       <div className='flex flex-col px-8 mx-auto space-y-12 max-w-7xl xl:px-12'>
         <h3 className='mt-2 text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl'>
           {title}

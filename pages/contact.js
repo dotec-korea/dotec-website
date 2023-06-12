@@ -5,20 +5,29 @@ import Head from 'next/head';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
 import ContactForm from '../components/contact-form';
+import Map from '../components/map';
 
-export default function Contact() {
+export default function Contact({ preview, page }) {
   return (
     <>
       <Layout>
         <Head>
           <title>DoTEC | Contact Us</title>
         </Head>
-        <Container>
-          <section className='bg-gray-200 px-5'>
+        {page && (
+          <section
+            className='px-5'
+            style={{
+              background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                center/cover 
+                url("${page.header.image.url}")`,
+            }}>
             <Navbar />
-            <ContactForm />
+            <PageHeader text={'Contact Us'} />
           </section>
-        </Container>
+        )}
+        <ContactForm />
+        <Map />
       </Layout>
     </>
   );
