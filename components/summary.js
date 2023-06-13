@@ -8,7 +8,7 @@ export default function Summary({ title, summary, link, image }) {
         <div className='flex flex-col mb-8 animated fadeIn sm:flex-row'>
           <div className='flex items-center mb-8 sm:w-1/2 md:w-5/12 sm:order-last'>
             <img
-              className='rounded-lg shadow-xl'
+              className='shadow-xl'
               src={image}
               alt='Picture of the author'
             />
