@@ -4,6 +4,7 @@ import { getPage } from '../lib/api';
 import Head from 'next/head';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
+import Product from '../components/product';
 
 export default function Products({ preview, page }) {
   return (
@@ -28,6 +29,7 @@ export default function Products({ preview, page }) {
             />
           </section>
         )}
+        <Product />
       </Layout>
     </>
   );

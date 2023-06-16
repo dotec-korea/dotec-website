@@ -5,6 +5,7 @@ import Head from 'next/head';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
 import Quote from '../components/quote';
+import Certificates from '../components/certificates';
 
 export default function Certification({ preview, page }) {
   return (
@@ -14,7 +15,7 @@ export default function Certification({ preview, page }) {
           <title>DoTEC | Certification</title>
         </Head>
         {page && (
-          <Container>
+          <>
             <section
               className='px-5'
               style={{
@@ -30,7 +31,8 @@ export default function Certification({ preview, page }) {
               />
             </section>
             <Quote />
-          </Container>
+            <Certificates />
+          </>
         )}
       </Layout>
     </>
@@ -38,7 +40,7 @@ export default function Certification({ preview, page }) {
 }
 
 export async function getStaticProps({ preview = false }) {
-  const name = 'Resources';
+  const name = 'Certification';
   const page = (await getPage(name, preview)) ?? [];
 
   return {
