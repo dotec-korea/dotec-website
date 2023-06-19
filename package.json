@@ -12,10 +12,12 @@
     "classnames": "2.3.1",
     "date-fns": "2.28.0",
     "next": "latest",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9",
-    "react-icons": "^4.9.0"
+    "react-icons": "^4.9.0",
+    "react-simple-maps": "^3.0.0"
   },
   "devDependencies": {
     "autoprefixer": "10.4.2",

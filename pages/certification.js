@@ -1,13 +1,13 @@
 import Container from '../components/container';
 import Layout from '../components/layout';
-import { getPage } from '../lib/api';
+import { getCertificates, getPage } from '../lib/api';
 import Head from 'next/head';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
 import Quote from '../components/quote';
 import Certificates from '../components/certificates';
 
-export default function Certification({ preview, page }) {
+export default function Certification({ preview, page, certificates }) {
   return (
     <>
       <Layout preview={preview}>
@@ -31,7 +31,7 @@ export default function Certification({ preview, page }) {
               />
             </section>
             <Quote />
-            <Certificates />
+            <Certificates certificates={certificates} />
           </>
         )}
       </Layout>
@@ -42,8 +42,9 @@ export default function Certification({ preview, page }) {
 export async function getStaticProps({ preview = false }) {
   const name = 'Certification';
   const page = (await getPage(name, preview)) ?? [];
+  const certificates = (await getCertificates(preview)) ?? [];
 
   return {
-    props: { preview, page },
+    props: { preview, page, certificates },
   };
 }

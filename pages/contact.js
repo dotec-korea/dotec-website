@@ -5,7 +5,7 @@ import Head from 'next/head';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
 import ContactForm from '../components/contact-form';
-import Map from '../components/map';
+import MapChart from '../components/map-chart';
 
 export default function Contact({ preview, page }) {
   return (
@@ -27,7 +27,7 @@ export default function Contact({ preview, page }) {
           </section>
         )}
         <ContactForm />
-        <Map />
+        <MapChart />
       </Layout>
     </>
   );

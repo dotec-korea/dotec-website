@@ -1,6 +1,6 @@
 import Container from '../components/container';
 import Layout from '../components/layout';
-import { getPageAndFacilities } from '../lib/api';
+import { getFacilities, getPage, getPageAndFacilities } from '../lib/api';
 import Head from 'next/head';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
@@ -48,8 +48,8 @@ export default function About({ preview, page, facilities }) {
 
 export async function getStaticProps({ preview = false }) {
   const name = 'About';
-  const { page, facilities } =
-    (await getPageAndFacilities(name, preview)) ?? [];
+  const page = (await getPage(name, preview)) ?? [];
+  const facilities = (await getFacilities(preview)) ?? [];
 
   return {
     props: { preview, page, facilities },

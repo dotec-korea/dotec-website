@@ -1,6 +1,6 @@
 import Container from '../components/container';
 import Layout from '../components/layout';
-import { getPageAndFacilities, getPageProductsAndFacilities } from '../lib/api';
+import { getFacilities, getPage, getProductRange } from '../lib/api';
 import Head from 'next/head';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
@@ -48,8 +48,9 @@ export default function Index({ preview, page, productRange, facilities }) {
 
 export async function getStaticProps({ preview = false }) {
   const name = 'Home';
-  const { page, productRange, facilities } =
-    (await getPageProductsAndFacilities(name, preview)) ?? [];
+  const page = (await getPage(name, preview)) ?? [];
+  const productRange = (await getProductRange(preview)) ?? [];
+  const facilities = (await getFacilities(preview)) ?? [];
 
   return {
     props: { preview, page, productRange, facilities },

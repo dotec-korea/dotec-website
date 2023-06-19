@@ -34,7 +34,7 @@ export default function ContactForm() {
   });
 
   return (
-    <div className='w-5/6 mx-auto'>
+    <div className='w-5/6 mx-auto relative'>
       <div className='mx-10 -mt-10 bg-blue-700 p-10 z-10'>
         <div className='mt-10 mb-20 w-full flex justify-center'>
           <h3 className='text-2xl font-bold text-white uppercase sm:text-left md:text-6xl'>
