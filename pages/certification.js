@@ -1,16 +1,16 @@
-import Container from '../components/container';
 import Layout from '../components/layout';
-import { getCertificates, getPage } from '../lib/api';
 import Head from 'next/head';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
-import Quote from '../components/quote';
-import Certificates from '../components/certificates';
+import Quote from '../components/certificate/quote';
+import Certificates from '../components/certificate/certificates';
+import { getPageAndRange } from '../lib/api/page';
+import { getCertificates } from '../lib/api/certificates';
 
-export default function Certification({ preview, page, certificates }) {
+export default function Certification({ page, range, certificates }) {
   return (
     <>
-      <Layout preview={preview}>
+      <Layout>
         <Head>
           <title>DoTEC | Certification</title>
         </Head>
@@ -23,7 +23,7 @@ export default function Certification({ preview, page, certificates }) {
                 center/cover 
                 url("${page.header.image.url}")`,
               }}>
-              <Navbar />
+              <Navbar range={range} />
               <PageHeader
                 text={page.header.text}
                 subtext={page.header.subtext}
@@ -39,12 +39,12 @@ export default function Certification({ preview, page, certificates }) {
   );
 }
 
-export async function getStaticProps({ preview = false }) {
+export async function getStaticProps() {
   const name = 'Certification';
-  const page = (await getPage(name, preview)) ?? [];
-  const certificates = (await getCertificates(preview)) ?? [];
+  const { page, range } = (await getPageAndRange(name)) ?? [];
+  const certificates = (await getCertificates()) ?? [];
 
   return {
-    props: { preview, page, certificates },
+    props: { page, range, certificates },
   };
 }

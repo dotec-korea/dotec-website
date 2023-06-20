@@ -1,17 +1,17 @@
-import Container from '../components/container';
 import Layout from '../components/layout';
-import { getFacilities, getPage, getProductRange } from '../lib/api';
+import { getFacilities, getPageAndRange } from '../lib/api/page';
 import Head from 'next/head';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
-import Summary from '../components/summary';
-import Facility from '../components/facility';
-import ProductRange from '../components/product-range';
+import Summary from '../components/home/summary';
+import Facility from '../components/home/facility';
+import ProductRange from '../components/home/product-range';
+import { getProductRange } from '../lib/api/products';
 
-export default function Index({ preview, page, productRange, facilities }) {
+export default function Index({ page, range, productRange, facilities }) {
   return (
     <>
-      <Layout preview={preview}>
+      <Layout>
         <Head>
           <title>DoTEC</title>
         </Head>
@@ -24,7 +24,7 @@ export default function Index({ preview, page, productRange, facilities }) {
                 center/cover 
                 url("${page.header.image.url}")`,
               }}>
-              <Navbar />
+              <Navbar range={range} />
               <PageHeader
                 text={page.header.text}
                 subtext={page.header.subtext}
@@ -46,13 +46,13 @@ export default function Index({ preview, page, productRange, facilities }) {
   );
 }
 
-export async function getStaticProps({ preview = false }) {
+export async function getStaticProps() {
   const name = 'Home';
-  const page = (await getPage(name, preview)) ?? [];
-  const productRange = (await getProductRange(preview)) ?? [];
-  const facilities = (await getFacilities(preview)) ?? [];
+  const { page, range } = (await getPageAndRange(name)) ?? [];
+  const productRange = (await getProductRange()) ?? [];
+  const facilities = (await getFacilities()) ?? [];
 
   return {
-    props: { preview, page, productRange, facilities },
+    props: { page, range, productRange, facilities },
   };
 }

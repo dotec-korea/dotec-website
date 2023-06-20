@@ -31,9 +31,8 @@ const Dropdown = ({ submenus }) => {
   return (
     <ul className='absolute z-10 w-full text-center rounded-sm bg-white bg-opacity-70'>
       {submenus.map((submenu, index) => (
-        <Link className='w-full' href={submenu.url}>
+        <Link key={index} className='w-full' href={submenu.url}>
           <li
-            key={index}
             className={`py-2 mx-2 v text-blue-700 ${
               index + 1 !== submenus.length && 'border-b-2 border-blue-700'
             } hover:font-bold cursor-pointer`}>

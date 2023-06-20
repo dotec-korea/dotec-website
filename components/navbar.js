@@ -1,48 +1,10 @@
 import Link from 'next/link';
 import MenuItem from './menu-item';
+import { kebab } from '../utils/convert';
 
-const menuItems = [
-  {
-    title: 'Home',
-    url: '/',
-  },
-  {
-    title: 'About Us',
-    url: '/about',
-    submenu: [
-      {
-        title: 'About',
-        url: '/about',
-      },
-      {
-        title: 'Summary',
-        url: '/about/#summary',
-      },
-      {
-        title: 'CEO Greetings',
-        url: '/about/#ceo-greetings',
-      },
-      {
-        title: 'Facility',
-        url: '/about/#facility',
-      },
-    ],
-  },
-  {
-    title: 'Products',
-    url: '/products',
-  },
-  {
-    title: 'Certification',
-    url: '/certification',
-  },
-  {
-    title: 'Contact Us',
-    url: '/contact',
-  },
-];
+const Navbar = ({ range }) => {
+  const menuItems = getMenuItems(range);
 
-const Navbar = () => {
   return (
     <header>
       <nav className='w-full navbar peer-checked:navbar-active dark:shadow-none'>
@@ -55,7 +17,7 @@ const Navbar = () => {
                 </div>
               </Link>
             </div>
-            <div className='navmenu hidden w-full flex-wrap justify-end items-center mb-16 space-y-8 p-6 border border-gray-100 rounded-3xl shadow-2xl shadow-gray-300/20 bg-white dark:bg-gray-800 lg:space-y-0 lg:p-0 lg:m-0 lg:flex md:flex-nowrap lg:bg-transparent lg:w-7/12 lg:shadow-none dark:shadow-none dark:border-gray-700 lg:border-0'>
+            <div className='navmenu hidden w-full flex-wrap justify-end items-center mb-16 space-y-8 p-6 border border-gray-100 rounded-3xl shadow-2xl shadow-gray-300/20 bg-white dark:bg-gray-800 lg:space-y-0 lg:p-0 lg:m-0 lg:flex md:flex-nowrap lg:bg-transparent lg:w-8/12 lg:shadow-none dark:shadow-none dark:border-gray-700 lg:border-0'>
               <div className='text-white lg:pr-4 w-full'>
                 <ul className='space-y-6 w-full tracking-wide font-medium text-base lg:text-sm lg:flex lg:space-y-0'>
                   {menuItems.map((menu, index) => {
@@ -69,6 +31,70 @@ const Navbar = () => {
       </nav>
     </header>
   );
+};
+
+const getMenuItems = (range) => {
+  let menuItems = [
+    {
+      title: 'Home',
+      url: '/',
+    },
+    {
+      title: 'About Us',
+      url: '/about',
+      submenu: [
+        {
+          title: 'About',
+          url: '/about',
+        },
+        {
+          title: 'Summary',
+          url: '/about?q=summary',
+        },
+        {
+          title: 'CEO Greetings',
+          url: '/about?q=ceo-greetings',
+        },
+        {
+          title: 'Facility',
+          url: '/about?q=facility',
+        },
+      ],
+    },
+    {
+      title: 'Certification',
+      url: '/certification',
+    },
+    {
+      title: 'Contact Us',
+      url: '/contact',
+    },
+  ];
+
+  if (range) {
+    const submenu = range.map((element) => {
+      const item = {
+        title: element.title,
+        url: '/products?q=' + kebab(element.title),
+      };
+      return item;
+    });
+
+    const product = {
+      title: 'Products',
+      url: '/products',
+      submenu: submenu,
+    };
+
+    const index = 2;
+    menuItems = [
+      ...menuItems.slice(0, index),
+      product,
+      ...menuItems.slice(index),
+    ];
+  }
+
+  return menuItems;
 };
 
 export default Navbar;

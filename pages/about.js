@@ -1,17 +1,29 @@
-import Container from '../components/container';
 import Layout from '../components/layout';
-import { getFacilities, getPage, getPageAndFacilities } from '../lib/api';
 import Head from 'next/head';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
-import Summary from '../components/summary';
-import Facility from '../components/facility';
-import CeoGreetings from '../components/ceo-greetings';
+import Summary from '../components/home/summary';
+import Facility from '../components/home/facility';
+import CeoGreetings from '../components/about/ceo-greetings';
+import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
+import { getFacilities, getPageAndRange } from '../lib/api/page';
 
-export default function About({ preview, page, facilities }) {
+export default function About({ page, range, facilities }) {
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const query = searchParams.get('q');
+    if (query) {
+      const element = document.getElementById(query);
+
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [page]);
+
   return (
     <>
-      <Layout preview={preview}>
+      <Layout>
         <Head>
           <title>DoTEC | About Us</title>
         </Head>
@@ -24,7 +36,7 @@ export default function About({ preview, page, facilities }) {
                 center/cover 
                 url("${page.header.image.url}")`,
               }}>
-              <Navbar />
+              <Navbar range={range} />
               <PageHeader
                 text={page.header.text}
                 subtext={page.header.subtext}
@@ -46,12 +58,12 @@ export default function About({ preview, page, facilities }) {
   );
 }
 
-export async function getStaticProps({ preview = false }) {
+export async function getStaticProps() {
   const name = 'About';
-  const page = (await getPage(name, preview)) ?? [];
-  const facilities = (await getFacilities(preview)) ?? [];
+  const { page, range } = (await getPageAndRange(name)) ?? [];
+  const facilities = (await getFacilities()) ?? [];
 
   return {
-    props: { preview, page, facilities },
+    props: { page, range, facilities },
   };
 }

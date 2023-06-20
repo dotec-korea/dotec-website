@@ -1,12 +1,10 @@
-import Container from './container';
-import { EXAMPLE_PATH } from '../lib/constants';
 import Link from 'next/link';
 
 export default function Footer() {
   return (
     <footer className='bg-white'>
-      <div className='max-w-screen-xl flex'>
-        <div className='w-1/2 flex flex-col bg-blue-700 text-white px-6 py-16 mx-auto sm:px-6 lg:px-12'>
+      <div className='max-w-screen-xl flex bg-blue-700'>
+        <div className='w-1/2 flex flex-col text-white px-6 py-16 mx-auto sm:px-6 lg:px-12'>
           <div className='text-sm font-medium uppercase'>
             Contact Us
             <p className='max-w-xs mt-1 text-xl font-semibold'>000-000-000</p>
@@ -23,7 +21,7 @@ export default function Footer() {
         </div>
 
         <div className='w-1/2 px-6 py-16 mx-auto sm:px-6 lg:px-12'>
-          <nav className='flex flex-col mt-4 space-y-4 text-sm font-bold text-blue-700'>
+          <nav className='flex flex-col mt-4 space-y-4 text-sm font-bold text-white'>
             <Link href='/about' className='hover:opacity-75'>
               About Us
             </Link>

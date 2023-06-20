@@ -1,15 +1,15 @@
-import Container from '../components/container';
 import Layout from '../components/layout';
-import { getPage } from '../lib/api';
+import { getPageAndRange } from '../lib/api/page';
+import { getProducts } from '../lib/api/products';
 import Head from 'next/head';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
 import Product from '../components/product';
 
-export default function Products({ preview, page }) {
+export default function Products({ page, range, products }) {
   return (
     <>
-      <Layout preview={preview}>
+      <Layout>
         <Head>
           <title>DoTEC | Products</title>
         </Head>
@@ -21,7 +21,7 @@ export default function Products({ preview, page }) {
                 center/cover 
                 url("${page.header.image.url}")`,
             }}>
-            <Navbar />
+            <Navbar range={range} />
             <PageHeader
               text={page.header.text}
               subtext={page.header.subtext}
@@ -29,17 +29,18 @@ export default function Products({ preview, page }) {
             />
           </section>
         )}
-        <Product />
+        <Product products={products} />
       </Layout>
     </>
   );
 }
 
-export async function getStaticProps({ preview = false }) {
+export async function getStaticProps() {
   const name = 'Products';
-  const page = (await getPage(name, preview)) ?? [];
+  const { page, range } = (await getPageAndRange(name)) ?? [];
+  const products = (await getProducts()) ?? [];
 
   return {
-    props: { preview, page },
+    props: { page, range, products },
   };
 }

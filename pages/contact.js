@@ -1,13 +1,12 @@
-import Container from '../components/container';
 import Layout from '../components/layout';
-import { getPage } from '../lib/api';
 import Head from 'next/head';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
-import ContactForm from '../components/contact-form';
-import MapChart from '../components/map-chart';
+import ContactForm from '../components/contact/contact-form';
+import MapChart from '../components/contact/map-chart';
+import { getPageAndRange } from '../lib/api/page';
 
-export default function Contact({ preview, page }) {
+export default function Contact({ page, range }) {
   return (
     <>
       <Layout>
@@ -22,7 +21,7 @@ export default function Contact({ preview, page }) {
                 center/cover 
                 url("${page.header.image.url}")`,
             }}>
-            <Navbar />
+            <Navbar range={range} />
             <PageHeader text={'Contact Us'} />
           </section>
         )}
@@ -33,11 +32,11 @@ export default function Contact({ preview, page }) {
   );
 }
 
-export async function getStaticProps({ preview = false }) {
-  const name = 'Products';
-  const page = (await getPage(name, preview)) ?? [];
+export async function getStaticProps() {
+  const name = 'Contact';
+  const { page, range } = (await getPageAndRange(name)) ?? [];
 
   return {
-    props: { preview, page },
+    props: { page, range },
   };
 }
