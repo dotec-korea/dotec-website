@@ -1,11 +1,11 @@
 import Layout from '../components/layout';
-import { getFacilities, getPageAndRange } from '../lib/api/page';
 import Head from 'next/head';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
 import Summary from '../components/home/summary';
 import Facility from '../components/home/facility';
 import ProductRange from '../components/home/product-range';
+import { getFacilities, getPageAndRange } from '../lib/api/page';
 import { getProductRange } from '../lib/api/products';
 
 export default function Index({ page, range, productRange, facilities }) {
