@@ -7,6 +7,7 @@ import Facility from '../components/home/facility';
 import ProductRange from '../components/home/product-range';
 import { getFacilities, getPageAndRange } from '../lib/api/page';
 import { getProductRange } from '../lib/api/products';
+import ScrollDown from '../components/home/scroll-down';
 
 export default function Index({ page, range, productRange, facilities }) {
   return (
@@ -18,7 +19,7 @@ export default function Index({ page, range, productRange, facilities }) {
         {page && (
           <>
             <section
-              className='min-h-screen px-5'
+              className='relative min-h-screen px-5'
               style={{
                 background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                 center/cover 
@@ -30,6 +31,7 @@ export default function Index({ page, range, productRange, facilities }) {
                 subtext={page.header.subtext}
                 link={page.header.link}
               />
+              <ScrollDown />
             </section>
             <Summary
               title={page.summary.title}
