@@ -1,19 +1,13 @@
 import { MdChevronRight } from 'react-icons/md';
 
-export default function Manufacturing({ selectedProcess, setProcess }) {
-  const changeProcess = (process) => {
-    alert(selectedProcess);
-    if (process) {
-      setProcess(process);
-    }
-  };
+export default function Manufacturing() {
   return (
-    <section id='manufacturing-process' className='bg-gray-100'>
+    <section id='manufacturing' className='bg-gray-100'>
       <h3 className='px-8 pt-12 pb-6 mx-auto max-w-7xl xl:px-12 text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl'>
         MANUFACTURING PROCESS
       </h3>
       <div className='w-full pt-6 mb-12 mx-auto max-w-7xl xl:px-12 flex justify-center'>
-        <div class='w-full grid grid-cols-4 gap-4'>
+        <div className='w-full grid grid-cols-4 gap-4'>
           <div className='flex items-center'>
             <div
               className={`grow cursor-pointer ${
@@ -21,7 +15,6 @@ export default function Manufacturing({ selectedProcess, setProcess }) {
                   ? 'text-white bg-blue-700'
                   : 'text-gray-700 bg-gray-100'
               } py-8 flex justify-center`}
-              onClick={() => changeProcess('casting')}
             >
               CASTING
             </div>
@@ -34,7 +27,6 @@ export default function Manufacturing({ selectedProcess, setProcess }) {
                   ? 'text-white bg-blue-700'
                   : 'text-gray-700 bg-gray-100'
               } py-8 flex justify-center`}
-              onClick={() => setProcess('machining')}
             >
               MACHINING
             </div>
@@ -47,7 +39,6 @@ export default function Manufacturing({ selectedProcess, setProcess }) {
                   ? 'text-white bg-blue-700'
                   : 'text-gray-700 bg-gray-100'
               } py-8 flex justify-center`}
-              onClick={() => setProcess('assembling')}
             >
               ASSEMBLING
             </div>
@@ -60,7 +51,6 @@ export default function Manufacturing({ selectedProcess, setProcess }) {
                   ? 'text-white bg-blue-700'
                   : 'text-gray-700 bg-gray-100'
               } py-8 flex justify-center`}
-              onClick={() => setProcess('inspection')}
             >
               INSPECTION & TEST
             </div>

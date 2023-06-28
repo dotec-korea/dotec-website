@@ -1,46 +1,71 @@
-import { MdChevronRight } from 'react-icons/md';
+import { useRef } from 'react';
+import {
+  MdOutlineKeyboardDoubleArrowLeft,
+  MdOutlineKeyboardDoubleArrowRight,
+} from 'react-icons/md';
 
-export default function BriefHistory() {
+export default function History({ history }) {
+  const slider = useRef(null);
+
+  history = history.sort((x, y) => x?.order - y?.order);
+
+  const next = () => {
+    slider.current?.scrollTo({
+      left: slider.current?.scrollLeft + 300,
+      behavior: 'smooth',
+    });
+  };
+
+  const previous = () => {
+    slider.current?.scrollTo({
+      left: slider.current?.scrollLeft - 300,
+      behavior: 'smooth',
+    });
+  };
+
   return (
-    <section id='ceo-greetings' className='bg-white mt-16'>
-      <h3 className='px-8 pt-12 mx-auto max-w-7xl xl:px-12 text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl'>
-        Brief History
-      </h3>
-      <div className='flex items-center mt-24 mb-56 w-10/12 mx-auto'>
-        <div
-          className='flex pb-8'
-          style={{
-            overflowX: 'scroll',
-            scrollBehavior: 'smooth',
-            scrollbarWidth: 'none',
-            '::-webkit-scrollbar': {
-              display: 'none',
-            },
-          }}
-        >
-          {[...Array(8)].map((ele, i) => (
-            <div key={i} className='snap-center py-2' style={{ minWidth: 200 }}>
-              <div className='year font-bold text-blue-700 leading-none text-5xl'>
-                1999
+    history && (
+      <section id='history' className='bg-white my-20'>
+        <h3 className='px-8 mx-auto max-w-7xl xl:px-12 text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl'>
+          Brief History
+        </h3>
+        <div className='w-full flex justify-between items-center my-10 px-8 mx-auto max-w-7xl xl:px-12'>
+          {history?.length > 5 && (
+            <MdOutlineKeyboardDoubleArrowLeft
+              onClick={previous}
+              fontSize={64}
+              className='text-blue-700 cursor-pointer'
+            />
+          )}
+          <div
+            ref={slider}
+            className='snap-x mx-auto snap-mandatory w-10/12 flex range'
+          >
+            {history.map((element, index) => (
+              <div key={index} className='w-1/5 snap-center py-2'>
+                <div className='year font-bold text-blue-700 leading-none text-5xl'>
+                  {element?.year}
+                </div>
+                <div className='month font-light text-blue-700 text-xl'>
+                  {element?.month}
+                </div>
+                <div className='divider text-blue-700 py-5 flex items-center'>
+                  <div className='w-2 h-2 bg-blue-700 rounded-full'></div>
+                  <div className='h-0.5 w-full bg-blue-700'></div>
+                </div>
+                <div className='description w-32'>{element?.description}</div>
               </div>
-              <div className='month font-light text-blue-700 text-xl'>APR</div>
-              <div className='divider text-blue-700 py-5 flex items-center'>
-                <div className='w-2 h-2 bg-blue-700 rounded-full'></div>
-                <div className='h-0.5 w-full bg-blue-700'></div>
-              </div>
-              <div className='description w-32'>
-                Awarded the prime minister prize on Korean Export Day
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          {history.length > 5 && (
+            <MdOutlineKeyboardDoubleArrowRight
+              onClick={next}
+              fontSize={64}
+              className='text-blue-700 cursor-pointer'
+            />
+          )}
         </div>
-        <div className='mb-24 arrow'>
-          <MdChevronRight
-            fontSize={80}
-            className='text-blue-700 cursor-pointer'
-          />
-        </div>
-      </div>
-    </section>
+      </section>
+    )
   );
 }

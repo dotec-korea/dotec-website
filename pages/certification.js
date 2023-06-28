@@ -17,7 +17,7 @@ export default function Certification({ page, range, certificates }) {
         {page && (
           <>
             <section
-              className='px-5'
+              className='relative min-h-[50vh] px-5'
               style={{
                 background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                 center/cover 

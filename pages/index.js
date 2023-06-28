@@ -4,12 +4,11 @@ import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
 import Summary from '../components/home/summary';
 import ProductRange from '../components/home/product-range';
-import { getFacilities, getPageAndRange } from '../lib/api/page';
+import { getClients, getPageAndRange } from '../lib/api/page';
 import { getProductRange } from '../lib/api/products';
-import ScrollDown from '../components/home/scroll-down';
 import Clients from '../components/home/clients';
 
-export default function Index({ page, range, productRange, clientLogos }) {
+export default function Index({ page, range, productRange, clients }) {
   return (
     <>
       <Layout>
@@ -19,7 +18,7 @@ export default function Index({ page, range, productRange, clientLogos }) {
         {page && (
           <>
             <section
-              className='relative min-h-screen px-5'
+              className='relative min-h-[50vh] px-5'
               style={{
                 background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                 center/cover 
@@ -32,7 +31,6 @@ export default function Index({ page, range, productRange, clientLogos }) {
                 subtext={page.header.subtext}
                 link={page.header.link}
               />
-              <ScrollDown />
             </section>
             <Summary
               title={page.summary.title}
@@ -40,9 +38,8 @@ export default function Index({ page, range, productRange, clientLogos }) {
               link={page.summary.link}
               image={page.summary.image.url}
             />
-            <Clients clientLogos={clientLogos} />
+            <Clients clients={clients} />
             <ProductRange productRange={productRange} />
-            {/* <Facility facilities={facilities} /> */}
           </>
         )}
       </Layout>
@@ -54,9 +51,9 @@ export async function getStaticProps() {
   const name = 'Home';
   const { page, range } = (await getPageAndRange(name)) ?? [];
   const productRange = (await getProductRange()) ?? [];
-  const facilities = (await getFacilities()) ?? [];
+  const clients = (await getClients()) ?? [];
 
   return {
-    props: { page, range, productRange, facilities },
+    props: { page, range, productRange, clients },
   };
 }

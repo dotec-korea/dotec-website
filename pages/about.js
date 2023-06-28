@@ -2,15 +2,15 @@ import Layout from '../components/layout';
 import Head from 'next/head';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
-import Facility from '../components/home/facility';
+import Facility from '../components/about/facility';
+import History from '../components/about/history';
 import CeoGreetings from '../components/about/ceo-greetings';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { getFacilities, getPageAndRange } from '../lib/api/page';
-import BriefHistory from '../components/about/history';
+import { getFacilities, getHistory, getPageAndRange } from '../lib/api/page';
 import Manufacturing from '../components/about/manufacturing';
 
-export default function About({ page, range, facilities }) {
+export default function About({ page, range, facilities, history }) {
   const searchParams = useSearchParams();
   const { selectedProcess, setProcess } = useState('casting');
 
@@ -32,7 +32,7 @@ export default function About({ page, range, facilities }) {
         {page && (
           <>
             <section
-              className='px-5'
+              className='relative min-h-[50vh] px-5'
               style={{
                 background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                 center/cover 
@@ -47,12 +47,9 @@ export default function About({ page, range, facilities }) {
               />
             </section>
             <CeoGreetings />
-            <BriefHistory />
+            <History history={history} />
             <Facility facilities={facilities} />
-            <Manufacturing
-              selectedProcess={selectedProcess}
-              setProcess={(x) => setProcess(x)}
-            />
+            <Manufacturing />
           </>
         )}
       </Layout>
@@ -64,8 +61,9 @@ export async function getStaticProps() {
   const name = 'About';
   const { page, range } = (await getPageAndRange(name)) ?? [];
   const facilities = (await getFacilities()) ?? [];
+  const history = (await getHistory()) ?? [];
 
   return {
-    props: { page, range, facilities },
+    props: { page, range, facilities, history },
   };
 }

@@ -1,25 +1,32 @@
 import Link from 'next/link';
 import { useState } from 'react';
 
-const MenuItem = ({ menu }) => {
+const MenuItem = ({ menu, size, active }) => {
   const [dropdown, setDropdown] = useState(false);
 
   return (
     <li
-      className='w-1/5 text-center'
+      className={`w-1/${size} text-center border-b-2 ${
+        active ? 'border-blue-700' : 'border-white'
+      }`}
       onMouseEnter={() => setDropdown(true)}
-      onMouseLeave={() => setDropdown(false)}>
+      onMouseLeave={() => setDropdown(false)}
+    >
       {menu.submenu ? (
         <div className='relative w-full'>
-          <button className='block w-full md:px-5 pb-2 transition hover:text-primary uppercase'>
+          <Link
+            href={menu.url}
+            className='block w-full md:px-5 pb-2 transition hover:text-primary uppercase'
+          >
             {menu.title}
-          </button>
+          </Link>
           {dropdown && <Dropdown submenus={menu.submenu} />}
         </div>
       ) : (
         <Link
           href={menu.url}
-          className='block md:px-5 pb-2 transition hover:text-primary'>
+          className='block md:px-5 pb-2 transition hover:text-primary'
+        >
           <span className='uppercase'>{menu.title}</span>
         </Link>
       )}
@@ -29,13 +36,14 @@ const MenuItem = ({ menu }) => {
 
 const Dropdown = ({ submenus }) => {
   return (
-    <ul className='absolute z-10 w-full text-center rounded-sm bg-white bg-opacity-70'>
+    <ul className='absolute z-10 w-full text-center rounded-sm bg-blue-700 bg-opacity-90'>
       {submenus.map((submenu, index) => (
         <Link key={index} className='w-full' href={submenu.url}>
           <li
-            className={`py-2 mx-2 v text-blue-700 ${
-              index + 1 !== submenus.length && 'border-b-2 border-blue-700'
-            } hover:font-bold cursor-pointer`}>
+            className={`py-2 mx-2 v text-white ${
+              index + 1 !== submenus.length && 'border-b-2 border-white'
+            } hover:font-bold cursor-pointer`}
+          >
             {submenu.title}
           </li>
         </Link>

@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import MenuItem from './menu-item';
 import { kebab } from '../utils/convert';
+import { usePathname } from 'next/navigation';
 
 const Navbar = ({ range }) => {
+  const pathname = usePathname();
   const menuItems = getMenuItems(range);
 
   return (
@@ -21,7 +23,14 @@ const Navbar = ({ range }) => {
               <div className='text-white lg:pr-4 w-full'>
                 <ul className='space-y-6 w-full tracking-wide font-medium text-base lg:text-sm lg:flex lg:space-y-0'>
                   {menuItems.map((menu, index) => {
-                    return <MenuItem key={index} menu={menu} />;
+                    return (
+                      <MenuItem
+                        key={index}
+                        menu={menu}
+                        size={menuItems.length}
+                        active={menu.url === pathname}
+                      />
+                    );
                   })}
                 </ul>
               </div>
@@ -44,20 +53,20 @@ const getMenuItems = (range) => {
       url: '/about',
       submenu: [
         {
-          title: 'About',
-          url: '/about',
-        },
-        {
-          title: 'Summary',
-          url: '/about?q=summary',
-        },
-        {
           title: 'CEO Greetings',
           url: '/about?q=ceo-greetings',
         },
         {
+          title: 'Brief History',
+          url: '/about?q=history',
+        },
+        {
           title: 'Facility',
           url: '/about?q=facility',
+        },
+        {
+          title: 'Manufacturing',
+          url: '/about?q=manufacturing',
         },
       ],
     },

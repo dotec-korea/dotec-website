@@ -1,5 +1,5 @@
 import FacilityCard from './facility-card';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 
 export default function Facility({ facilities }) {
@@ -33,13 +33,15 @@ export default function Facility({ facilities }) {
       #1D4ED8 50%, 
       #1D4ED8 100%
     )`,
-      }}>
+      }}
+    >
       <div className='flex flex-col px-8 mx-auto space-y-12 max-w-7xl xl:px-12'>
         <div className='flex flex-col animated fadeIn sm:flex-row'>
           <div className='flex items-center sm:w-1/2 md:w-8/12 sm:order-last'>
             <div
               ref={slider}
-              className='snap-x mx-auto snap-mandatory flex w-full overflow-x-scroll range'>
+              className='snap-x mx-auto snap-mandatory flex w-full overflow-x-scroll range'
+            >
               {facilities.map((facility, index) => {
                 return (
                   <FacilityCard
@@ -63,13 +65,15 @@ export default function Facility({ facilities }) {
               <div className='mt-12 flex flex-row justify-between w-8/12'>
                 <button
                   className='flex items-center text-xs uppercase font-bold text-left hover:opacity-75'
-                  onClick={previous}>
+                  onClick={previous}
+                >
                   <MdNavigateBefore className='text-xl' />
                   Back
                 </button>
                 <button
                   className='flex items-center text-xs uppercase font-bold text-right text-blue-700 hover:opacity-75'
-                  onClick={next}>
+                  onClick={next}
+                >
                   Next
                   <MdNavigateNext className='text-xl' />
                 </button>

@@ -1,28 +1,43 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
-export default function Clients({ clientLogos }) {
-  const clients = useRef(null);
+export default function Clients({ clients }) {
+  const slider = useRef(null);
+  clients = clients.sort((x, y) => x?.order - y?.order);
 
-  console.log(clientLogos);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      slider.current?.scrollTo({
+        left: slider.current?.scrollLeft + 150,
+        behavior: 'smooth',
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className='py-20 px-8 mx-auto max-w-7xl xl:px-12'>
-      <h3 className='mt-2 text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl'>
-        Clients
-      </h3>
-      <div ref={clients} className='w-full range overflow-x-scroll mt-4'>
-        {[...Array(16)].map((ele, i) => (
-          <img
-            className='object-center object-cover'
-            src='https://logos-world.net/wp-content/uploads/2020/11/Shell-Logo-1971-present.jpg'
-            alt='client logo'
-            style={{
-              width: 200,
-              padding: 16,
-              float: 'left',
-            }}
-          />
-        ))}
-      </div>
-    </section>
+    clients && (
+      <section className='w-full py-10 flex'>
+        <h3 className='mt-2 p-4 w-1/6 text-3xl font-bold bg-blue-700 text-white uppercase sm:text-left'>
+          Our Clients
+        </h3>
+        <div className='flex items-center w-5/6 order-last'>
+          <div
+            ref={slider}
+            className='snap-x mx-auto snap-mandatory flex w-full overflow-x-scroll range'
+          >
+            {clients.map((client, index) => (
+              <div key={index} className='w-1/5 snap-start flex-shrink-0 px-12'>
+                <img
+                  className='w-full h-full object-center object-contain'
+                  src={client.image.url}
+                  alt={client.title}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
   );
 }

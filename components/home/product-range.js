@@ -33,7 +33,8 @@ export default function ProductRange({ productRange }) {
           style={{ width: batch * 100 + '%' }}
           className={`grid md:grid-cols-${
             2 * batch
-          } grid-rows-2 grid-flow-col gap-5 lg:gap-7 my-10`}>
+          } grid-rows-2 grid-flow-col gap-5 lg:gap-7 my-10`}
+        >
           {productRange.map((pr, index) => {
             return (
               <ProductRangeCard
@@ -46,15 +47,17 @@ export default function ProductRange({ productRange }) {
           })}
         </div>
       </div>
-      <div className='w-1/3 mx-auto flex justify-between'>
+      <div className='w-1/2 mx-auto flex justify-between'>
         <button
           className='flex items-center uppercase font-bold text-left text-blue-700 hover:opacity-75'
-          onClick={previous}>
+          onClick={previous}
+        >
           <MdNavigateBefore className='text-4xl' />
         </button>
         <button
           className='flex items-center uppercase font-bold text-right text-blue-700 hover:opacity-75'
-          onClick={next}>
+          onClick={next}
+        >
           <MdNavigateNext className='text-4xl' />
         </button>
       </div>
