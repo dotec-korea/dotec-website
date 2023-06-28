@@ -3,13 +3,13 @@ import Head from 'next/head';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
 import Summary from '../components/home/summary';
-import Facility from '../components/home/facility';
 import ProductRange from '../components/home/product-range';
 import { getFacilities, getPageAndRange } from '../lib/api/page';
 import { getProductRange } from '../lib/api/products';
 import ScrollDown from '../components/home/scroll-down';
+import Clients from '../components/home/clients';
 
-export default function Index({ page, range, productRange, facilities }) {
+export default function Index({ page, range, productRange, clientLogos }) {
   return (
     <>
       <Layout>
@@ -24,7 +24,8 @@ export default function Index({ page, range, productRange, facilities }) {
                 background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                 center/cover 
                 url("${page.header.image.url}")`,
-              }}>
+              }}
+            >
               <Navbar range={range} />
               <PageHeader
                 text={page.header.text}
@@ -39,8 +40,9 @@ export default function Index({ page, range, productRange, facilities }) {
               link={page.summary.link}
               image={page.summary.image.url}
             />
+            <Clients clientLogos={clientLogos} />
             <ProductRange productRange={productRange} />
-            <Facility facilities={facilities} />
+            {/* <Facility facilities={facilities} /> */}
           </>
         )}
       </Layout>

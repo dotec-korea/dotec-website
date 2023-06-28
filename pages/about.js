@@ -2,15 +2,17 @@ import Layout from '../components/layout';
 import Head from 'next/head';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
-import Summary from '../components/home/summary';
 import Facility from '../components/home/facility';
 import CeoGreetings from '../components/about/ceo-greetings';
 import { useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getFacilities, getPageAndRange } from '../lib/api/page';
+import BriefHistory from '../components/about/history';
+import Manufacturing from '../components/about/manufacturing';
 
 export default function About({ page, range, facilities }) {
   const searchParams = useSearchParams();
+  const { selectedProcess, setProcess } = useState('casting');
 
   useEffect(() => {
     const query = searchParams.get('q');
@@ -35,7 +37,8 @@ export default function About({ page, range, facilities }) {
                 background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                 center/cover 
                 url("${page.header.image.url}")`,
-              }}>
+              }}
+            >
               <Navbar range={range} />
               <PageHeader
                 text={page.header.text}
@@ -43,14 +46,13 @@ export default function About({ page, range, facilities }) {
                 image={page.header.image}
               />
             </section>
-            <Summary
-              title={page.summary.title}
-              summary={page.summary.summary}
-              link={page.summary.link}
-              image={page.summary.image.url}
-            />
             <CeoGreetings />
+            <BriefHistory />
             <Facility facilities={facilities} />
+            <Manufacturing
+              selectedProcess={selectedProcess}
+              setProcess={(x) => setProcess(x)}
+            />
           </>
         )}
       </Layout>

@@ -51,11 +51,11 @@ const ProductCard = ({ productId }) => {
         <div className='w-full p-6 bg-gray-100 mt-4'>
           <table className='w-full table-auto'>
             <thead>
-              <tr className='text-sm uppercase tracking-wider  text-left '>
+              <tr className='text-sm uppercase tracking-wider text-left'>
                 <th className='w-1/3 px-1 py-3 text-blue-700'>SPECIFICATION</th>
-                <th className='w-2/3 px-1 py-3 text-black'>
-                  {product?.specification}
-                </th>
+              </tr>
+              <tr className='text-sm text-left'>
+                <th className='w-2/3 px-1 py-3'>{product?.specification}</th>
               </tr>
             </thead>
             <tbody>
@@ -75,6 +75,12 @@ const ProductCard = ({ productId }) => {
                 <td className='w-1/3 p-1 text-black'>End Flange</td>
                 <td className='w-2/3 p-1'>{product?.endFlange}</td>
               </tr>
+              {product?.buttWelding && (
+                <tr className='text-sm tracking-wider font-medium text-gray-600'>
+                  <td className='w-1/3 p-1 text-black'>Butt Welding</td>
+                  <td className='w-2/3 p-1'>{product?.buttWelding}</td>
+                </tr>
+              )}
               <tr className='text-sm tracking-wider font-medium text-gray-600'>
                 <td className='w-1/3 p-1 text-black'>Testing</td>
                 <td className='w-2/3 p-1'>{product?.testing}</td>

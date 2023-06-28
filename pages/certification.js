@@ -22,7 +22,8 @@ export default function Certification({ page, range, certificates }) {
                 background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                 center/cover 
                 url("${page.header.image.url}")`,
-              }}>
+              }}
+            >
               <Navbar range={range} />
               <PageHeader
                 text={page.header.text}

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import News from './news';
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 
 export default function Certificates({ certificates }) {
@@ -37,7 +36,8 @@ export default function Certificates({ certificates }) {
                   <div className='flex flex-row justify-between w-8/12'>
                     <button
                       className='flex items-center text-xs uppercase font-bold text-left hover:opacity-75'
-                      onClick={() => setCurrentIndex(0)}>
+                      onClick={() => setCurrentIndex(0)}
+                    >
                       Go Back
                     </button>
                   </div>
@@ -48,7 +48,8 @@ export default function Certificates({ certificates }) {
                   <div className='mt-12 flex flex-row justify-between w-8/12'>
                     <button
                       className='flex items-center text-xs uppercase font-bold text-left hover:opacity-75'
-                      onClick={previous}>
+                      onClick={previous}
+                    >
                       <MdNavigateBefore className='text-xl' />
                       Back
                     </button>
@@ -57,7 +58,8 @@ export default function Certificates({ certificates }) {
                     </span>
                     <button
                       className='flex items-center text-xs uppercase font-bold text-right text-blue-700 hover:opacity-75'
-                      onClick={next}>
+                      onClick={next}
+                    >
                       Next
                       <MdNavigateNext className='text-xl' />
                     </button>
@@ -111,7 +113,7 @@ export default function Certificates({ certificates }) {
           </div>
         </div>
       </section>
-      <News />
+      {/* <News /> */}
     </>
   );
 }
@@ -121,7 +123,8 @@ const LandscapeCertificate = ({ title, image, id, setCurrentIndex }) => {
     <div className='w-full aspect-video p-2'>
       <div
         className='w-full h-full relative group cursor-pointer'
-        onClick={() => setCurrentIndex(id)}>
+        onClick={() => setCurrentIndex(id)}
+      >
         <img
           src={image}
           alt={title}
@@ -146,7 +149,8 @@ const PortraitCertificate = ({ title, image, id, setCurrentIndex }) => {
     <div className='w-9/12 mx-auto aspect-[3/4] p-2'>
       <div
         className='w-full h-full relative group cursor-pointer'
-        onClick={() => setCurrentIndex(id)}>
+        onClick={() => setCurrentIndex(id)}
+      >
         <img
           src={image}
           alt={title}
