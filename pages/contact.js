@@ -4,7 +4,7 @@ import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
 import ContactForm from '../components/contact/contact-form';
 import MapChart from '../components/contact/map-chart';
-import { getPageAndRange } from '../lib/api/page';
+import { getPageAndRange } from '../lib/api/home';
 
 export default function Contact({ page, range }) {
   return (

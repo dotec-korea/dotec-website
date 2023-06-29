@@ -1,5 +1,32 @@
 import Link from 'next/link';
 
+let menuItems = [
+  {
+    title: 'Home',
+    url: '/',
+  },
+  {
+    title: 'About Us',
+    url: '/about',
+  },
+  {
+    title: 'Products',
+    url: '/products',
+  },
+  {
+    title: 'Certification',
+    url: '/certification',
+  },
+  {
+    title: 'Resources',
+    url: '/resources',
+  },
+  {
+    title: 'Contact Us',
+    url: '/contact',
+  },
+];
+
 export default function Footer() {
   return (
     <footer className='bg-white'>
@@ -21,21 +48,22 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className='w-1/2 px-6 py-16 mx-auto sm:px-6 lg:px-12'>
-          <nav className='flex flex-col mt-4 space-y-4 text-sm font-bold text-white'>
-            <Link href='/about' className='hover:opacity-75'>
-              About Us
-            </Link>
-            <Link href='/certification' className='hover:opacity-75'>
-              Resources
-            </Link>
-            <Link href='/products' className='hover:opacity-75'>
-              Products
-            </Link>
-            <Link href='/contact' className='hover:opacity-75'>
-              Contact Us
-            </Link>
-          </nav>
+        <div className='w-1/2 px-6 py-16 mx-auto'>
+          <div className='border-l-2 border-white sm:px-6 lg:px-12'>
+            <nav className='flex flex-col mt-4 space-y-4 text-sm font-bold text-white'>
+              {menuItems.map((item, index) => {
+                return (
+                  <Link
+                    key={index}
+                    href={item.url}
+                    className='hover:opacity-75'
+                  >
+                    {item.title}
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
         </div>
       </div>
     </footer>

@@ -1,5 +1,5 @@
 import Layout from '../components/layout';
-import { getPageAndRange } from '../lib/api/page';
+import { getPageAndRange } from '../lib/api/home';
 import { getProducts } from '../lib/api/products';
 import Head from 'next/head';
 import PageHeader from '../components/page-header';

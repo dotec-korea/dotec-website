@@ -4,7 +4,7 @@ import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
 import Quote from '../components/certificate/quote';
 import Certificates from '../components/certificate/certificates';
-import { getPageAndRange } from '../lib/api/page';
+import { getPageAndRange } from '../lib/api/home';
 import { getCertificates } from '../lib/api/certificates';
 
 export default function Certification({ page, range, certificates }) {

@@ -2,18 +2,16 @@ import Layout from '../components/layout';
 import Head from 'next/head';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
-import Summary from '../components/home/summary';
-import ProductRange from '../components/home/product-range';
-import { getClients, getPageAndRange } from '../lib/api/home';
-import { getProductRange } from '../lib/api/products';
-import Clients from '../components/home/clients';
+import { getPageAndRange } from '../lib/api/home';
+import Catalogues from '../components/resources/catalogues';
+import { getCatalogues } from '../lib/api/resources';
 
-export default function Index({ page, range, productRange, clients }) {
+export default function Resources({ page, range, catalogues }) {
   return (
     <>
       <Layout>
         <Head>
-          <title>DoTEC</title>
+          <title>DoTEC | Resources</title>
         </Head>
         {page && (
           <>
@@ -29,17 +27,10 @@ export default function Index({ page, range, productRange, clients }) {
               <PageHeader
                 text={page.header.text}
                 subtext={page.header.subtext}
-                link={page.header.link}
+                image={page.header.image}
               />
             </section>
-            <Summary
-              title={page.summary.title}
-              summary={page.summary.summary}
-              link={page.summary.link}
-              image={page.summary.image.url}
-            />
-            <Clients clients={clients} />
-            <ProductRange productRange={productRange} />
+            <Catalogues catalogues={catalogues} />
           </>
         )}
       </Layout>
@@ -48,12 +39,11 @@ export default function Index({ page, range, productRange, clients }) {
 }
 
 export async function getStaticProps() {
-  const name = 'Home';
+  const name = 'Resources';
   const { page, range } = (await getPageAndRange(name)) ?? [];
-  const productRange = (await getProductRange()) ?? [];
-  const clients = (await getClients()) ?? [];
+  const catalogues = (await getCatalogues()) ?? [];
 
   return {
-    props: { page, range, productRange, clients },
+    props: { page, range, catalogues },
   };
 }

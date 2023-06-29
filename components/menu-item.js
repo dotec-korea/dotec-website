@@ -6,7 +6,7 @@ const MenuItem = ({ menu, size, active }) => {
 
   return (
     <li
-      className={`w-1/${size} text-center border-b-2 ${
+      className={`w-1/${size} text-center border-b-2 hover:border-blue-700 ${
         active ? 'border-blue-700' : 'border-white'
       }`}
       onMouseEnter={() => setDropdown(true)}

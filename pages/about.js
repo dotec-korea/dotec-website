@@ -7,7 +7,8 @@ import History from '../components/about/history';
 import CeoGreetings from '../components/about/ceo-greetings';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { getFacilities, getHistory, getPageAndRange } from '../lib/api/page';
+import { getPageAndRange } from '../lib/api/home';
+import { getFacilities, getHistory } from '../lib/api/about';
 import Manufacturing from '../components/about/manufacturing';
 
 export default function About({ page, range, facilities, history }) {
