@@ -25,13 +25,13 @@ export default function Manufacturing() {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
+    setImages([]);
     const current = headers.find((x) => x.id === tab);
 
     if (current) {
       async function fetchData() {
         const response = await getProcess(current.title);
         if (response.length > 0) setImages(response[0].imagesCollection?.items);
-        else setImages([]);
       }
 
       fetchData();

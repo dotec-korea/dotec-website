@@ -32,7 +32,7 @@ export default function Certificates({ certificates }) {
                   />
                 </div>
                 <a
-                  href='javascript:void(0)'
+                  href=''
                   download={certificates[currentIndex - 1]?.image.url}
                   className='absolute top-0 right-0 uppercase text-sm flex rounded-full bg-blue-700 p-2'
                 >
