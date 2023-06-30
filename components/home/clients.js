@@ -20,7 +20,7 @@ export default function Clients({ clients }) {
           behavior: 'smooth',
         });
       }
-    }, 3000);
+    }, 1800);
 
     return () => clearInterval(interval);
   }, []);
@@ -28,10 +28,10 @@ export default function Clients({ clients }) {
   return (
     clients && (
       <section className='w-full py-10 flex'>
-        <h3 className='mt-2 p-4 w-1/6 flex justify-center items-center text-3xl xl:4xl font-bold bg-blue-700 text-white uppercase sm:text-left'>
+        <div className='relative mt-2 h-28 p-4 w-1/6 flex items-center text-3xl xl:4xl font-bold bg-blue-700 text-white uppercase sm:text-left main-pointed-tab'>
           Our Clients
-        </h3>
-        <div className='flex items-center w-5/6 order-last'>
+        </div>
+        <div className='flex pl-4 items-center w-5/6 order-last'>
           <div
             ref={slider}
             className='snap-x mx-auto snap-mandatory flex w-full overflow-x-scroll range'

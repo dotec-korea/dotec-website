@@ -96,6 +96,18 @@
   }
 }
 
+.main-pointed-tab:after {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 0px;
+  width: 0px;
+  height: 0px;
+  border-top: 3.5rem solid transparent;
+  border-left: 2.5rem solid rgb(29, 78, 216);
+  border-bottom: 3.5rem solid transparent;
+}
+
 .pointed-tab:after {
   content: '';
   position: absolute;
