@@ -29,7 +29,7 @@ export default function History({ history }) {
         <h3 className='px-8 mx-auto max-w-7xl xl:px-12 text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl'>
           Brief History
         </h3>
-        <div className='w-full flex justify-between items-center my-10 px-8 mx-auto max-w-7xl xl:px-12'>
+        <div className='w-full flex justify-between items-center my-20 px-8 mx-auto max-w-7xl xl:px-12'>
           {history?.length > 5 && (
             <MdOutlineKeyboardDoubleArrowLeft
               onClick={previous}
