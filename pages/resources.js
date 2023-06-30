@@ -4,9 +4,10 @@ import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
 import { getPageAndRange } from '../lib/api/home';
 import Catalogues from '../components/resources/catalogues';
-import { getCatalogues } from '../lib/api/resources';
+import { getCatalogues, getInstallation } from '../lib/api/resources';
+import Installations from '../components/resources/installations';
 
-export default function Resources({ page, range, catalogues }) {
+export default function Resources({ page, range, catalogues, installations }) {
   return (
     <>
       <Layout>
@@ -31,6 +32,7 @@ export default function Resources({ page, range, catalogues }) {
               />
             </section>
             <Catalogues catalogues={catalogues} />
+            <Installations installations={installations} />
           </>
         )}
       </Layout>
@@ -42,8 +44,9 @@ export async function getStaticProps() {
   const name = 'Resources';
   const { page, range } = (await getPageAndRange(name)) ?? [];
   const catalogues = (await getCatalogues()) ?? [];
+  const installations = (await getInstallation()) ?? [];
 
   return {
-    props: { page, range, catalogues },
+    props: { page, range, catalogues, installations },
   };
 }
