@@ -23,7 +23,8 @@ const ProductTab = ({ product, productId, setProductId }) => {
             ? 'border-blue-700'
             : 'border-transparent'
         }`}
-        onClick={() => setProductId(product.sys.id)}>
+        onClick={() => setProductId(product.sys.id)}
+      >
         <div className='w-1/2 px-3'>
           <div className='w-full'>
             <img
@@ -33,7 +34,7 @@ const ProductTab = ({ product, productId, setProductId }) => {
             />
           </div>
         </div>
-        <div className='w-1/2 text-lg font-medium flex items-center'>
+        <div className='w-1/2 text-lg font-semibold flex items-center'>
           {product?.title}
         </div>
       </div>

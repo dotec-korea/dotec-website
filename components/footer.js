@@ -33,7 +33,7 @@ export default function Footer() {
       <div className='w-100 flex bg-blue-700'>
         <div className='w-1/2 flex flex-col text-white px-6 py-16 mx-auto sm:px-6 lg:px-12'>
           <div className='border-right'>
-            <div className='text-sm font-medium uppercase'>
+            <div className='text-sm font-semibold uppercase'>
               Contact Us
               <p className='max-w-xs mt-1 text-xl font-semibold'>000-000-000</p>
             </div>

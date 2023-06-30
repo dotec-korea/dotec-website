@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export default function Clients({ clients }) {
   const slider = useRef(null);
@@ -6,10 +6,20 @@ export default function Clients({ clients }) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      slider.current?.scrollTo({
-        left: slider.current?.scrollLeft + 150,
-        behavior: 'smooth',
-      });
+      const maxScrollLeft =
+        slider.current?.scrollWidth - slider.current?.clientWidth;
+
+      if (slider.current?.scrollLeft < maxScrollLeft) {
+        slider.current?.scrollTo({
+          left: slider.current?.scrollLeft + 150,
+          behavior: 'smooth',
+        });
+      } else {
+        slider.current?.scrollTo({
+          left: slider.current?.scrollLeft - maxScrollLeft,
+          behavior: 'smooth',
+        });
+      }
     }, 3000);
 
     return () => clearInterval(interval);
@@ -18,7 +28,7 @@ export default function Clients({ clients }) {
   return (
     clients && (
       <section className='w-full py-10 flex'>
-        <h3 className='mt-2 p-4 w-1/6 text-3xl font-bold bg-blue-700 text-white uppercase sm:text-left'>
+        <h3 className='mt-2 p-4 w-1/6 flex justify-center items-center text-3xl xl:4xl font-bold bg-blue-700 text-white uppercase sm:text-left'>
           Our Clients
         </h3>
         <div className='flex items-center w-5/6 order-last'>

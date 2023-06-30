@@ -12,7 +12,8 @@ const Table = ({ header, body, width }) => {
             return (
               <tr
                 key={index}
-                className='text-sm tracking-wider font-medium text-gray-600'>
+                className='text-sm tracking-wider font-semibold text-gray-600'
+              >
                 <td className='w-full p-1'>{item}</td>
               </tr>
             );

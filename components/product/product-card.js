@@ -7,6 +7,7 @@ const ProductCard = ({ productId }) => {
   const [product, setProduct] = useState({});
 
   useEffect(() => {
+    setProduct({});
     if (productId) {
       async function fetchData() {
         const response = await getProduct(productId);
@@ -29,8 +30,8 @@ const ProductCard = ({ productId }) => {
               />
             </div>
             <div className='w-full p-8'>
-              <h2 className='text-4xl font-bold'>{product?.title}</h2>
-              <p className='my-4 uppercase text-blue-700 text-base font-medium'>
+              <h2 className='text-2xl font-bold'>{product?.title}</h2>
+              <p className='my-4 uppercase text-blue-700 text-base font-semibold'>
                 MODEL NO: {product?.modelNumber}
               </p>
               <div className='text-gray-600'>
@@ -49,42 +50,52 @@ const ProductCard = ({ productId }) => {
           </div>
         </div>
         <div className='w-full p-6 bg-gray-100 mt-4'>
+          <div className='text-sm uppercase tracking-wider text-left font-bold'>
+            <div className='w-full px-1 py-3 text-blue-700'>
+              SPECIFICATION
+              {product?.specification && (
+                <p className='text-black'>{product?.specification}</p>
+              )}
+            </div>
+          </div>
           <table className='w-full table-auto'>
-            <thead>
-              <tr className='text-sm uppercase tracking-wider text-left'>
-                <th className='w-1/3 px-1 py-3 text-blue-700'>SPECIFICATION</th>
-              </tr>
-              <tr className='text-sm text-left'>
-                <th className='w-2/3 px-1 py-3'>{product?.specification}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className='text-sm tracking-wider font-medium text-gray-600'>
-                <td className='w-1/3 p-1 text-black'>Wall Thickness</td>
-                <td className='w-2/3 p-1'>{product?.wallThickness} </td>
-              </tr>
-              <tr className='text-sm tracking-wider font-medium text-gray-600'>
-                <td className='w-1/3 p-1 text-black'>Bore Size</td>
-                <td className='w-2/3 p-1'>{product?.boreSize}</td>
-              </tr>
-              <tr className='text-sm tracking-wider font-medium text-gray-600'>
-                <td className='w-1/3 p-1 text-black'>Face to Face</td>
-                <td className='w-2/3 p-1'>{product?.faceToFace}</td>
-              </tr>
-              <tr className='text-sm tracking-wider font-medium text-gray-600'>
-                <td className='w-1/3 p-1 text-black'>End Flange</td>
-                <td className='w-2/3 p-1'>{product?.endFlange}</td>
-              </tr>
+            <tbody className='w-full'>
+              {product?.wallThickness && (
+                <tr className='w-full text-sm tracking-wider font-semibold text-gray-600'>
+                  <td className='w-1/3 p-1 text-black'>Wall Thickness</td>
+                  <td className='w-2/3 p-1'>{product?.wallThickness}</td>
+                </tr>
+              )}
+              {product?.boreSize && (
+                <tr className='w-full text-sm tracking-wider font-semibold text-gray-600'>
+                  <td className='w-1/3 p-1 text-black'>Bore Size</td>
+                  <td className='w-2/3 p-1'>{product?.boreSize}</td>
+                </tr>
+              )}
+              {product?.faceToFace && (
+                <tr className='w-full text-sm tracking-wider font-semibold text-gray-600'>
+                  <td className='w-1/3 p-1 text-black'>Face to Face</td>
+                  <td className='w-2/3 p-1'>{product?.faceToFace}</td>
+                </tr>
+              )}
+              {product?.endFlange && (
+                <tr className='w-full text-sm tracking-wider font-semibold text-gray-600'>
+                  <td className='w-1/3 p-1 text-black'>End Flange</td>
+                  <td className='w-2/3 p-1'>{product?.endFlange}</td>
+                </tr>
+              )}
               {product?.buttWelding && (
-                <tr className='text-sm tracking-wider font-medium text-gray-600'>
+                <tr className='w-full text-sm tracking-wider font-semibold text-gray-600'>
                   <td className='w-1/3 p-1 text-black'>Butt Welding</td>
                   <td className='w-2/3 p-1'>{product?.buttWelding}</td>
                 </tr>
               )}
-              <tr className='text-sm tracking-wider font-medium text-gray-600'>
-                <td className='w-1/3 p-1 text-black'>Testing</td>
-                <td className='w-2/3 p-1'>{product?.testing}</td>
-              </tr>
+              {product?.testing && (
+                <tr className='w-full text-sm tracking-wider font-semibold text-gray-600'>
+                  <td className='w-1/3 p-1 text-black'>Testing</td>
+                  <td className='w-2/3 p-1'>{product?.testing}</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

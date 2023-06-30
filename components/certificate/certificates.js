@@ -1,5 +1,6 @@
+import Link from 'next/link';
 import { useState } from 'react';
-import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
+import { MdNavigateBefore, MdNavigateNext, MdDownload } from 'react-icons/md';
 
 export default function Certificates({ certificates }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -23,13 +24,20 @@ export default function Certificates({ certificates }) {
         <div className='w-full h-full py-10 mb-20'>
           <div className='h-full flex flex-col px-8 mx-auto space-y-12 max-w-7xl xl:px-12'>
             <div className='h-full flex flex-col sm:flex-row'>
-              <div className='h-full flex items-center justify-center sm:w-1/2 md:w-8/12 sm:order-last'>
+              <div className='h-full relative flex items-center justify-center sm:w-1/2 md:w-8/12 sm:order-last'>
                 <div className='h-full w-10/12 flex justify-center items-center'>
                   <img
                     src={certificates[currentIndex - 1]?.image.url}
                     className='w-full h-full object-contain drop-shadow-lg'
                   />
                 </div>
+                <a
+                  href='javascript:void(0)'
+                  download={certificates[currentIndex - 1]?.image.url}
+                  className='absolute top-0 right-0 uppercase text-sm flex rounded-full bg-blue-700 p-2'
+                >
+                  <MdDownload className='text-xl text-white' />
+                </a>
               </div>
               <div className='flex flex-row justify-center mb-8 md:mt-0 sm:w-1/2 md:w-4/12 sm:pr-16'>
                 <div className='flex flex-col justify-between w-11/12'>
@@ -79,7 +87,7 @@ export default function Certificates({ certificates }) {
           <h3 className='text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl mb-4'>
             Certifications
           </h3>
-          <p className='w-1/2 font-lg font-medium tracking-wide'>
+          <p className='w-1/2 font-lg font-semibold tracking-wide'>
             Because we are a manufacturing company which puts price on quality,
             we show you a series of certificates obtained
           </p>

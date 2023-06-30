@@ -11,14 +11,14 @@ export default function History({ history }) {
 
   const next = () => {
     slider.current?.scrollTo({
-      left: slider.current?.scrollLeft + 300,
+      left: slider.current?.scrollLeft + 150,
       behavior: 'smooth',
     });
   };
 
   const previous = () => {
     slider.current?.scrollTo({
-      left: slider.current?.scrollLeft - 300,
+      left: slider.current?.scrollLeft - 150,
       behavior: 'smooth',
     });
   };
@@ -39,14 +39,14 @@ export default function History({ history }) {
           )}
           <div
             ref={slider}
-            className='snap-x mx-auto snap-mandatory w-10/12 flex range'
+            className='snap-x mx-auto snap-mandatory w-10/12 overflow-x-scroll flex range'
           >
             {history.map((element, index) => (
-              <div key={index} className='w-1/5 snap-center py-2'>
-                <div className='year font-bold text-blue-700 leading-none text-5xl'>
+              <div key={index} className='w-1/5 flex-shrink-0 snap-center py-2'>
+                <div className='font-bold text-blue-700 leading-none text-5xl'>
                   {element?.year}
                 </div>
-                <div className='month font-light text-blue-700 text-xl'>
+                <div className='font-light text-blue-700 text-xl'>
                   {element?.month}
                 </div>
                 <div className='divider text-blue-700 py-5 flex items-center'>
