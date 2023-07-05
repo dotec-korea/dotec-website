@@ -35,15 +35,20 @@ export default function Footer() {
           <div className='border-right'>
             <div className='text-sm font-semibold uppercase'>
               Contact Us
-              <p className='max-w-xs mt-1 text-xl font-semibold'>000-000-000</p>
+              <p className='max-w-xs mt-1 text-xl font-semibold'>
+                82-55-346-5771
+              </p>
             </div>
             <div className='mt-10'>
               <div className='h-6 sm:h-9'>
                 <img className='h-full' src='/DoTEC.png' alt='logo' />
               </div>
               <p className='max-w-xs mt-1 text-sm font-normal'>
-                Address : Lorem ipsum dolor sit amet. Ex cumque voluptatem sed
-                maiores consequatur aut velit volupta
+                Address: 189, techno—valley gil, Jillye-myun, Gimhae city,
+                Gyeongnam, South Korea
+              </p>
+              <p className='max-w-xs mt-1 text-sm font-normal'>
+                Fax: <b>82-55346-5772</b>
               </p>
             </div>
           </div>
