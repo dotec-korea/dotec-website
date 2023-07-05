@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getProcess } from '../../lib/api/about';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const headers = [
   {
@@ -22,6 +23,7 @@ const headers = [
 
 export default function Manufacturing() {
   const [tab, setTab] = useState(1);
+  const [showTab, setShowTab] = useState(false);
   const [images, setImages] = useState([]);
 
   useEffect(() => {
@@ -36,7 +38,13 @@ export default function Manufacturing() {
 
       fetchData();
     }
+    setShowTab(true);
   }, [tab]);
+
+  const setManufacturing = (id) => {
+    setShowTab(false);
+    setTab(id);
+  };
 
   return (
     <section id='manufacturing' className='bg-gray-100 py-12'>
@@ -52,7 +60,7 @@ export default function Manufacturing() {
                 className={`w-full flex items-center text-xl font-bold cursor-pointer ${
                   header.id <= tab ? 'bg-blue-700 text-white' : ' text-gray-800'
                 }`}
-                onClick={() => setTab(header.id)}
+                onClick={() => setManufacturing(header.id)}
               >
                 <div
                   className={`relative w-full h-20 flex items-center justify-center
@@ -70,23 +78,44 @@ export default function Manufacturing() {
           })}
         </div>
       </div>
-      {images?.length > 0 && (
-        <div className='w-full pt-6 mb-40 mx-auto max-w-7xl xl:px-12 flex justify-center'>
-          <div className='w-full grid grid-cols-3 gap-16'>
-            {images.map((image, index) => {
-              return (
-                <div key={index}>
-                  <img
-                    className='h-full w-full object-center object-contain'
-                    src={image.url}
-                    alt={tab + ' ' + index}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
+      <div className='min-h-[300px]'>
+        {images?.length > 0 && (
+          <AnimatePresence>
+            {showTab && (
+              <motion.div
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -10, opacity: 0 }}
+                transition={{ duration: 1 }}
+              >
+                <ImageTab images={images} tab={tab} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        )}
+      </div>
     </section>
   );
 }
+
+const ImageTab = ({ images, tab }) => {
+  return (
+    <div className='w-full pt-6 mb-40 mx-auto max-w-7xl xl:px-12 flex justify-center'>
+      <div className='w-full grid grid-cols-3 gap-16'>
+        {images.map((image, index) => {
+          return (
+            <div key={index}>
+              {image && (
+                <img
+                  className='h-full w-full object-center object-contain'
+                  src={image.url}
+                  alt={tab + ' ' + index}
+                />
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};

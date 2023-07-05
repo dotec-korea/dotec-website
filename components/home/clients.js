@@ -38,11 +38,13 @@ export default function Clients({ clients }) {
           >
             {clients.map((client, index) => (
               <div key={index} className='w-1/5 snap-start flex-shrink-0 px-12'>
-                <img
-                  className='w-full h-full object-center object-contain'
-                  src={client.image.url}
-                  alt={client.title}
-                />
+                {client.image.url && (
+                  <img
+                    className='w-full h-full object-center object-contain'
+                    src={client.image.url}
+                    alt={client.title}
+                  />
+                )}
               </div>
             ))}
           </div>

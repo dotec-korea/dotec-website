@@ -13,7 +13,6 @@ import Manufacturing from '../components/about/manufacturing';
 
 export default function About({ page, range, facilities, history }) {
   const searchParams = useSearchParams();
-  const { selectedProcess, setProcess } = useState('casting');
 
   useEffect(() => {
     const query = searchParams.get('q');

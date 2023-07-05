@@ -1,7 +1,15 @@
 import { kebab } from '../../utils/convert';
 
-const SideBar = ({ products, range, setRange, productId, setProductId }) => {
+const SideBar = ({
+  products,
+  range,
+  setRange,
+  productId,
+  setProductId,
+  setShowCard,
+}) => {
   const setRangeAndProduct = (range, id) => {
+    setShowCard(false);
     setRange(kebab(range));
     setProductId(id);
   };
@@ -17,7 +25,8 @@ const SideBar = ({ products, range, setRange, productId, setProductId }) => {
                   className={`font-bold uppercase tracking-wide text-sm mb-3 cursor-pointer ${
                     kebab(product?.title) === range && 'text-blue-700'
                   }`}
-                  onClick={() => setRangeAndProduct(product?.title, '')}>
+                  onClick={() => setRangeAndProduct(product?.title, '')}
+                >
                   {product.title}
                 </h5>
               )}
@@ -31,7 +40,8 @@ const SideBar = ({ products, range, setRange, productId, setProductId }) => {
                       }`}
                       onClick={() =>
                         setRangeAndProduct(product.title, item.sys.id)
-                      }>
+                      }
+                    >
                       {item?.title}
                     </p>
                   )

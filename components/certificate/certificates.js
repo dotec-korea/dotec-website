@@ -26,10 +26,12 @@ export default function Certificates({ certificates }) {
             <div className='h-full flex flex-col sm:flex-row'>
               <div className='h-full relative flex items-center justify-center sm:w-1/2 md:w-8/12 sm:order-last'>
                 <div className='h-full w-10/12 flex justify-center items-center'>
-                  <img
-                    src={certificates[currentIndex - 1]?.image.url}
-                    className='w-full h-full object-contain drop-shadow-lg'
-                  />
+                  {certificates[currentIndex - 1]?.image.url && (
+                    <img
+                      src={certificates[currentIndex - 1]?.image.url}
+                      className='w-full h-full object-contain drop-shadow-lg'
+                    />
+                  )}
                 </div>
                 <a
                   href=''
@@ -133,11 +135,13 @@ const LandscapeCertificate = ({ title, image, id, setCurrentIndex }) => {
         className='w-full h-full relative group cursor-pointer'
         onClick={() => setCurrentIndex(id)}
       >
-        <img
-          src={image}
-          alt={title}
-          className='object-center object-contain h-full w-full opacity-100 group-hover:opacity-10 duration-300'
-        />
+        {image && (
+          <img
+            src={image}
+            alt={title}
+            className='object-center object-contain h-full w-full opacity-100 group-hover:opacity-10 duration-300'
+          />
+        )}
         <div className='w-full h-full opacity-0 group-hover:opacity-100 duration-300 absolute inset-x-0 bottom-0 flex flex-col justify-center items-center'>
           <span className='w-3/5 text-center text-xl text-black font-bold uppercase'>
             {title}
@@ -159,11 +163,13 @@ const PortraitCertificate = ({ title, image, id, setCurrentIndex }) => {
         className='w-full h-full relative group cursor-pointer'
         onClick={() => setCurrentIndex(id)}
       >
-        <img
-          src={image}
-          alt={title}
-          className='object-center object-contain h-full w-full opacity-100 group-hover:opacity-10 duration-300'
-        />
+        {image && (
+          <img
+            src={image}
+            alt={title}
+            className='object-center object-contain h-full w-full opacity-100 group-hover:opacity-10 duration-300'
+          />
+        )}
         <div className='w-full h-full opacity-0 group-hover:opacity-100 duration-300 absolute inset-x-0 bottom-0 flex flex-col justify-center items-center '>
           <span className='w-3/5 text-center text-xl text-black font-bold uppercase'>
             {title}

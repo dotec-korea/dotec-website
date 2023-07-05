@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getProductImage } from '../../lib/api/products';
 
-const ProductTab = ({ product, productId, setProductId }) => {
+const ProductTab = ({ product, productId, setProductId, setShowCard }) => {
   const [image, setImage] = useState('');
 
   useEffect(() => {
@@ -14,6 +14,11 @@ const ProductTab = ({ product, productId, setProductId }) => {
     }
   }, [product]);
 
+  const setProduct = () => {
+    setShowCard(false);
+    setProductId(product.sys.id);
+  };
+
   return (
     product &&
     image && (
@@ -23,15 +28,17 @@ const ProductTab = ({ product, productId, setProductId }) => {
             ? 'border-blue-700'
             : 'border-transparent'
         }`}
-        onClick={() => setProductId(product.sys.id)}
+        onClick={setProduct}
       >
         <div className='w-1/2 px-3'>
           <div className='w-full'>
-            <img
-              src={image}
-              alt={product?.title}
-              className='object-center object-contain h-full w-full'
-            />
+            {image && (
+              <img
+                src={image}
+                alt={product?.title}
+                className='object-center object-contain h-full w-full'
+              />
+            )}
           </div>
         </div>
         <div className='w-1/2 text-lg font-semibold flex items-center'>

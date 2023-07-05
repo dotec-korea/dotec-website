@@ -5,6 +5,7 @@ import ProductTab from './product-tab';
 import ProductCard from './product-card';
 import SideBar from './side-bar';
 import { kebab } from '../../utils/convert';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export default function Product({ products }) {
   const searchParams = useSearchParams();
@@ -12,6 +13,7 @@ export default function Product({ products }) {
   const [range, setRange] = useState('');
   const [productList, setProductList] = useState(['']);
   const [productId, setProductId] = useState('');
+  const [showCard, setShowCard] = useState(false);
 
   useEffect(() => {
     const query = searchParams.get('q');
@@ -41,6 +43,12 @@ export default function Product({ products }) {
     }
   }, [range]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setShowCard(true);
+    }, 300);
+  }, [productId]);
+
   return (
     <section className='py-20 m-auto px-6 md:px-12 lg:px-12 mx-auto max-w-7xl'>
       <div className='w-full flex'>
@@ -51,6 +59,7 @@ export default function Product({ products }) {
             setRange={setRange}
             productId={productId}
             setProductId={setProductId}
+            setShowCard={setShowCard}
           />
         </div>
         <div className='w-3/4'>
@@ -62,16 +71,35 @@ export default function Product({ products }) {
                   product={item}
                   productId={productId}
                   setProductId={setProductId}
+                  setShowCard={setShowCard}
                 />
               );
             })}
           </div>
-          {productId && (
-            <>
-              <SectionSeparator width={'3/4'} />
-              <ProductCard productId={productId} />
-            </>
-          )}
+          <AnimatePresence>
+            {showCard && (
+              <motion.div
+                initial={{ y: 300, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: 300, opacity: 0 }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 260,
+                  damping: 20,
+                }}
+              >
+                {productId && (
+                  <>
+                    <SectionSeparator width={'3/4'} />
+                    <ProductCard
+                      productId={productId}
+                      setShowCard={setShowCard}
+                    />
+                  </>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </section>
