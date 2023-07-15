@@ -40,6 +40,27 @@ const ProductCard = ({ productId }) => {
                 <div
                   dangerouslySetInnerHTML={{ __html: product?.description }}
                 />
+                <br />
+                <div>
+                  <span className='text-sm uppercase font-semibold'>
+                    Design:{' '}
+                  </span>
+                  {product?.design?.map((item, index) => {
+                    return (
+                      <span
+                        key={index}
+                        className='text-sm tracking-wider text-gray-600'
+                      >
+                        {item}
+                        {index + 1 !== product.design.length && (
+                          <span className='text-blue-700 font-bold'>
+                            {' | '}
+                          </span>
+                        )}
+                      </span>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
@@ -99,7 +120,6 @@ const ProductCard = ({ productId }) => {
           <Table header={'Class'} body={product?.class} />
           <Table header={'Size'} body={product?.size} />
           <Table header={'Body Material'} body={product?.bodyMaterial} />
-          <Table header={'Design'} body={product?.design} />
         </div>
       </>
     )

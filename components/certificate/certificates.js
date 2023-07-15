@@ -1,6 +1,5 @@
-import Link from 'next/link';
 import { useState } from 'react';
-import { MdNavigateBefore, MdNavigateNext, MdDownload } from 'react-icons/md';
+import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 
 export default function Certificates({ certificates }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -33,13 +32,6 @@ export default function Certificates({ certificates }) {
                     />
                   )}
                 </div>
-                <a
-                  href=''
-                  download={certificates[currentIndex - 1]?.image.url}
-                  className='absolute top-0 right-0 uppercase text-sm flex rounded-full bg-blue-700 p-2'
-                >
-                  <MdDownload className='text-xl text-white' />
-                </a>
               </div>
               <div className='flex flex-row justify-center mb-8 md:mt-0 sm:w-1/2 md:w-4/12 sm:pr-16'>
                 <div className='flex flex-col justify-between w-11/12'>
@@ -123,7 +115,6 @@ export default function Certificates({ certificates }) {
           </div>
         </div>
       </section>
-      {/* <News /> */}
     </>
   );
 }

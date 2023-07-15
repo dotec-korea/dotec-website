@@ -37,7 +37,10 @@ export default function Clients({ clients }) {
             className='snap-x mx-auto snap-mandatory flex w-full overflow-x-scroll range'
           >
             {clients.map((client, index) => (
-              <div key={index} className='w-1/5 snap-start flex-shrink-0 px-12'>
+              <div
+                key={index}
+                className='w-1/5 h-28 snap-start flex-shrink-0 px-12'
+              >
                 {client.image.url && (
                   <img
                     className='w-full h-full object-center object-contain'

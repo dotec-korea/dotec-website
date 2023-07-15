@@ -19,7 +19,7 @@ const Navbar = ({ range }) => {
                 </div>
               </Link>
             </div>
-            <div className='w-full flex-wrap justify-end items-center mb-16 space-y-8 p-6 border border-gray-100 rounded-3xl shadow-2xl shadow-gray-300/20 bg-white dark:bg-gray-800 lg:space-y-0 lg:p-0 lg:m-0 lg:flex md:flex-nowrap lg:bg-transparent lg:w-9/12 lg:shadow-none dark:shadow-none dark:border-gray-700 lg:border-0'>
+            <div className='justify-end items-center border-gray-100 space-y-0 p-0 m-0 flex bg-transparent w-9/12 shadow-none'>
               <div className='text-white lg:pr-4 w-full'>
                 <ul className='space-y-6 w-full tracking-wide font-semibold text-base lg:text-sm lg:flex lg:space-y-0'>
                   {menuItems.map((menu, index) => {
@@ -73,10 +73,6 @@ const getMenuItems = (range) => {
     {
       title: 'Certification',
       url: '/certification',
-    },
-    {
-      title: 'Resources',
-      url: '/resources',
     },
     {
       title: 'Contact Us',
