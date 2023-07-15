@@ -19,7 +19,7 @@ export default function ContactForm() {
   const { submit: onSubmit } = useWeb3Forms({
     access_key: apiKey,
     settings: {
-      from_name: 'DoTEC Contact Form',
+      from_name: 'DoTEC Website',
       subject: 'New Contact Message from your Website',
     },
     onSuccess: (msg) => {
@@ -48,7 +48,8 @@ export default function ContactForm() {
               id=''
               className='hidden'
               style={{ display: 'none' }}
-              {...register('botcheck')}></input>
+              {...register('botcheck')}
+            ></input>
 
             <div className='mb-5'>
               <input
@@ -140,24 +141,28 @@ export default function ContactForm() {
           <div className='w-full flex justify-center'>
             <button
               type='submit'
-              className='w-1/4 py-4 font-semibold text-blue-700 transition-colors bg-white hover:bg-gray-50 focus:outline-none focus:ring-offset-2 focus:ring focus:ring-gray-200 px-7 '>
+              className='w-1/4 py-4 font-semibold text-blue-700 transition-colors bg-white hover:bg-gray-50 focus:outline-none focus:ring-offset-2 focus:ring focus:ring-gray-200 px-7 '
+            >
               {isSubmitting ? (
                 <svg
                   className='w-5 h-5 mx-auto text-white dark:text-black animate-spin'
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
-                  viewBox='0 0 24 24'>
+                  viewBox='0 0 24 24'
+                >
                   <circle
                     className='opacity-25'
                     cx='12'
                     cy='12'
                     r='10'
                     stroke='currentColor'
-                    strokeWidth='4'></circle>
+                    strokeWidth='4'
+                  ></circle>
                   <path
                     className='opacity-75'
                     fill='currentColor'
-                    d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'></path>
+                    d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+                  ></path>
                 </svg>
               ) : (
                 'Send Message'

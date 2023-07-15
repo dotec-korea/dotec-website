@@ -70,7 +70,13 @@ const ProductCard = ({ productId }) => {
               <div className='w-full px-1 py-3 text-blue-700'>
                 SPECIFICATION
                 {product?.specification && (
-                  <p className='text-black'>{product?.specification}</p>
+                  <p className='text-black'>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: product?.specification,
+                      }}
+                    />
+                  </p>
                 )}
               </div>
             </div>

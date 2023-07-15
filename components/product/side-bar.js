@@ -27,6 +27,7 @@ const SideBar = ({
                   }`}
                   onClick={() => setRangeAndProduct(product?.title, '')}
                 >
+                  {product?.id && String.fromCharCode(product?.id + 64) + '. '}
                   {product.title}
                 </h5>
               )}
@@ -42,6 +43,7 @@ const SideBar = ({
                         setRangeAndProduct(product.title, item.sys.id)
                       }
                     >
+                      {item?.id && item?.id + '. '}
                       {item?.title}
                     </p>
                   )

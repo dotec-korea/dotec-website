@@ -18,10 +18,6 @@ let menuItems = [
     url: '/certification',
   },
   {
-    title: 'Resources',
-    url: '/resources',
-  },
-  {
     title: 'Contact Us',
     url: '/contact',
   },
