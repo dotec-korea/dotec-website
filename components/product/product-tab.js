@@ -8,7 +8,7 @@ const ProductTab = ({ product, productId, setProductId, setShowCard }) => {
     if (product) {
       async function fetchData() {
         const response = await getProductImage(product.sys.id);
-        if (response) setImage(response.image.url ?? '');
+        if (response) setImage(response?.image?.url ?? '');
       }
       fetchData();
     }
@@ -31,7 +31,7 @@ const ProductTab = ({ product, productId, setProductId, setShowCard }) => {
         onClick={setProduct}
       >
         <div className='w-1/2 px-3'>
-          <div className='w-full'>
+          <div className='w-full h-full flex justify-center items-center'>
             {image && (
               <img
                 src={image}

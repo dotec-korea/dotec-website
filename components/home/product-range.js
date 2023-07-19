@@ -35,16 +35,18 @@ export default function ProductRange({ productRange }) {
             2 * batch
           } grid-rows-2 grid-flow-col gap-5 lg:gap-7 my-10`}
         >
-          {productRange.map((pr, index) => {
-            return (
-              <ProductRangeCard
-                key={index}
-                title={pr?.title}
-                image={pr?.image.url}
-                index={index}
-              />
-            );
-          })}
+          {productRange
+            .sort((x, y) => x.id - y.id)
+            .map((pr, index) => {
+              return (
+                <ProductRangeCard
+                  key={index}
+                  title={pr?.title}
+                  image={pr?.image?.url}
+                  index={index}
+                />
+              );
+            })}
         </div>
       </div>
       <div className='w-1/2 mx-auto flex justify-between'>

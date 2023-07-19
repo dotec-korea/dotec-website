@@ -81,13 +81,15 @@ const getMenuItems = (range) => {
   ];
 
   if (range) {
-    const submenu = range.map((element) => {
-      const item = {
-        title: element.title,
-        url: '/products?q=' + kebab(element.title),
-      };
-      return item;
-    });
+    const submenu = range
+      .sort((x, y) => x.id - y.id)
+      .map((element) => {
+        const item = {
+          title: element.title,
+          url: '/products?q=' + kebab(element.title),
+        };
+        return item;
+      });
 
     const product = {
       title: 'Products',

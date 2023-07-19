@@ -48,6 +48,8 @@ const SideBar = ({
                             setRangeAndProduct(product.title, item.sys.id)
                           }
                         >
+                          {product?.id &&
+                            String.fromCharCode(product?.id + 64) + '-'}
                           {item?.id && item?.id + '. '}
                           {item?.title}
                         </p>
