@@ -78,9 +78,9 @@ export default function Certificates({ certificates }) {
     <>
       <section id='certificates' className='bg-gray-100'>
         <div className='px-8 pt-12 pb-6 mx-auto max-w-7xl xl:px-12'>
-          <h3 className='text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl mb-4'>
+          {/* <h3 className='text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl mb-4'>
             Certifications
-          </h3>
+          </h3> */}
           <p className='w-1/2 font-lg font-semibold tracking-wide'>
             Because we are a manufacturing company which puts price on quality,
             we show you a series of certificates obtained
