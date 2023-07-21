@@ -49,7 +49,6 @@ export default function About({ page, range, facilities, history }) {
             <CeoGreetings />
             <History history={history} />
             <Facility facilities={facilities} />
-            <Manufacturing />
           </>
         )}
       </Layout>

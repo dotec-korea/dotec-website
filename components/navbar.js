@@ -64,10 +64,6 @@ const getMenuItems = (range) => {
           title: 'Facility',
           url: '/about?q=facility',
         },
-        {
-          title: 'Manufacturing',
-          url: '/about?q=manufacturing',
-        },
       ],
     },
     {

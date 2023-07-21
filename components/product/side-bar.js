@@ -41,17 +41,19 @@ const SideBar = ({
                       item && (
                         <p
                           key={item.id}
-                          className={`text-sm my-1 tracking-wide cursor-pointer hover:text-blue-700 ${
+                          className={`text-sm my-1 tracking-wide cursor-pointer flex hover:text-blue-700 ${
                             item.sys.id === productId ? 'text-blue-700' : ''
                           }`}
                           onClick={() =>
                             setRangeAndProduct(product.title, item.sys.id)
                           }
                         >
-                          {product?.id &&
-                            String.fromCharCode(product?.id + 64) + '-'}
-                          {item?.id && item?.id + '. '}
-                          {item?.title}
+                          <span className='shrink-0 mr-1'>
+                            {product?.id &&
+                              String.fromCharCode(product?.id + 64) + '-'}
+                            {item?.id && item?.id + '. '}
+                          </span>
+                          <span>{item?.title}</span>
                         </p>
                       )
                     );

@@ -50,9 +50,9 @@ export default function Product({ products }) {
   }, [productId]);
 
   return (
-    <section className='py-20 m-auto px-6 md:px-12 lg:px-12 mx-auto max-w-7xl'>
+    <section className='py-20 m-auto px-6 md:px-12 lg:px-12 mx-auto max-w-7xl overflow-x-hidden'>
       <div className='w-full flex'>
-        <div className='w-1/4'>
+        <div className='w-1/4 pb-8'>
           <SideBar
             products={products}
             range={range}
@@ -63,6 +63,35 @@ export default function Product({ products }) {
           />
         </div>
         <div className='w-3/4'>
+          <AnimatePresence>
+            {showCard && (
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 260,
+                  damping: 20,
+                }}
+              >
+                {productId && (
+                  <>
+                    <ProductCard
+                      productId={productId}
+                      setShowCard={setShowCard}
+                    />
+                  </>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+      <div className='w-full flex'>
+        <div className='w-1/4'></div>
+        <div className='w-3/4'>
+          <SectionSeparator width={'3/4'} />
           <div className='grid grid-cols-3 gap-5'>
             {productList.map((item, key) => {
               return (
@@ -76,30 +105,6 @@ export default function Product({ products }) {
               );
             })}
           </div>
-          <AnimatePresence>
-            {showCard && (
-              <motion.div
-                initial={{ y: 300, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: 300, opacity: 0 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 260,
-                  damping: 20,
-                }}
-              >
-                {productId && (
-                  <>
-                    <SectionSeparator width={'3/4'} />
-                    <ProductCard
-                      productId={productId}
-                      setShowCard={setShowCard}
-                    />
-                  </>
-                )}
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
       </div>
     </section>
