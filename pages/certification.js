@@ -31,7 +31,6 @@ export default function Certification({ page, range, certificates }) {
                 image={page.header.image}
               />
             </section>
-            <Quote />
             <Certificates certificates={certificates} />
           </>
         )}
