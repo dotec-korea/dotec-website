@@ -4,7 +4,7 @@ import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 export default function Certificates({ certificates }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  certificates = certificates.sort((x, y) => x.id - y.id);
+  certificates = certificates.sort((x, y) => x.id - y.id).filter((x) => x.id);
   const landscape = certificates?.filter((x) => x.main) ?? [];
   const portrait = certificates?.filter((x) => !x.main) ?? [];
   let size = certificates.length;
