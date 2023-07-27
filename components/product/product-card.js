@@ -21,7 +21,7 @@ const ProductCard = ({ productId }) => {
     product && (
       <>
         <div className='w-full p-6 bg-gray-100'>
-          <div className='flex'>
+          <div className='flex flex-col lg:flex-row'>
             <div className='w-full aspect-square'>
               {product?.image?.url && (
                 <img
@@ -31,25 +31,27 @@ const ProductCard = ({ productId }) => {
                 />
               )}
             </div>
-            <div className='w-full p-8'>
-              <h2 className='text-2xl font-bold'>{product?.title}</h2>
-              <p className='my-4 uppercase text-blue-700 text-base font-semibold'>
+            <div className='w-full lg:p-8'>
+              <h2 className='text-md lg:text-2xl font-bold'>
+                {product?.title}
+              </h2>
+              <p className='my-4 uppercase text-blue-700 text-xs lg:text-base font-semibold'>
                 MODEL NO: {product?.modelNumber}
               </p>
-              <div className='text-gray-600'>
+              <div className='text-gray-600 text-xs lg:text-base'>
                 <div
                   dangerouslySetInnerHTML={{ __html: product?.description }}
                 />
                 <br />
                 <div>
-                  <span className='text-sm uppercase font-semibold'>
+                  <span className='text-xs lg:text-sm uppercase font-semibold'>
                     Design:{' '}
                   </span>
                   {product?.design?.map((item, index) => {
                     return (
                       <span
                         key={index}
-                        className='text-sm tracking-wider text-gray-600'
+                        className='text-xs lg:text-sm tracking-wider text-gray-600'
                       >
                         {item}
                         {index + 1 !== product.design.length && (
@@ -66,7 +68,7 @@ const ProductCard = ({ productId }) => {
           </div>
           <SectionSeparator width={'full'} />
           <div className='w-full'>
-            <div className='text-sm uppercase tracking-wider text-left font-bold'>
+            <div className='text-xs lg:text-sm uppercase tracking-wider text-left font-bold'>
               <div className='w-full px-1 py-3 text-blue-700'>
                 SPECIFICATION
                 {product?.specification && (
@@ -83,37 +85,37 @@ const ProductCard = ({ productId }) => {
             <table className='w-full table-auto'>
               <tbody className='w-full'>
                 {product?.wallThickness && (
-                  <tr className='w-full text-sm tracking-wider font-semibold text-gray-600'>
+                  <tr className='w-full text-xs lg:text-sm tracking-wider font-semibold text-gray-600'>
                     <td className='w-1/3 p-1 text-black'>Wall Thickness</td>
                     <td className='w-2/3 p-1'>{product?.wallThickness}</td>
                   </tr>
                 )}
                 {product?.boreSize && (
-                  <tr className='w-full text-sm tracking-wider font-semibold text-gray-600'>
+                  <tr className='w-full text-xs lg:text-sm tracking-wider font-semibold text-gray-600'>
                     <td className='w-1/3 p-1 text-black'>Bore Size</td>
                     <td className='w-2/3 p-1'>{product?.boreSize}</td>
                   </tr>
                 )}
                 {product?.faceToFace && (
-                  <tr className='w-full text-sm tracking-wider font-semibold text-gray-600'>
+                  <tr className='w-full text-xs lg:text-sm tracking-wider font-semibold text-gray-600'>
                     <td className='w-1/3 p-1 text-black'>Face to Face</td>
                     <td className='w-2/3 p-1'>{product?.faceToFace}</td>
                   </tr>
                 )}
                 {product?.endFlange && (
-                  <tr className='w-full text-sm tracking-wider font-semibold text-gray-600'>
+                  <tr className='w-full text-xs lg:text-sm tracking-wider font-semibold text-gray-600'>
                     <td className='w-1/3 p-1 text-black'>End Flange</td>
                     <td className='w-2/3 p-1'>{product?.endFlange}</td>
                   </tr>
                 )}
                 {product?.buttWelding && (
-                  <tr className='w-full text-sm tracking-wider font-semibold text-gray-600'>
+                  <tr className='w-full text-xs lg:text-sm tracking-wider font-semibold text-gray-600'>
                     <td className='w-1/3 p-1 text-black'>Butt Welding</td>
                     <td className='w-2/3 p-1'>{product?.buttWelding}</td>
                   </tr>
                 )}
                 {product?.testing && (
-                  <tr className='w-full text-sm tracking-wider font-semibold text-gray-600'>
+                  <tr className='w-full text-xs lg:text-sm tracking-wider font-semibold text-gray-600'>
                     <td className='w-1/3 p-1 text-black'>Testing</td>
                     <td className='w-2/3 p-1'>{product?.testing}</td>
                   </tr>

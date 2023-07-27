@@ -5,7 +5,7 @@ const Table = ({ header, body, width }) => {
     <div className={`${isBodyMaterial ? 'w-2/4' : 'w-1/4'} flex-shrink-0`}>
       <table className='w-full'>
         <thead>
-          <tr className='text-sm uppercase tracking-wider text-blue-700 text-left'>
+          <tr className='text-xs lg:text-sm uppercase tracking-wider text-blue-700 text-left'>
             <th className='w-full px-1 py-3'>{header}</th>
           </tr>
         </thead>
@@ -17,7 +17,7 @@ const Table = ({ header, body, width }) => {
                   return (
                     <p
                       key={index}
-                      className='text-sm leading-5 tracking-wider font-semibold text-gray-600'
+                      className='text-xs lg:text-sm leading-5 tracking-wider font-semibold text-gray-600'
                     >
                       {item}
                     </p>
@@ -31,7 +31,7 @@ const Table = ({ header, body, width }) => {
                 return (
                   <tr
                     key={index}
-                    className='text-sm tracking-wider font-semibold text-gray-600'
+                    className='text-xs lg:text-sm tracking-wider font-semibold text-gray-600'
                   >
                     <td className='w-full p-1'>{item}</td>
                   </tr>

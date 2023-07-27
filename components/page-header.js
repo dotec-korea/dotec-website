@@ -1,19 +1,17 @@
-import Link from 'next/link';
-
-export default function PageHeader({ text, subtext, link }) {
+export default function PageHeader({ text, subtext }) {
   return (
     <div className='py-16'>
-      <div className='xl:container m-auto px-6 md:px-12 lg:px-6'>
+      <div className='mx-auto px-6 md:px-12 lg:px-8 2xl:px-24'>
         {text && (
-          <h1 className='sm:mx-auto font-bold uppercase text-white text-5xl text-center sm:text-5xl md:text-6xl lg:text-left lg:ml-0 lg:leading-tight'>
+          <h1 className='font-bold uppercase text-white text-4xl md:text-6xl text-center lg:text-left lg:ml-0 lg:leading-tight'>
             {text}
           </h1>
         )}
         <div className='lg:flex'>
-          <div className='relative mt-4 space-y-8 sm:w-10/12 md:w-2/3 lg:ml-0 sm:mx-auto text-center lg:text-left lg:mr-auto lg:w-7/12'>
-            {subtext && (
-              <p className='sm:text-lg text-white lg:w-10/12'>{subtext}</p>
-            )}
+          <div className='mt-4 space-y-8 sm:w-10/12 md:w-2/3 lg:ml-0 sm:mx-auto text-center lg:text-left lg:mr-auto lg:w-7/12'>
+            <p className='lg:text-lg xl:text-xl text-white lg:w-10/12'>
+              {subtext && subtext}
+            </p>
           </div>
         </div>
       </div>

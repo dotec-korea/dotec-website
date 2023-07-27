@@ -1,19 +1,19 @@
 export default function CeoGreetings() {
   return (
-    <section id='ceo-greetings' className='bg-gray-100'>
-      <h3 className='px-8 pt-12 pb-6 mx-auto max-w-7xl xl:px-12 text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl'>
+    <section id='ceo-greetings' className='bg-gray-100 px-5'>
+      <h3 className='mx-auto px-6 md:px-12 lg:px-8 2xl:px-24 pt-12 pb-6 text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl'>
         Ceo Greetings
       </h3>
-      <div className='w-full px-8 pt-6 pb-12 mx-auto max-w-7xl xl:px-12 flex justify-center'>
-        <div className='w-2/3'>
-          <div className='grid justify-center md:grid-cols-2 gap-5 lg:gap-7'>
+      <div className='mx-auto px-6 md:px-12 lg:px-8 2xl:px-24 w-full pt-6 pb-12 flex justify-center'>
+        <div className='w-full lg:w-2/3'>
+          <div className='grid justify-center grid-cols-2 gap-5 lg:gap-7'>
             <div className='w-full'>
               <img src='/CEO.webp' alt='' className='w-2/3 object-contain' />
             </div>
             <div className='w-full flex items-center border-t-2 border-blue-700'>
               <blockquote className='relative'>
                 <svg
-                  className='absolute top-0 left-0 transform -translate-x-6 -translate-y-8 h-24 w-24 text-gray-200'
+                  className='absolute top-0 left-0 transform -translate-x-6 -translate-y-8 h-12 w-12 lg:h-24 lg:w-24 text-gray-200'
                   width='24'
                   height='24'
                   viewBox='0 0 24 24'
@@ -28,21 +28,21 @@ export default function CeoGreetings() {
                 </svg>
 
                 <div className='relative z-10'>
-                  <p className='text-blue-700 font-bold sm:text-xl'>
+                  <p className='text-blue-700 font-bold text-sm lg:text-xl'>
                     <em>
                       We, DOTEC Co. Ltd., are a professional & specialist valve
                       manufacturing company with many years of proven track
                       record.
                     </em>
                   </p>
-                  <p className='mt-5 text-gray-900 font-bold sm:text-lg uppercase'>
+                  <p className='mt-5 text-gray-900 font-bold text-sm lg:text-lg uppercase'>
                     JONATHAN KOO
                   </p>
                 </div>
               </blockquote>
             </div>
           </div>
-          <div className='mt-5 text-base font-normal text-gray-900'>
+          <div className='mt-5 text-xs lg:text-base text-justify font-normal text-gray-900'>
             We are of medium size, dedicated to design, develop and manufacture
             a wide range of superior quality valves and customer-orientated in
             offering prompt service. This website illustrates the types and
@@ -75,7 +75,9 @@ export default function CeoGreetings() {
             <br />
             <br />
             <br />
-            <span className='font-semibold text-lg'>JONATHAN KOO</span>
+            <span className='font-semibold text-base lg:text-lg'>
+              JONATHAN KOO
+            </span>
             <br />
             PRESIDENT & CEO
           </div>

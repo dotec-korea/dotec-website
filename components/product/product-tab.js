@@ -23,7 +23,7 @@ const ProductTab = ({ product, productId, setProductId, setShowCard }) => {
     product &&
     image && (
       <div
-        className={`w-full flex bg-gray-100 p-4 border-2 cursor-pointer ${
+        className={`w-full flex bg-gray-100 p-1 lg:p-4 border-2 cursor-pointer ${
           product.sys.id === productId
             ? 'border-blue-700'
             : 'border-transparent'
@@ -41,7 +41,7 @@ const ProductTab = ({ product, productId, setProductId, setShowCard }) => {
             )}
           </div>
         </div>
-        <div className='w-1/2 text-lg font-semibold flex items-center'>
+        <div className='w-1/2 text-xs lg:text-lg font-semibold flex items-center'>
           {product?.title}
         </div>
       </div>

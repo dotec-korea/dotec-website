@@ -6,6 +6,7 @@ import ProductCard from './product-card';
 import SideBar from './side-bar';
 import { kebab } from '../../utils/convert';
 import { AnimatePresence, motion } from 'framer-motion';
+import RangeCard from './range-card';
 
 export default function Product({ products }) {
   const searchParams = useSearchParams();
@@ -50,60 +51,60 @@ export default function Product({ products }) {
   }, [productId]);
 
   return (
-    <section className='py-20 m-auto px-6 md:px-12 lg:px-12 mx-auto max-w-7xl overflow-x-hidden'>
-      <div className='w-full flex'>
-        <div className='w-1/4 pb-8'>
-          <SideBar
-            products={products}
-            range={range}
-            setRange={setRange}
-            productId={productId}
-            setProductId={setProductId}
-            setShowCard={setShowCard}
-          />
-        </div>
-        <div className='w-3/4'>
-          <AnimatePresence>
-            {showCard && (
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 260,
-                  damping: 20,
-                }}
-              >
-                {productId && (
-                  <>
+    <section className='px-5'>
+      <div className='mx-auto px-6 md:px-12 lg:px-8 2xl:px-24 py-20 overflow-x-hidden'>
+        <div className='w-full flex'>
+          <div className='hidden lg:block w-1/4 pb-8'>
+            <SideBar
+              products={products}
+              range={range}
+              setRange={setRange}
+              productId={productId}
+              setProductId={setProductId}
+              setShowCard={setShowCard}
+            />
+          </div>
+          <div className='w-full lg:w-3/4'>
+            <AnimatePresence>
+              {showCard && (
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.9, opacity: 0 }}
+                  transition={{
+                    type: 'spring',
+                    stiffness: 260,
+                    damping: 20,
+                  }}
+                >
+                  {productId && (
                     <ProductCard
                       productId={productId}
                       setShowCard={setShowCard}
                     />
-                  </>
-                )}
-              </motion.div>
-            )}
-          </AnimatePresence>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
-      </div>
-      <div className='w-full flex'>
-        <div className='w-1/4'></div>
-        <div className='w-3/4'>
-          <SectionSeparator width={'3/4'} />
-          <div className='grid grid-cols-3 gap-5'>
-            {productList.map((item, key) => {
-              return (
-                <ProductTab
-                  key={key}
-                  product={item}
-                  productId={productId}
-                  setProductId={setProductId}
-                  setShowCard={setShowCard}
-                />
-              );
-            })}
+        <div className='w-full flex'>
+          <div className='hidden lg:block w-1/4'></div>
+          <div className='w-full lg:w-3/4'>
+            <SectionSeparator width={'3/4'} />
+            <div className='grid grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-5'>
+              {productList.map((item, key) => {
+                return (
+                  <ProductTab
+                    key={key}
+                    product={item}
+                    productId={productId}
+                    setProductId={setProductId}
+                    setShowCard={setShowCard}
+                  />
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

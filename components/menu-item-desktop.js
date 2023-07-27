@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 
-const MenuItem = ({ menu, size, active }) => {
+const MenuItemDesktop = ({ menu, size, active }) => {
   const [dropdown, setDropdown] = useState(false);
 
   return (
@@ -52,4 +52,4 @@ const Dropdown = ({ submenus }) => {
   );
 };
 
-export default MenuItem;
+export default MenuItemDesktop;

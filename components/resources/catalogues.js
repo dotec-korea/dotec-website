@@ -9,7 +9,7 @@ export default function Catalogues({ catalogues }) {
   return (
     catalogues?.length > 0 && (
       <section id='cataloues'>
-        <div className='p-8 mx-auto max-w-7xl xl:p-12'>
+        <div className='p-8 mx-auto  xl:p-12'>
           <div className='inline-flex items-center w-1/2'>
             <span className='w-fit shrink-0 mr-5 text-blue-700 bg-white text-lg font-bold uppercase'>
               PRODUCT CATALOGUES

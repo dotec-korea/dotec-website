@@ -32,7 +32,7 @@ export default function About({ page, range, facilities, history }) {
         {page && (
           <>
             <section
-              className='relative min-h-[50vh] px-5'
+              className='relative px-5'
               style={{
                 background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                 center/cover 

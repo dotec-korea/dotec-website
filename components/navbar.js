@@ -1,16 +1,27 @@
 import Link from 'next/link';
-import MenuItem from './menu-item';
 import { kebab } from '../utils/convert';
 import { usePathname } from 'next/navigation';
+import { MdMenu } from 'react-icons/md';
+import { useState } from 'react';
+import MenuItemDesktop from './menu-item-desktop';
+import MenuItemMobile from './menu-item-mobile';
 
 const Navbar = ({ range }) => {
   const pathname = usePathname();
   const menuItems = getMenuItems(range);
 
+  const [show, setShow] = useState(false);
+  const [dropdown, setDropdown] = useState('');
+
+  const showMenu = () => {
+    setShow(!show);
+    setDropdown('');
+  };
+
   return (
     <header>
-      <nav className='w-full navbar peer-checked:navbar-active dark:shadow-none'>
-        <div className='xl:container m-auto px-6 md:px-12 lg:px-6'>
+      <nav className='w-full hidden lg:block'>
+        <div className='mx-auto px-6 md:px-12 lg:px-8 2xl:px-24'>
           <div className='flex flex-wrap items-center justify-between gap-6 md:py-3 md:gap-0 lg:py-5'>
             <div className='w-full items-center flex justify-between lg:w-auto'>
               <Link className='relative z-10' href='/' aria-label='logo'>
@@ -24,7 +35,7 @@ const Navbar = ({ range }) => {
                 <ul className='space-y-6 w-full tracking-wide font-semibold text-base lg:text-sm lg:flex lg:space-y-0'>
                   {menuItems.map((menu, index) => {
                     return (
-                      <MenuItem
+                      <MenuItemDesktop
                         key={index}
                         menu={menu}
                         size={menuItems.length}
@@ -37,6 +48,40 @@ const Navbar = ({ range }) => {
             </div>
           </div>
         </div>
+      </nav>
+      <nav className='lg:hidden relative w-full'>
+        <div className='m-auto py-5 md:px-6'>
+          <div className='flex items-center justify-between'>
+            <div className='w-full items-center flex justify-between lg:w-auto'>
+              <Link className='relative z-10' href='/' aria-label='logo'>
+                <div className='mr-5 h-6 sm:h-9 text-white text-xl font-black'>
+                  <img src='/DoTEC.png' alt='logo' className='h-full' />
+                </div>
+              </Link>
+            </div>
+            <div className='h-full w-1/8'>
+              <MdMenu
+                className='text-white text-3xl'
+                onClick={() => showMenu()}
+              />
+            </div>
+          </div>
+        </div>
+        {show && (
+          <ul className='absolute z-50 bg-white bg-opacity-90 w-full tracking-wide font-semibold text-base'>
+            {menuItems.map((menu, index) => {
+              return (
+                <MenuItemMobile
+                  key={index}
+                  menu={menu}
+                  active={menu.url === pathname}
+                  dropdown={dropdown}
+                  setDropdown={setDropdown}
+                />
+              );
+            })}
+          </ul>
+        )}
       </nav>
     </header>
   );

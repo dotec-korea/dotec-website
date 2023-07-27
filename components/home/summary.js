@@ -1,17 +1,17 @@
 import Link from 'next/link';
 
-export default function Summary({ title, summary, link, image }) {
+export default function Summary({ summary }) {
   return (
-    <section id='summary'>
-      <div className='flex flex-col px-8 mx-auto space-y-12 max-w-7xl xl:px-12'>
-        <div className='border-l-4 border-blue-700 p-8'>
+    <section id='summary' className='px-5'>
+      <div className='flex flex-col mx-auto px-6 md:px-12 lg:px-8 2xl:px-24'>
+        <div className='lg:border-l-4 lg:border-blue-700 py-4 lg:p-8'>
           <div className='flex flex-col justify-start'>
-            <p className='text-md tracking-wider text-gray-500 text md:text-left'>
+            <p className='text-sm md:text-md tracking-wider text-gray-500 md:text-justify'>
               {summary}
             </p>
             <Link
               href={'/about'}
-              className='mt-5 underline underline-offset-8 text-sm font-semibold leading-none text-left text-indigo-600 uppercase'
+              className='mt-5 underline underline-offset-8 text-xs md:text-sm font-semibold leading-none text-left text-indigo-600 uppercase'
             >
               Read More
             </Link>

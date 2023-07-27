@@ -27,7 +27,7 @@ const SideBar = ({
                     className={`font-bold uppercase tracking-wide text-sm mb-3 cursor-pointer ${
                       kebab(product?.title) === range && 'text-blue-700'
                     }`}
-                    onClick={() => setRangeAndProduct(product?.title, '')}
+                    onClick={() => setRangeAndProduct(product?.title, null)}
                   >
                     {product?.id &&
                       String.fromCharCode(product?.id + 64) + '. '}

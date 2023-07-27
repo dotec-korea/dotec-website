@@ -1,18 +1,18 @@
 export default function FacilityCard({ title, image, text }) {
   return (
-    <div className='w-1/3 snap-start flex-shrink-0 px-2'>
+    <div className='w-fit snap-start flex-shrink-0 px-2'>
       <div className='bg-white shadow-lg overflow-hidden flex flex-col justify-center items-center'>
         <div>
           {image && (
             <img
-              className='object-center object-cover h-64 w-full'
+              className='object-center object-cover h-24 lg:h-64 w-full'
               src={image}
               alt='photo'
             />
           )}
         </div>
-        <div className='py-4 sm:py-3 self-start'>
-          <p className='text-sm uppercase text-gray-900 font-bold ml-4'>
+        <div className='py-2 lg:py-4 self-start'>
+          <p className='text-xs lg:text-sm uppercase text-gray-900 font-bold ml-4'>
             {title}
           </p>
           {text && (

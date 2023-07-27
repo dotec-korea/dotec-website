@@ -35,14 +35,14 @@ export default function ContactForm() {
 
   return (
     <div className='w-5/6 mx-auto relative'>
-      <div className='mx-10 -mt-10 bg-blue-700 p-10 z-10'>
+      <div className='lg:mx-10 -mt-10 bg-blue-700 p-5 lg:p-10 z-10'>
         <div className='mt-10 mb-20 w-full flex justify-center'>
           <h3 className='text-2xl font-bold text-white uppercase sm:text-left md:text-6xl'>
             Get in touch
           </h3>
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className='my-10'>
-          <div className='grid grid-cols-2 gap-5'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 lg:gap-5'>
             <input
               type='checkbox'
               id=''
@@ -56,7 +56,7 @@ export default function ContactForm() {
                 type='text'
                 placeholder='Full Name'
                 autoComplete='false'
-                className={`w-full px-4 py-3 bg-transparent border-b-2 text-white text-sm placeholder:uppercase placeholder:text-gray-200 placeholder:opacity-75 outline-none ${
+                className={`w-full px-4 py-3 bg-transparent border-b-2 text-white text-xs lg:text-sm placeholder:uppercase placeholder:text-gray-200 placeholder:opacity-75 outline-none ${
                   errors.name ? 'border-red-600 ' : 'border-gray-300 '
                 }`}
                 {...register('name', {
@@ -81,7 +81,7 @@ export default function ContactForm() {
                 placeholder='Email Address'
                 name='email'
                 autoComplete='false'
-                className={`w-full px-4 py-3 bg-transparent border-b-2 text-white text-sm placeholder:uppercase placeholder:text-gray-200 placeholder:opacity-75 outline-none  ${
+                className={`w-full px-4 py-3 bg-transparent border-b-2 text-white text-xs lg:text-sm placeholder:uppercase placeholder:text-gray-200 placeholder:opacity-75 outline-none  ${
                   errors.email ? 'border-red-600 ' : 'border-gray-300 '
                 }`}
                 {...register('email', {
@@ -104,7 +104,7 @@ export default function ContactForm() {
             <input
               name='subject'
               placeholder='Your Subject'
-              className={`w-full px-4 py-3 bg-transparent border-b-2 text-white text-sm placeholder:uppercase placeholder:text-gray-200 placeholder:opacity-75 outline-none  ${
+              className={`w-full px-4 py-3 bg-transparent border-b-2 text-white text-xs lg:text-sm placeholder:uppercase placeholder:text-gray-200 placeholder:opacity-75 outline-none  ${
                 errors.subject ? 'border-red-600 ' : 'border-gray-300 '
               }`}
               {...register('subject', {
@@ -123,7 +123,7 @@ export default function ContactForm() {
             <textarea
               name='message'
               placeholder='Your Message'
-              className={`w-full px-4 py-3 bg-transparent border-b-2 text-white text-sm placeholder:uppercase placeholder:text-gray-200 placeholder:opacity-75 outline-none h-36 ${
+              className={`w-full px-4 py-3 bg-transparent border-b-2 text-white text-xs lg:text-sm placeholder:uppercase placeholder:text-gray-200 placeholder:opacity-75 outline-none h-36 ${
                 errors.message ? 'border-red-600 ' : 'border-gray-300 '
               }`}
               {...register('message', {
@@ -141,7 +141,7 @@ export default function ContactForm() {
           <div className='w-full flex justify-center'>
             <button
               type='submit'
-              className='w-1/4 py-4 font-semibold text-blue-700 transition-colors bg-white hover:bg-gray-50 focus:outline-none focus:ring-offset-2 focus:ring focus:ring-gray-200 px-7 '
+              className='w-1/4 text-xs lg:text-base p-2 lg:py-4 lg:px-8 font-semibold text-blue-700 transition-colors bg-white hover:bg-gray-50 focus:outline-none focus:ring-offset-2 focus:ring focus:ring-gray-200'
             >
               {isSubmitting ? (
                 <svg
@@ -172,12 +172,12 @@ export default function ContactForm() {
         </form>
 
         {isSubmitSuccessful && isSuccess && (
-          <div className='mt-3 text-sm text-center text-green-500'>
+          <div className='mt-3 text-xs lg:text-sm text-center text-green-500'>
             {message || 'Success. Message sent successfully'}
           </div>
         )}
         {isSubmitSuccessful && !isSuccess && (
-          <div className='mt-3 text-sm text-center text-red-500'>
+          <div className='mt-3 text-xs lg:text-sm text-center text-red-500'>
             {message || 'Something went wrong. Please try later.'}
           </div>
         )}

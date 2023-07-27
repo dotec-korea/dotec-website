@@ -48,10 +48,10 @@ export default function Manufacturing() {
 
   return (
     <section id='manufacturing' className='bg-gray-100 py-12'>
-      <h3 className='px-8 pb-6 mx-auto max-w-7xl xl:px-12 text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl'>
+      <h3 className='px-8 pb-6 mx-auto  lg:px-6 text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl'>
         MANUFACTURING PROCESS
       </h3>
-      <div className='w-full pt-6 mb-12 mx-auto max-w-7xl xl:px-12 flex justify-center'>
+      <div className='w-full pt-6 mb-12 mx-auto  lg:px-6 flex justify-center'>
         <div className='w-full grid grid-cols-4'>
           {headers.map((header, index) => {
             return (
@@ -100,7 +100,7 @@ export default function Manufacturing() {
 
 const ImageTab = ({ images, tab }) => {
   return (
-    <div className='w-full pt-6 mb-40 mx-auto max-w-7xl xl:px-12 flex justify-center'>
+    <div className='w-full pt-6 mb-40 mx-auto  lg:px-6 flex justify-center'>
       <div className='w-full grid grid-cols-3 gap-16'>
         {images.map((image, index) => {
           return (
