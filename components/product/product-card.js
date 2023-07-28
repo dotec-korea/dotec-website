@@ -18,7 +18,7 @@ const ProductCard = ({ productId }) => {
   }, [productId]);
 
   return (
-    product && (
+    product?.sys?.id && (
       <>
         <div className='w-full p-6 bg-gray-100'>
           <div className='flex flex-col lg:flex-row'>
@@ -32,37 +32,43 @@ const ProductCard = ({ productId }) => {
               )}
             </div>
             <div className='w-full lg:p-8'>
-              <h2 className='text-md lg:text-2xl font-bold'>
-                {product?.title}
-              </h2>
-              <p className='my-4 uppercase text-blue-700 text-xs lg:text-base font-semibold'>
-                MODEL NO: {product?.modelNumber}
-              </p>
+              {product?.title && (
+                <h2 className='text-base lg:text-2xl font-bold'>
+                  {product.title}
+                </h2>
+              )}
+              {product?.modelNumber && (
+                <p className='my-4 uppercase text-blue-700 text-xs lg:text-base font-semibold'>
+                  MODEL NO: {product.modelNumber}
+                </p>
+              )}
               <div className='text-gray-600 text-xs lg:text-base'>
                 <div
                   dangerouslySetInnerHTML={{ __html: product?.description }}
                 />
                 <br />
-                <div>
-                  <span className='text-xs lg:text-sm uppercase font-semibold'>
-                    Design:{' '}
-                  </span>
-                  {product?.design?.map((item, index) => {
-                    return (
-                      <span
-                        key={index}
-                        className='text-xs lg:text-sm tracking-wider text-gray-600'
-                      >
-                        {item}
-                        {index + 1 !== product.design.length && (
-                          <span className='text-blue-700 font-bold'>
-                            {' | '}
-                          </span>
-                        )}
-                      </span>
-                    );
-                  })}
-                </div>
+                {product?.design && (
+                  <div>
+                    <span className='text-xs lg:text-sm uppercase font-semibold'>
+                      Design:{' '}
+                    </span>
+                    {product.design?.map((item, index) => {
+                      return (
+                        <span
+                          key={index}
+                          className='text-xs lg:text-sm tracking-wider text-gray-600'
+                        >
+                          {item}
+                          {index + 1 !== product.design.length && (
+                            <span className='text-blue-700 font-bold'>
+                              {' | '}
+                            </span>
+                          )}
+                        </span>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -72,13 +78,15 @@ const ProductCard = ({ productId }) => {
               <div className='w-full px-1 py-3 text-blue-700'>
                 SPECIFICATION
                 {product?.specification && (
-                  <p className='text-black'>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: product?.specification,
-                      }}
-                    />
-                  </p>
+                  <>
+                    <div className='text-black'>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: product?.specification,
+                        }}
+                      />
+                    </div>
+                  </>
                 )}
               </div>
             </div>

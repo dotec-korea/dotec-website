@@ -5,7 +5,7 @@ import Navbar from '../components/navbar';
 import Summary from '../components/home/summary';
 import ProductRange from '../components/home/product-range';
 import { getClients, getPageAndRange } from '../lib/api/home';
-import { getProductRange } from '../lib/api/products';
+import { getProductRanges } from '../lib/api/products';
 import Clients from '../components/home/clients';
 
 export default function Index({ page, range, productRange, clients }) {
@@ -50,7 +50,7 @@ export default function Index({ page, range, productRange, clients }) {
 export async function getStaticProps() {
   const name = 'Home';
   const { page, range } = (await getPageAndRange(name)) ?? [];
-  const productRange = (await getProductRange()) ?? [];
+  const productRange = (await getProductRanges()) ?? [];
   const clients = (await getClients()) ?? [];
 
   return {

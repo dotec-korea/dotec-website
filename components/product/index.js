@@ -4,14 +4,15 @@ import SectionSeparator from '../section-separator';
 import ProductTab from './product-tab';
 import ProductCard from './product-card';
 import SideBar from './side-bar';
-import { kebab } from '../../utils/convert';
 import { AnimatePresence, motion } from 'framer-motion';
 import RangeCard from './range-card';
+import { useRouter } from 'next/router';
 
 export default function Product({ products }) {
   const searchParams = useSearchParams();
+  const router = useRouter();
 
-  const [range, setRange] = useState('');
+  const [rangeId, setRangeId] = useState('');
   const [productList, setProductList] = useState(['']);
   const [productId, setProductId] = useState('');
   const [showCard, setShowCard] = useState(false);
@@ -19,36 +20,40 @@ export default function Product({ products }) {
   useEffect(() => {
     const query = searchParams.get('q');
     if (query) {
-      setRange(query);
+      setRangeId(query);
+
+      const { pathname } = router;
+      router.push({ pathname }, undefined, { shallow: true });
     } else {
-      setRange(kebab(products[0]?.title));
+      setRangeId(products[0]?.sys.id);
     }
   }, [products]);
 
   useEffect(() => {
-    if (range) {
-      const product = products.filter(
-        (product) => kebab(product?.title) === range
-      );
+    if (rangeId) {
+      const product = products.filter((pr) => pr?.sys.id === rangeId);
 
       if (product && product.length > 0) {
         const items = product[0].productCollection.items;
         setProductList(items);
 
-        if (!productId && items.length > 0) {
+        if (!product[0].description && !productId && items.length > 0) {
+          console.log('1: ' + rangeId + ',' + productId);
           setProductId(items[0].sys.id);
         }
       } else {
         setProductId('');
       }
     }
-  }, [range]);
+
+    console.log(rangeId, productId);
+  }, [rangeId]);
 
   useEffect(() => {
     setTimeout(() => {
       setShowCard(true);
     }, 300);
-  }, [productId]);
+  }, [productId, rangeId]);
 
   return (
     <section className='px-5'>
@@ -57,8 +62,8 @@ export default function Product({ products }) {
           <div className='hidden lg:block w-1/4 pb-8'>
             <SideBar
               products={products}
-              range={range}
-              setRange={setRange}
+              rangeId={rangeId}
+              setRangeId={setRangeId}
               productId={productId}
               setProductId={setProductId}
               setShowCard={setShowCard}
@@ -77,11 +82,10 @@ export default function Product({ products }) {
                     damping: 20,
                   }}
                 >
-                  {productId && (
-                    <ProductCard
-                      productId={productId}
-                      setShowCard={setShowCard}
-                    />
+                  {productId ? (
+                    <ProductCard productId={productId} />
+                  ) : (
+                    <RangeCard rangeId={rangeId} />
                   )}
                 </motion.div>
               )}

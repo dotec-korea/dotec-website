@@ -35,7 +35,8 @@ export default function ProductRange({ productRange }) {
             .map((pr, index) => {
               return (
                 <ProductRangeCard
-                  key={index}
+                  key={pr?.id}
+                  q={pr.sys.id}
                   title={pr?.title}
                   image={pr?.image?.url}
                   index={index}
@@ -56,7 +57,8 @@ export default function ProductRange({ productRange }) {
                 .map((pr, index) => {
                   return (
                     <ProductRangeCard
-                      key={index}
+                      key={pr.id}
+                      q={pr.sys.id}
                       title={pr?.title}
                       image={pr?.image?.url}
                       index={index}

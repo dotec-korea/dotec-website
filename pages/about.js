@@ -9,10 +9,11 @@ import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getPageAndRange } from '../lib/api/home';
 import { getFacilities, getHistory } from '../lib/api/about';
-import Manufacturing from '../components/about/manufacturing';
+import { useRouter } from 'next/router';
 
 export default function About({ page, range, facilities, history }) {
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   useEffect(() => {
     const query = searchParams.get('q');
@@ -20,6 +21,9 @@ export default function About({ page, range, facilities, history }) {
       const element = document.getElementById(query);
 
       element.scrollIntoView({ behavior: 'smooth' });
+
+      const { pathname } = router;
+      router.push({ pathname }, undefined, { shallow: true });
     }
   }, [page]);
 

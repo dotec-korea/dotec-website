@@ -44,7 +44,7 @@ export default function Certificates({ certificates }) {
                     </button>
                   </div>
 
-                  <p className='mt-6 lg:mt-24 text-md lg:text-2xl font-bold text-gray-900 md:text-left uppercase'>
+                  <p className='mt-6 lg:mt-24 text-base lg:text-2xl font-bold text-gray-900 md:text-left uppercase'>
                     {certificates[currentIndex - 1]?.title}
                   </p>
                   <div className='mt-6 mx-auto lg:mx-0 lg:mt-12 flex flex-row justify-between w-8/12'>

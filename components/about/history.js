@@ -29,7 +29,7 @@ export default function History({ history }) {
         <h3 className='mx-auto px-6 md:px-12 lg:px-8 2xl:px-24 text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl'>
           Brief History
         </h3>
-        <div className='mx-auto px-6 md:px-12 lg:px-8 2xl:px-24 w-full flex justify-between items-center'>
+        <div className='mx-auto px-6 md:px-12 lg:px-8 2xl:px-24 py-8 w-full flex justify-between items-center'>
           {history?.length > 5 && (
             <MdOutlineKeyboardDoubleArrowLeft
               onClick={previous}
@@ -49,7 +49,7 @@ export default function History({ history }) {
                 <div className='font-bold text-blue-700 leading-none text-2xl lg:text-5xl'>
                   {element?.year}
                 </div>
-                <div className='font-light text-blue-700 text-md lg:text-xl'>
+                <div className='font-light text-blue-700 text-base lg:text-xl'>
                   {element?.month}
                 </div>
                 <div className='text-blue-700 py-5 flex items-center'>

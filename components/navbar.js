@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { kebab } from '../utils/convert';
 import { usePathname } from 'next/navigation';
 import { MdMenu } from 'react-icons/md';
 import { useState } from 'react';
@@ -33,10 +32,10 @@ const Navbar = ({ range }) => {
             <div className='justify-end items-center border-gray-100 space-y-0 p-0 m-0 flex bg-transparent w-9/12 shadow-none'>
               <div className='text-white lg:pr-4 w-full'>
                 <ul className='space-y-6 w-full tracking-wide font-semibold text-base lg:text-sm lg:flex lg:space-y-0'>
-                  {menuItems.map((menu, index) => {
+                  {menuItems.map((menu) => {
                     return (
                       <MenuItemDesktop
-                        key={index}
+                        key={menu.id}
                         menu={menu}
                         size={menuItems.length}
                         active={menu.url === pathname}
@@ -69,10 +68,10 @@ const Navbar = ({ range }) => {
         </div>
         {show && (
           <ul className='absolute z-50 bg-white bg-opacity-90 w-full tracking-wide font-semibold text-base'>
-            {menuItems.map((menu, index) => {
+            {menuItems.map((menu) => {
               return (
                 <MenuItemMobile
-                  key={index}
+                  key={menu.id}
                   menu={menu}
                   active={menu.url === pathname}
                   dropdown={dropdown}
@@ -90,10 +89,12 @@ const Navbar = ({ range }) => {
 const getMenuItems = (range) => {
   let menuItems = [
     {
+      id: 1,
       title: 'Home',
       url: '/',
     },
     {
+      id: 2,
       title: 'About Us',
       url: '/about',
       submenu: [
@@ -111,14 +112,8 @@ const getMenuItems = (range) => {
         },
       ],
     },
-    {
-      title: 'Certification',
-      url: '/certification',
-    },
-    {
-      title: 'Contact Us',
-      url: '/contact',
-    },
+    { id: 4, title: 'Certification', url: '/certification' },
+    { id: 5, title: 'Contact Us', url: '/contact' },
   ];
 
   if (range) {
@@ -127,12 +122,13 @@ const getMenuItems = (range) => {
       .map((element) => {
         const item = {
           title: element.title,
-          url: '/products?q=' + kebab(element.title),
+          url: '/products?q=' + element.sys.id,
         };
         return item;
       });
 
     const product = {
+      id: 3,
       title: 'Products',
       url: '/products',
       submenu: submenu,
