@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 export default function Clients({ clients }) {
   const slider = useRef(null);
@@ -34,17 +34,19 @@ export default function Clients({ clients }) {
               Our Clients
             </h3>
             <div className='w-full grid grid-cols-4 gap-6'>
-              {clients.map((client, index) => (
-                <div key={index}>
-                  {client.image.url && (
-                    <img
-                      className='w-full h-full object-center object-contain'
-                      src={client.image.url}
-                      alt={client.title}
-                    />
-                  )}
-                </div>
-              ))}
+              {clients
+                .sort((x, y) => x.order - y.order)
+                .map((client) => (
+                  <div key={client.order}>
+                    {client.image.url && (
+                      <img
+                        className='w-full h-full object-center object-contain'
+                        src={client.image.url}
+                        alt={client.title}
+                      />
+                    )}
+                  </div>
+                ))}
             </div>
           </div>
         </section>
@@ -57,20 +59,22 @@ export default function Clients({ clients }) {
               ref={slider}
               className='snap-x mx-auto snap-mandatory flex w-full overflow-x-scroll range'
             >
-              {clients.map((client, index) => (
-                <div
-                  key={index}
-                  className='w-1/5 h-28 snap-start flex-shrink-0 px-12'
-                >
-                  {client.image.url && (
-                    <img
-                      className='w-full h-full object-center object-contain'
-                      src={client.image.url}
-                      alt={client.title}
-                    />
-                  )}
-                </div>
-              ))}
+              {clients
+                .sort((x, y) => x.order - y.order)
+                .map((client) => (
+                  <div
+                    key={client.order}
+                    className='w-1/5 h-28 snap-start flex-shrink-0 px-12'
+                  >
+                    {client.image.url && (
+                      <img
+                        className='w-full h-full object-center object-contain'
+                        src={client.image.url}
+                        alt={client.title}
+                      />
+                    )}
+                  </div>
+                ))}
             </div>
           </div>
         </section>

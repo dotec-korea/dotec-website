@@ -93,7 +93,7 @@ export default function Certificates({ certificates }) {
                     key={x.id}
                     id={x.id}
                     title={x.title}
-                    image={x.image.url}
+                    image={x?.image?.url}
                     setCurrentIndex={setCurrentIndex}
                   />
                 );
@@ -106,7 +106,7 @@ export default function Certificates({ certificates }) {
                     key={x.id}
                     id={x.id}
                     title={x.title}
-                    image={x.image.url}
+                    image={x?.image?.url}
                     setCurrentIndex={setCurrentIndex}
                   />
                 );
