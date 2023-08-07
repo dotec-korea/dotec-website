@@ -9,12 +9,6 @@ export default function Summary({ summary }) {
             <p className='text-sm md:text-base tracking-wider text-gray-500 md:text-justify'>
               {summary}
             </p>
-            <Link
-              href={'/about'}
-              className='mt-5 underline underline-offset-8 text-xs md:text-sm font-semibold leading-none text-left text-indigo-600 uppercase'
-            >
-              Read More
-            </Link>
           </div>
         </div>
       </div>
