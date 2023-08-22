@@ -76,7 +76,7 @@ const ProductCard = ({ productId }) => {
           <div className='w-full'>
             <div className='text-xs lg:text-sm uppercase tracking-wider text-left font-bold'>
               <div className='w-full px-1 py-3 text-blue-700'>
-                SPECIFICATION
+                {product?.specification && <>SPECIFICATION</>}
                 {product?.specification && (
                   <>
                     <div className='text-black'>

@@ -38,15 +38,12 @@ export default function Product({ products }) {
         setProductList(items);
 
         if (!product[0].description && !productId && items.length > 0) {
-          console.log('1: ' + rangeId + ',' + productId);
           setProductId(items[0].sys.id);
         }
       } else {
         setProductId('');
       }
     }
-
-    console.log(rangeId, productId);
   }, [rangeId]);
 
   useEffect(() => {
