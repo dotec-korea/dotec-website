@@ -72,7 +72,7 @@ const ProductCard = ({ productId }) => {
               </div>
             </div>
           </div>
-          <SectionSeparator width={'full'} />
+          {product?.specification && <SectionSeparator width={'full'} />}
           <div className='w-full'>
             <div className='text-xs lg:text-sm uppercase tracking-wider text-left font-bold'>
               <div className='w-full px-1 py-3 text-blue-700'>
@@ -132,11 +132,13 @@ const ProductCard = ({ productId }) => {
             </table>
           </div>
         </div>
-        <div className='w-full p-6 bg-gray-100 mt-4 flex'>
-          <Table header={'Class'} body={product?.class} />
-          <Table header={'Size'} body={product?.size} />
-          <Table header={'Body Material'} body={product?.bodyMaterial} />
-        </div>
+        {(product?.class || product?.size || product?.bodyMaterial) && (
+          <div className='w-full p-6 bg-gray-100 mt-4 flex'>
+            <Table header={'Class'} body={product?.class} />
+            <Table header={'Size'} body={product?.size} />
+            <Table header={'Body Material'} body={product?.bodyMaterial} />
+          </div>
+        )}
       </>
     )
   );
