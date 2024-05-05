@@ -6,11 +6,11 @@ export default function CeoGreetings() {
       </h3>
       <div className='mx-auto px-6 md:px-12 lg:px-8 2xl:px-24 w-full pt-6 pb-12 flex justify-center'>
         <div className='w-full lg:w-2/3'>
-          <div className='grid justify-center grid-cols-2 gap-5 lg:gap-7'>
+          <div className='grid justify-center grid-cols-3 gap-5 lg:gap-7'>
             <div className='w-full'>
-              <img src='/CEO.webp' alt='' className='w-2/3 object-contain' />
+              <img src='/CEO.webp' alt='' className='w-4/5 object-contain' />
             </div>
-            <div className='w-full flex items-center border-t-2 border-blue-700'>
+            <div className='w-full col-span-2 flex items-center border-t-2 border-blue-700'>
               <blockquote className='relative'>
                 <svg
                   className='absolute top-0 left-0 transform -translate-x-6 -translate-y-8 h-12 w-12 lg:h-24 lg:w-24 text-gray-200'
@@ -43,12 +43,12 @@ export default function CeoGreetings() {
             </div>
           </div>
           <div className='mt-5 text-xs lg:text-base text-justify font-normal text-gray-900'>
-            We are of medium size, dedicated to design, develop and manufacture
-            a wide range of superior quality valves and customer-orientated in
-            offering prompt service. This website illustrates the types and
-            range of valves we manufacture and market; many of which are
-            manufactured by us and some, with in-house QC tests and
-            certification by our professional engineers, are trade items.
+            We are dedicated to design, develop and manufacture a wide range of
+            superior quality valves and customer-orientated in offering prompt
+            service. This website illustrates the types and range of valves we
+            manufacture and market; many of which are manufactured by us and
+            some, with in-house QC tests and certification by our professional
+            engineers, are trade items.
             <br />
             <br />
             Our products are supplied locally and overseas worldwide for new and

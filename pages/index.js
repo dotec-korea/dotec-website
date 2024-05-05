@@ -30,6 +30,11 @@ export default function Index({ page, range, productRange, clients }) {
                 text={page.header.text}
                 subtext={page.header.subtext}
                 link={page.header.link}
+                isHome={
+                  page.header.text &&
+                  page.header.text.toUpperCase() ===
+                    'LIVE TECHNOLOGY VALUABLE VALVES'
+                }
               />
             </section>
             <Summary

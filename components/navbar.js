@@ -24,8 +24,12 @@ const Navbar = ({ range }) => {
           <div className='flex flex-wrap items-center justify-between gap-6 md:py-3 md:gap-0 lg:py-5'>
             <div className='w-full items-center flex justify-between lg:w-auto'>
               <Link className='relative z-10' href='/' aria-label='logo'>
-                <div className='mr-5 h-6 sm:h-9 text-white text-xl font-black'>
-                  <img src='/DoTEC.png' alt='logo' className='h-full' />
+                <div className='mr-5 h-10 sm:h-16 text-white text-xl font-black'>
+                  <img
+                    src='/DoTEC.png'
+                    alt='logo'
+                    className='h-full drop-shadow-2xl'
+                  />
                 </div>
               </Link>
             </div>

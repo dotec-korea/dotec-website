@@ -27,7 +27,9 @@ const ProductCard = ({ productId }) => {
                 <img
                   src={product?.image?.url}
                   alt={product?.title}
-                  className='object-center object-contain h-full w-full'
+                  className={`object-center object-contain h-full w-full ${
+                    [1, 2].includes(product?.id) ? 'p-12' : 'p-20'
+                  }`}
                 />
               )}
             </div>

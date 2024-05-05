@@ -181,6 +181,14 @@ export default function ContactForm() {
             {message || 'Something went wrong. Please try later.'}
           </div>
         )}
+
+        <div className='text-white text-xs text-center lg:text-sm'>
+          For inquiries in South East Asia and Middle East, please contact{' '}
+          <a href='mailto:abhi@dotec.sg' className='underline'>
+            abhi@dotec.sg
+          </a>{' '}
+          and phone numbers.
+        </div>
       </div>
     </div>
   );
