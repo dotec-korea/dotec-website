@@ -8,7 +8,7 @@ const MenuItemMobile = ({ menu, active, dropdown, setDropdown }) => {
 
   return (
     <li
-      className={`w-full text-sm ${active ? 'text-blue-700' : 'text-gray-800'}`}
+      className={`w-full text-sm ${active ? 'text-dotec' : 'text-gray-800'}`}
       onClick={() => selectDropdown(menu.title)}
     >
       {menu.submenu ? (
@@ -29,7 +29,7 @@ const MenuItemMobile = ({ menu, active, dropdown, setDropdown }) => {
 
 const Dropdown = ({ submenus }) => {
   return (
-    <ul className='w-full rounded-sm bg-blue-700 bg-opacity-90'>
+    <ul className='w-full rounded-sm bg-dotec bg-opacity-90'>
       {submenus.map((submenu, index) => (
         <Link key={index} className='w-full' href={submenu.url}>
           <li

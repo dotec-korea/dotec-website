@@ -31,7 +31,7 @@ let menuItems = [
 export default function Footer() {
   return (
     <footer className='bg-white'>
-      <div className='w-100 bg-blue-700'>
+      <div className='w-100 bg-dotec'>
         <div className='flex flex-col-reverse lg:flex-row mx-auto px-6 md:px-12 lg:px-8 2xl:px-24'>
           <div className='w-full lg:w-1/2 flex flex-col text-white p-6 lg:py-16 mx-auto sm:px-6 lg:px-6'>
             <div className='border-right'>

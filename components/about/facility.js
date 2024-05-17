@@ -30,8 +30,8 @@ export default function Facility({ facilities }) {
       to right, 
       #ffffff 0%, 
       #ffffff 50%, 
-      #1D4ED8 50%, 
-      #1D4ED8 100%
+      #BB1B1B 50%, 
+      #BB1B1B 100%
     )`,
       }}
     >
@@ -59,7 +59,7 @@ export default function Facility({ facilities }) {
               <p className='text-2xl font-semibold text-gray-900 text md:text-left'>
                 We are Building a Sustainable Future
               </p>
-              <h3 className='mt-8 text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-6xl'>
+              <h3 className='mt-8 text-2xl font-bold text-dotec uppercase sm:text-left md:text-6xl'>
                 Facility
               </h3>
               <div className='mt-12 flex flex-row justify-between w-1/2 lg:w-8/12'>
@@ -71,7 +71,7 @@ export default function Facility({ facilities }) {
                   Back
                 </button>
                 <button
-                  className='flex items-center text-xs uppercase font-bold text-right text-blue-700 hover:opacity-75'
+                  className='flex items-center text-xs uppercase font-bold text-right text-dotec hover:opacity-75'
                   onClick={next}
                 >
                   Next

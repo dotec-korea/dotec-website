@@ -24,9 +24,7 @@ const ProductTab = ({ product, productId, setProductId, setShowCard }) => {
     image && (
       <div
         className={`w-full flex bg-gray-100 p-1 lg:p-4 border-2 cursor-pointer ${
-          product.sys.id === productId
-            ? 'border-blue-700'
-            : 'border-transparent'
+          product.sys.id === productId ? 'border-dotec' : 'border-transparent'
         }`}
         onClick={setProduct}
       >

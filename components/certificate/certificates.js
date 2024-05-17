@@ -59,7 +59,7 @@ export default function Certificates({ certificates }) {
                       {currentIndex}/{size}
                     </span>
                     <button
-                      className='flex items-center text-xs uppercase font-bold text-right text-blue-700 hover:opacity-75'
+                      className='flex items-center text-xs uppercase font-bold text-right text-dotec hover:opacity-75'
                       onClick={next}
                     >
                       Next
@@ -78,7 +78,7 @@ export default function Certificates({ certificates }) {
     <>
       <section id='certificates' className='bg-gray-100 p-5'>
         <div className='mx-auto px-6 md:px-12 lg:px-8 2xl:px-24'>
-          {/* <h3 className='text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl mb-4'>
+          {/* <h3 className='text-2xl font-bold text-dotec uppercase sm:text-left md:text-4xl mb-4'>
             Certifications
           </h3> */}
           <div className='w-full my-10'>
@@ -133,7 +133,7 @@ const LandscapeCertificate = ({ title, image, id, setCurrentIndex }) => {
           <span className='w-3/5 text-center lg:text-xl text-black font-bold uppercase'>
             {title}
           </span>
-          <p className='text-center mt-6 text-blue-700 font-bold text-xs uppercase'>
+          <p className='text-center mt-6 text-dotec font-bold text-xs uppercase'>
             View Full
           </p>
         </div>
@@ -161,7 +161,7 @@ const PortraitCertificate = ({ title, image, id, setCurrentIndex }) => {
           <span className='w-3/5 text-center lg:text-xl text-black font-bold uppercase'>
             {title}
           </span>
-          <p className='text-center mt-6 text-blue-700 font-bold text-xs uppercase'>
+          <p className='text-center mt-6 text-dotec font-bold text-xs uppercase'>
             View Full
           </p>
         </div>

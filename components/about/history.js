@@ -26,7 +26,7 @@ export default function History({ history }) {
   return (
     history && (
       <section id='history' className='bg-white my-20 px-5'>
-        <h3 className='mx-auto px-6 md:px-12 lg:px-8 2xl:px-24 text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl'>
+        <h3 className='mx-auto px-6 md:px-12 lg:px-8 2xl:px-24 text-2xl font-bold text-dotec uppercase sm:text-left md:text-4xl'>
           Brief History
         </h3>
         <div className='mx-auto px-6 md:px-12 lg:px-8 2xl:px-24 py-8 w-full flex justify-between items-center'>
@@ -34,7 +34,7 @@ export default function History({ history }) {
             <MdOutlineKeyboardDoubleArrowLeft
               onClick={previous}
               fontSize={64}
-              className='text-blue-700 cursor-pointer'
+              className='text-dotec cursor-pointer'
             />
           )}
           <div
@@ -46,15 +46,15 @@ export default function History({ history }) {
                 key={index}
                 className='w-1/2 lg:w-1/5 flex-shrink-0 snap-center py-2'
               >
-                <div className='font-bold text-blue-700 leading-none text-2xl lg:text-5xl'>
+                <div className='font-bold text-dotec leading-none text-2xl lg:text-5xl'>
                   {element?.year}
                 </div>
-                <div className='font-light text-blue-700 text-base lg:text-xl'>
+                <div className='font-light text-dotec text-base lg:text-xl'>
                   {element?.month}
                 </div>
-                <div className='text-blue-700 py-5 flex items-center'>
-                  <div className='w-2 h-2 bg-blue-700 rounded-full'></div>
-                  <div className='h-0.5 w-full bg-blue-700'></div>
+                <div className='text-dotec py-5 flex items-center'>
+                  <div className='w-2 h-2 bg-dotec rounded-full'></div>
+                  <div className='h-0.5 w-full bg-dotec'></div>
                 </div>
                 <div className='w-32 text-sm lg:text-base px-2'>
                   {element?.description}
@@ -66,7 +66,7 @@ export default function History({ history }) {
             <MdOutlineKeyboardDoubleArrowRight
               onClick={next}
               fontSize={64}
-              className='text-blue-700 cursor-pointer'
+              className='text-dotec cursor-pointer'
             />
           )}
         </div>

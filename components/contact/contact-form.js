@@ -35,7 +35,7 @@ export default function ContactForm() {
 
   return (
     <div className='w-5/6 mx-auto relative'>
-      <div className='lg:mx-10 -mt-10 bg-blue-700 p-5 lg:p-10 z-10'>
+      <div className='lg:mx-10 -mt-10 bg-dotec p-5 lg:p-10 z-10'>
         <div className='mt-10 mb-20 w-full flex justify-center'>
           <h3 className='text-2xl font-bold text-white uppercase sm:text-left md:text-6xl'>
             Get in touch
@@ -141,7 +141,7 @@ export default function ContactForm() {
           <div className='w-full flex justify-center'>
             <button
               type='submit'
-              className='w-1/4 text-xs lg:text-base p-2 lg:py-4 lg:px-8 font-semibold text-blue-700 transition-colors bg-white hover:bg-gray-50 focus:outline-none focus:ring-offset-2 focus:ring focus:ring-gray-200'
+              className='w-1/4 text-xs lg:text-base p-2 lg:py-4 lg:px-8 font-semibold text-dotec transition-colors bg-white hover:bg-gray-50 focus:outline-none focus:ring-offset-2 focus:ring focus:ring-gray-200'
             >
               {isSubmitting ? (
                 <svg

@@ -40,7 +40,7 @@ const ProductCard = ({ productId }) => {
                 </h2>
               )}
               {product?.modelNumber && (
-                <p className='my-4 uppercase text-blue-700 text-xs lg:text-base font-semibold'>
+                <p className='my-4 uppercase text-dotec text-xs lg:text-base font-semibold'>
                   MODEL NO: {product.modelNumber}
                 </p>
               )}
@@ -62,7 +62,7 @@ const ProductCard = ({ productId }) => {
                         >
                           {item}
                           {index + 1 !== product.design.length && (
-                            <span className='text-blue-700 font-bold'>
+                            <span className='text-dotec font-bold'>
                               {' | '}
                             </span>
                           )}
@@ -77,7 +77,7 @@ const ProductCard = ({ productId }) => {
           {product?.specification && <SectionSeparator width={'full'} />}
           <div className='w-full'>
             <div className='text-xs lg:text-sm uppercase tracking-wider text-left font-bold'>
-              <div className='w-full px-1 py-3 text-blue-700'>
+              <div className='w-full px-1 py-3 text-dotec'>
                 {product?.specification && <>SPECIFICATION</>}
                 {product?.specification && (
                   <>

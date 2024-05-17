@@ -103,7 +103,7 @@
   width: 0px;
   height: 0px;
   border-top: 3.5rem solid transparent;
-  border-left: 2.5rem solid rgb(29, 78, 216);
+  border-left: 2.5rem solid rgb(187, 27, 27);
   border-bottom: 3.5rem solid transparent;
 }
 
@@ -115,6 +115,6 @@
   width: 0px;
   height: 0px;
   border-top: 2.5rem solid transparent;
-  border-left: 1.5rem solid rgb(29, 78, 216);
+  border-left: 1.5rem solid rgb(187, 27, 27);
   border-bottom: 2.5rem solid transparent;
 }

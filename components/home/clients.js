@@ -30,7 +30,7 @@ export default function Clients({ clients }) {
       <>
         <section className='w-full py-10 block lg:hidden'>
           <div className='px-8 mx-auto'>
-            <h3 className='mt-2 text-2xl font-bold text-blue-700 uppercase text-left'>
+            <h3 className='mt-2 text-2xl font-bold text-dotec uppercase text-left'>
               Our Clients
             </h3>
             <div className='w-full grid grid-cols-4 gap-6'>
@@ -51,7 +51,7 @@ export default function Clients({ clients }) {
           </div>
         </section>
         <section className='w-full py-10 hidden lg:flex'>
-          <div className='relative mt-2 h-28 p-4 w-1/6 flex items-center text-3xl xl:4xl font-bold bg-blue-700 text-white uppercase sm:text-left main-pointed-tab'>
+          <div className='relative mt-2 h-28 p-4 w-1/6 flex items-center text-3xl xl:4xl font-bold bg-dotec text-white uppercase sm:text-left main-pointed-tab'>
             Our Clients
           </div>
           <div className='flex pl-4 items-center w-5/6 order-last'>

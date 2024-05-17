@@ -6,7 +6,7 @@ const Table = ({ header, body, width }) => {
       <div className={`${isBodyMaterial ? 'w-2/4' : 'w-1/4'} flex-shrink-0`}>
         <table className='w-full'>
           <thead>
-            <tr className='text-xs lg:text-sm uppercase tracking-wider text-blue-700 text-left'>
+            <tr className='text-xs lg:text-sm uppercase tracking-wider text-dotec text-left'>
               <th className='w-full px-1 py-3'>{header}</th>
             </tr>
           </thead>

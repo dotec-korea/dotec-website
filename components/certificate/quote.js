@@ -19,7 +19,7 @@ export default function Quote() {
           </svg>
 
           <div className='relative z-10'>
-            <p className='text-blue-700 font-bold sm:text-xl'>
+            <p className='text-dotec font-bold sm:text-xl'>
               <em>
                 We, DOTEC Co. Ltd., are a professional & specialist valve
                 manufacturing company with many years of proven track record.

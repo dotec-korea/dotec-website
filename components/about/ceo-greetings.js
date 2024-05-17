@@ -1,7 +1,7 @@
 export default function CeoGreetings() {
   return (
     <section id='ceo-greetings' className='bg-gray-100 px-5'>
-      <h3 className='mx-auto px-6 md:px-12 lg:px-8 2xl:px-24 pt-12 pb-6 text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl'>
+      <h3 className='mx-auto px-6 md:px-12 lg:px-8 2xl:px-24 pt-12 pb-6 text-2xl font-bold text-dotec uppercase sm:text-left md:text-4xl'>
         Ceo Greetings
       </h3>
       <div className='mx-auto px-6 md:px-12 lg:px-8 2xl:px-24 w-full pt-6 pb-12 flex justify-center'>
@@ -10,7 +10,7 @@ export default function CeoGreetings() {
             <div className='w-full'>
               <img src='/CEO.webp' alt='' className='w-4/5 object-contain' />
             </div>
-            <div className='w-full col-span-2 flex items-center border-t-2 border-blue-700'>
+            <div className='w-full col-span-2 flex items-center border-t-2 border-dotec'>
               <blockquote className='relative'>
                 <svg
                   className='absolute top-0 left-0 transform -translate-x-6 -translate-y-8 h-12 w-12 lg:h-24 lg:w-24 text-gray-200'
@@ -28,7 +28,7 @@ export default function CeoGreetings() {
                 </svg>
 
                 <div className='relative z-10'>
-                  <p className='text-blue-700 font-bold text-sm lg:text-xl'>
+                  <p className='text-dotec font-bold text-sm lg:text-xl'>
                     <em>
                       We, DOTEC Co. Ltd., are a professional & specialist valve
                       manufacturing company with many years of proven track

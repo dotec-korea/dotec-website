@@ -48,7 +48,7 @@ export default function Manufacturing() {
 
   return (
     <section id='manufacturing' className='bg-gray-100 py-12'>
-      <h3 className='px-8 pb-6 mx-auto  lg:px-6 text-2xl font-bold text-blue-700 uppercase sm:text-left md:text-4xl'>
+      <h3 className='px-8 pb-6 mx-auto  lg:px-6 text-2xl font-bold text-dotec uppercase sm:text-left md:text-4xl'>
         MANUFACTURING PROCESS
       </h3>
       <div className='w-full pt-6 mb-12 mx-auto  lg:px-6 flex justify-center'>
@@ -58,7 +58,7 @@ export default function Manufacturing() {
               <div
                 key={index}
                 className={`w-full flex items-center text-xl font-bold cursor-pointer ${
-                  header.id <= tab ? 'bg-blue-700 text-white' : ' text-gray-800'
+                  header.id <= tab ? 'bg-dotec text-white' : ' text-gray-800'
                 }`}
                 onClick={() => setManufacturing(header.id)}
               >

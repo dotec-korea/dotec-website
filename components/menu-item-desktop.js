@@ -6,8 +6,8 @@ const MenuItemDesktop = ({ menu, size, active }) => {
 
   return (
     <li
-      className={`w-1/${size} text-center border-b-2 hover:border-blue-700 ${
-        active ? 'border-blue-700' : 'border-white'
+      className={`w-1/${size} text-center border-b-2 hover:border-dotec ${
+        active ? 'border-dotec' : 'border-white'
       }`}
       onMouseEnter={() => setDropdown(true)}
       onMouseLeave={() => setDropdown(false)}
@@ -36,7 +36,7 @@ const MenuItemDesktop = ({ menu, size, active }) => {
 
 const Dropdown = ({ submenus }) => {
   return (
-    <ul className='absolute z-10 w-full text-center rounded-sm bg-blue-700 bg-opacity-90'>
+    <ul className='absolute z-10 w-full text-center rounded-sm bg-dotec bg-opacity-90'>
       {submenus.map((submenu, index) => (
         <Link key={index} className='w-full' href={submenu.url}>
           <li

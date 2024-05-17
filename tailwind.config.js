@@ -12,6 +12,7 @@ module.exports = {
         'accent-7': '#333',
         success: '#0070f3',
         cyan: '#79FFE1',
+        dotec: '#BB1B1B',
       },
       spacing: {
         28: '7rem',
@@ -35,4 +36,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};

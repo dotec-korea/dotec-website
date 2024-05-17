@@ -11,10 +11,10 @@ export default function Catalogues({ catalogues }) {
       <section id='cataloues'>
         <div className='p-8 mx-auto  xl:p-12'>
           <div className='inline-flex items-center w-1/2'>
-            <span className='w-fit shrink-0 mr-5 text-blue-700 bg-white text-lg font-bold uppercase'>
+            <span className='w-fit shrink-0 mr-5 text-dotec bg-white text-lg font-bold uppercase'>
               PRODUCT CATALOGUES
             </span>
-            <hr className='w-full my-8 border-blue-700 border-[1.5px]' />
+            <hr className='w-full my-8 border-dotec border-[1.5px]' />
           </div>
           <div className='w-full grid grid-cols-2 gap-4'>
             {catalogues.map((catalogue, index) => (

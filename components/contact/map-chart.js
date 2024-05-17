@@ -40,7 +40,7 @@ const MapChart = () => {
           <Marker key={name} coordinates={coordinates}>
             <g
               fill='none'
-              stroke='#1D4ED8'
+              stroke='#BB1B1B'
               strokeWidth='2'
               strokeLinecap='round'
               strokeLinejoin='round'

@@ -24,7 +24,7 @@ const SideBar = ({
                 {product && (
                   <h5
                     className={`font-bold uppercase tracking-wide text-sm mb-3 cursor-pointer ${
-                      product?.sys?.id === rangeId && 'text-blue-700'
+                      product?.sys?.id === rangeId && 'text-dotec'
                     }`}
                     onClick={() => setRangeAndProduct(product, null)}
                   >
@@ -40,8 +40,8 @@ const SideBar = ({
                       item && (
                         <p
                           key={item.id}
-                          className={`text-sm my-1 tracking-wide cursor-pointer flex hover:text-blue-700 ${
-                            item.sys.id === productId ? 'text-blue-700' : ''
+                          className={`text-sm my-1 tracking-wide cursor-pointer flex hover:text-dotec ${
+                            item.sys.id === productId ? 'text-dotec' : ''
                           }`}
                           onClick={() =>
                             setRangeAndProduct(product, item.sys.id)

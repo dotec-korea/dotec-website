@@ -22,7 +22,7 @@ export default function ProductRangeCard({ q, title, image }) {
               {title}
             </h3>
             <a
-              className='mt-3 flex items-center font-normal text-sm lg:text-lg 2xl:text-xl group-hover:text-blue-700 group-hover:font-semibold duration-500'
+              className='mt-3 flex items-center font-normal text-sm lg:text-lg 2xl:text-xl group-hover:text-dotec group-hover:font-semibold duration-500'
               href='#'
             >
               View more <MdNavigateNext className='text-xl' />
