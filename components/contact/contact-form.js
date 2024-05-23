@@ -182,12 +182,16 @@ export default function ContactForm() {
           </div>
         )}
 
-        <div className='text-white text-xs text-center lg:text-sm'>
+        <div className='text-white text-center text-xs lg:text-base font-semibold'>
           For inquiries in South East Asia and Middle East, please contact{' '}
           <a href='mailto:abhi@dotec.sg' className='underline'>
             abhi@dotec.sg
           </a>{' '}
-          and phone numbers.
+          and{' '}
+          <a href='tel:+65 83999431' className='underline'>
+            +65 83999431
+          </a>
+          .
         </div>
       </div>
     </div>
