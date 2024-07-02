@@ -4,7 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 function MyApp({ Component, pageProps }) {
   return (
     <AnimatePresence mode='wait' initial={false}>
-      <Component {...pageProps} />
+      {/* <Component {...pageProps} /> */}
     </AnimatePresence>
   );
 }
