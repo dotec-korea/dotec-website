@@ -18,6 +18,10 @@ export default function Product({ products }) {
   const [showCard, setShowCard] = useState(false);
 
   useEffect(() => {
+    setShowCard(false);
+    setRangeId('');
+    setProductId('');
+
     const query = searchParams.get('q');
     if (query) {
       setRangeId(query);
@@ -47,9 +51,10 @@ export default function Product({ products }) {
   }, [rangeId]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setShowCard(true);
-    }, 300);
+    if (rangeId || productId)
+      setTimeout(() => {
+        setShowCard(true);
+      }, 300);
   }, [productId, rangeId]);
 
   return (

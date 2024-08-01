@@ -5,8 +5,10 @@ import Navbar from '../components/navbar';
 import ContactForm from '../components/contact/contact-form';
 import MapChart from '../components/contact/map-chart';
 import { getPageAndRange } from '../lib/api/home';
+import { useState } from 'react';
 
 export default function Contact({ page, range }) {
+  const [isHead, setIsHead] = useState(true);
   return (
     <>
       <Layout>
@@ -26,8 +28,8 @@ export default function Contact({ page, range }) {
             <PageHeader text={'Contact Us'} />
           </section>
         )}
-        <ContactForm />
-        <MapChart />
+        <ContactForm isHead={isHead} />
+        <MapChart setIsHead={setIsHead} />
       </Layout>
     </>
   );

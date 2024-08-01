@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useWeb3Forms from '@web3forms/react';
 
-export default function ContactForm() {
+const ContactForm = ({ isHead }) => {
   const {
     register,
     handleSubmit,
@@ -14,12 +14,14 @@ export default function ContactForm() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [message, setMessage] = useState(false);
 
-  const apiKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+  const apiKeyKorea = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY_KOREA;
+  const apiKeySingapore =
+    process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY_SINGAPORE;
 
   const { submit: onSubmit } = useWeb3Forms({
-    access_key: apiKey,
+    access_key: isHead ? apiKeyKorea : apiKeySingapore,
     settings: {
-      from_name: 'DoTEC Website',
+      from_name: 'New Lead from ' + isHead ? 'South Korea' : 'Singapore',
       subject: 'New Contact Message from your Website',
     },
     onSuccess: (msg) => {
@@ -65,7 +67,7 @@ export default function ContactForm() {
                 })}
               />
               {errors.name && (
-                <div className='mt-1 text-red-600'>
+                <div className='mt-1 text-white'>
                   <small>{errors.name.message}</small>
                 </div>
               )}
@@ -93,7 +95,7 @@ export default function ContactForm() {
                 })}
               />
               {errors.email && (
-                <div className='mt-1 text-red-600'>
+                <div className='mt-1 text-white'>
                   <small>{errors.email.message}</small>
                 </div>
               )}
@@ -112,7 +114,7 @@ export default function ContactForm() {
               })}
             />
             {errors.subject && (
-              <div className='mt-1 text-red-600'>
+              <div className='mt-1 text-white'>
                 {' '}
                 <small>{errors.subject.message}</small>
               </div>
@@ -131,7 +133,7 @@ export default function ContactForm() {
               })}
             />
             {errors.message && (
-              <div className='mt-1 text-red-600'>
+              <div className='mt-1 text-white'>
                 {' '}
                 <small>{errors.message.message}</small>
               </div>
@@ -182,18 +184,35 @@ export default function ContactForm() {
           </div>
         )}
 
-        <div className='text-white text-center text-xs lg:text-base font-semibold'>
-          For inquiries in South East Asia and Middle East, please contact{' '}
-          <a href='mailto:abhi@dotec.sg' className='underline'>
-            abhi@dotec.sg
-          </a>{' '}
-          and{' '}
-          <a href='tel:+65 83999431' className='underline'>
-            +65 83999431
-          </a>
-          .
+        <div className='text-white text-xs lg:text-base font-semibold text-center'>
+          For inquiries,{' '}
+          {isHead ? (
+            <>
+              Head Office:{' '}
+              <a href='mailto:sales2@dotec.kr' className='underline'>
+                sales2@dotec.kr
+              </a>{' '}
+              and{' '}
+              <a href='tel:+82 553465771' className='underline'>
+                +82 553465771
+              </a>
+            </>
+          ) : (
+            <>
+              South East Asia & Middle East Agency:{' '}
+              <a href='mailto:abhi@dotec.sg' className='underline'>
+                abhi@dotec.sg
+              </a>{' '}
+              and{' '}
+              <a href='tel:+65 83999431' className='underline'>
+                +65 83999431
+              </a>
+            </>
+          )}
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default ContactForm;
