@@ -18,22 +18,42 @@ const ContactForm = ({ isHead }) => {
   const apiKeySingapore =
     process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY_SINGAPORE;
 
-  const { submit: onSubmit } = useWeb3Forms({
-    access_key: isHead ? apiKeyKorea : apiKeySingapore,
-    settings: {
-      from_name: 'New Lead from ' + isHead ? 'South Korea' : 'Singapore',
-      subject: 'New Contact Message from your Website',
-    },
-    onSuccess: (msg) => {
-      setIsSuccess(true);
-      setMessage(msg);
-      reset();
-    },
-    onError: (msg) => {
-      setIsSuccess(false);
-      setMessage(msg);
-    },
-  });
+  const onSuccessHandler = (msg) => {
+    setIsSuccess(true);
+    setMessage(msg + '\n');
+  };
+
+  const onErrorHandler = (msg) => {
+    setIsSuccess(false);
+    setMessage(msg + '\n');
+  };
+
+  const onSubmit = async (data) => {
+    const submitForm = useWeb3Forms({
+      access_key: isHead ? apiKeyKorea : apiKeySingapore,
+      settings: {
+        from_name: 'New Lead for ' + (isHead ? 'South Korea' : 'Singapore'),
+        subject: 'New Contact Message from your Website',
+      },
+      onSuccess: onSuccessHandler,
+      onError: onErrorHandler,
+    }).submit;
+
+    const submitFormCC = useWeb3Forms({
+      access_key: apiKeySingapore,
+      settings: {
+        from_name: 'New Lead for South Korea',
+        subject: 'New Contact Message from your Website',
+      },
+      onSuccess: onSuccessHandler,
+      onError: onErrorHandler,
+    }).submit;
+
+    await submitForm(data);
+    if (isHead) await submitFormCC(data);
+
+    reset();
+  };
 
   return (
     <div className='w-5/6 mx-auto relative'>
@@ -45,14 +65,6 @@ const ContactForm = ({ isHead }) => {
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className='my-10'>
           <div className='grid grid-cols-1 lg:grid-cols-2 lg:gap-5'>
-            <input
-              type='checkbox'
-              id=''
-              className='hidden'
-              style={{ display: 'none' }}
-              {...register('botcheck')}
-            ></input>
-
             <div className='mb-5'>
               <input
                 type='text'
@@ -175,20 +187,20 @@ const ContactForm = ({ isHead }) => {
 
         {isSubmitSuccessful && isSuccess && (
           <div className='mt-3 text-xs lg:text-sm text-center text-green-500'>
-            {message || 'Success. Message sent successfully'}
+            {message ? message : 'Success. Message sent successfully'}
           </div>
         )}
         {isSubmitSuccessful && !isSuccess && (
           <div className='mt-3 text-xs lg:text-sm text-center text-red-500'>
-            {message || 'Something went wrong. Please try later.'}
+            {message ? message : 'Something went wrong. Please try later.'}
           </div>
         )}
 
         <div className='text-white text-xs lg:text-base font-semibold text-center'>
-          For inquiries,{' '}
+          For inquiries{' '}
           {isHead ? (
             <>
-              Head Office:{' '}
+              for Head Office:{' '}
               <a href='mailto:sales2@dotec.kr' className='underline'>
                 sales2@dotec.kr
               </a>{' '}
@@ -199,14 +211,15 @@ const ContactForm = ({ isHead }) => {
             </>
           ) : (
             <>
-              South East Asia & Middle East Agency:{' '}
+              from South East Asia, Australia & Middle East, please contact -{' '}
               <a href='mailto:abhi@dotec.sg' className='underline'>
                 abhi@dotec.sg
               </a>{' '}
               and{' '}
               <a href='tel:+65 83999431' className='underline'>
                 +65 83999431
-              </a>
+              </a>{' '}
+              (Mobile & WhatsApp)
             </>
           )}
         </div>
