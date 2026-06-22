@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 
 const MenuItemMobile = ({ menu, active, dropdown, setDropdown }) => {
   const selectDropdown = (title) => {
@@ -31,7 +32,7 @@ const Dropdown = ({ submenus }) => {
   return (
     <ul className='w-full rounded-sm bg-dotec bg-opacity-90'>
       {submenus.map((submenu, index) => (
-        <Link key={index} className='w-full' href={submenu.url}>
+        <Link key={submenu.url} className='w-full' href={submenu.url}>
           <li
             className={`p-2 mx-2 v text-white ${
               index + 1 !== submenus.length && 'border-b-2 border-white'
@@ -43,6 +44,21 @@ const Dropdown = ({ submenus }) => {
       ))}
     </ul>
   );
+};
+
+MenuItemMobile.propTypes = {
+  menu: PropTypes.shape({
+    title: PropTypes.string,
+    url: PropTypes.string,
+    submenu: PropTypes.array,
+  }),
+  active: PropTypes.bool,
+  dropdown: PropTypes.string,
+  setDropdown: PropTypes.func,
+};
+
+Dropdown.propTypes = {
+  submenus: PropTypes.array,
 };
 
 export default MenuItemMobile;

@@ -1,11 +1,15 @@
 import FacilityCard from './facility-card';
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 
-export default function Facility({ facilities }) {
+export default function Facility({ facilities = [] }) {
   const slider = useRef(null);
 
-  facilities = facilities.sort((x, y) => x.id - y.id);
+  const sortedFacilities = useMemo(
+    () => [...facilities].sort((x, y) => x.id - y.id),
+    [facilities]
+  );
 
   const next = () => {
     slider.current?.scrollTo({
@@ -42,12 +46,12 @@ export default function Facility({ facilities }) {
               ref={slider}
               className='snap-x mx-auto snap-mandatory flex w-full overflow-x-scroll range'
             >
-              {facilities.map((facility, index) => {
+              {sortedFacilities.map((facility) => {
                 return (
                   <FacilityCard
-                    key={index}
+                    key={facility?.sys?.id ?? facility?.id ?? facility?.title}
                     title={facility?.title}
-                    image={facility?.image.url}
+                    image={facility?.image?.url}
                     text={facility?.description}
                   />
                 );
@@ -64,6 +68,7 @@ export default function Facility({ facilities }) {
               </h3>
               <div className='mt-12 flex flex-row justify-between w-1/2 lg:w-8/12'>
                 <button
+                  aria-label='Previous facility'
                   className='flex items-center text-xs uppercase font-bold text-left hover:opacity-75'
                   onClick={previous}
                 >
@@ -71,6 +76,7 @@ export default function Facility({ facilities }) {
                   Back
                 </button>
                 <button
+                  aria-label='Next facility'
                   className='flex items-center text-xs uppercase font-bold text-right text-dotec hover:opacity-75'
                   onClick={next}
                 >
@@ -85,3 +91,7 @@ export default function Facility({ facilities }) {
     </section>
   );
 }
+
+Facility.propTypes = {
+  facilities: PropTypes.array,
+};

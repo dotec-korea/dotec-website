@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const MenuItemDesktop = ({ menu, size, active }) => {
   const [dropdown, setDropdown] = useState(false);
@@ -38,7 +39,7 @@ const Dropdown = ({ submenus }) => {
   return (
     <ul className='absolute z-10 w-full text-center rounded-sm bg-dotec bg-opacity-90'>
       {submenus.map((submenu, index) => (
-        <Link key={index} className='w-full' href={submenu.url}>
+        <Link key={submenu.url} className='w-full' href={submenu.url}>
           <li
             className={`py-2 mx-2 v text-white ${
               index + 1 !== submenus.length && 'border-b-2 border-white'
@@ -50,6 +51,22 @@ const Dropdown = ({ submenus }) => {
       ))}
     </ul>
   );
+};
+
+const menuShape = PropTypes.shape({
+  title: PropTypes.string,
+  url: PropTypes.string,
+  submenu: PropTypes.array,
+});
+
+MenuItemDesktop.propTypes = {
+  menu: menuShape,
+  size: PropTypes.number,
+  active: PropTypes.bool,
+};
+
+Dropdown.propTypes = {
+  submenus: PropTypes.array,
 };
 
 export default MenuItemDesktop;

@@ -8,7 +8,13 @@ export default function CeoGreetings() {
         <div className='w-full lg:w-2/3'>
           <div className='grid justify-center grid-cols-3 gap-5 lg:gap-7'>
             <div className='w-full'>
-              <img src='/CEO.webp' alt='' className='w-4/5 object-contain' />
+              <img
+                src='/CEO.webp'
+                alt='Jonathan Koo, President & CEO of DOTEC Co. Ltd.'
+                loading='lazy'
+                decoding='async'
+                className='w-4/5 object-contain'
+              />
             </div>
             <div className='w-full col-span-2 flex items-center border-t-2 border-dotec'>
               <blockquote className='relative'>

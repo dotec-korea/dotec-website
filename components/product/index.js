@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import PropTypes from 'prop-types';
 import SectionSeparator from '../section-separator';
 import ProductTab from './product-tab';
 import ProductCard from './product-card';
@@ -8,18 +9,25 @@ import { AnimatePresence, motion } from 'framer-motion';
 import RangeCard from './range-card';
 import { useRouter } from 'next/router';
 
-export default function Product({ products }) {
+export default function Product({ products = [] }) {
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const [rangeId, setRangeId] = useState('');
-  const [productList, setProductList] = useState(['']);
   const [productId, setProductId] = useState('');
   const [showCard, setShowCard] = useState(false);
 
+  // All data is fetched at build time, so selection is pure lookup — no
+  // client-side requests.
+  const selectedRange = useMemo(
+    () => products.find((pr) => pr?.sys?.id === rangeId),
+    [products, rangeId]
+  );
+  const productList = selectedRange?.productCollection?.items ?? [];
+  const selectedProduct = productList.find((p) => p?.sys?.id === productId);
+
   useEffect(() => {
     setShowCard(false);
-    setRangeId('');
     setProductId('');
 
     const query = searchParams.get('q');
@@ -29,32 +37,28 @@ export default function Product({ products }) {
       const { pathname } = router;
       router.push({ pathname }, undefined, { shallow: true });
     } else {
-      setRangeId(products[0]?.sys.id);
+      setRangeId(products[0]?.sys?.id ?? '');
     }
   }, [products]);
 
   useEffect(() => {
-    if (rangeId) {
-      const product = products.filter((pr) => pr?.sys.id === rangeId);
+    if (!rangeId) return;
 
-      if (product && product.length > 0) {
-        const items = product[0].productCollection.items;
-        setProductList(items);
+    const range = products.find((pr) => pr?.sys?.id === rangeId);
+    const items = range?.productCollection?.items ?? [];
 
-        if (!product[0].description && !productId && items.length > 0) {
-          setProductId(items[0].sys.id);
-        }
-      } else {
-        setProductId('');
-      }
+    // For ranges without their own description, jump straight to the first
+    // product so the panel isn't empty.
+    if (range && !range.description && !productId && items.length > 0) {
+      setProductId(items[0].sys.id);
     }
   }, [rangeId]);
 
   useEffect(() => {
-    if (rangeId || productId)
-      setTimeout(() => {
-        setShowCard(true);
-      }, 300);
+    if (rangeId || productId) {
+      const timer = setTimeout(() => setShowCard(true), 300);
+      return () => clearTimeout(timer);
+    }
   }, [productId, rangeId]);
 
   return (
@@ -85,9 +89,9 @@ export default function Product({ products }) {
                   }}
                 >
                   {productId ? (
-                    <ProductCard productId={productId} />
+                    <ProductCard product={selectedProduct} />
                   ) : (
-                    <RangeCard rangeId={rangeId} />
+                    <RangeCard productRange={selectedRange} />
                   )}
                 </motion.div>
               )}
@@ -99,10 +103,10 @@ export default function Product({ products }) {
           <div className='w-full lg:w-3/4'>
             <SectionSeparator width={'3/4'} />
             <div className='grid grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-5'>
-              {productList.map((item, key) => {
+              {productList.map((item) => {
                 return (
                   <ProductTab
-                    key={key}
+                    key={item?.sys?.id ?? item?.id}
                     product={item}
                     productId={productId}
                     setProductId={setProductId}
@@ -117,3 +121,7 @@ export default function Product({ products }) {
     </section>
   );
 }
+
+Product.propTypes = {
+  products: PropTypes.array,
+};

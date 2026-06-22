@@ -1,32 +1,5 @@
 import Link from 'next/link';
-
-let menuItems = [
-  {
-    id: 1,
-    title: 'Home',
-    url: '/',
-  },
-  {
-    id: 2,
-    title: 'About Us',
-    url: '/about',
-  },
-  {
-    id: 3,
-    title: 'Products',
-    url: '/products',
-  },
-  {
-    id: 4,
-    title: 'Certification',
-    url: '/certification',
-  },
-  {
-    id: 5,
-    title: 'Contact Us',
-    url: '/contact',
-  },
-];
+import { baseMenuItems } from '../lib/menu';
 
 export default function Footer() {
   return (
@@ -58,7 +31,7 @@ export default function Footer() {
           <div className='w-full border-b-2 border-white lg:border-0 lg:w-1/2 p-6 lg:py-16 mx-auto'>
             <div className='lg:border-l-2 border-white sm:px-6 lg:px-12'>
               <nav className='flex flex-col mt-4 space-y-4 text-sm font-bold text-white'>
-                {menuItems.map((item) => {
+                {baseMenuItems.map((item) => {
                   return (
                     <Link
                       key={item.id}

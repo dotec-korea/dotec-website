@@ -1,8 +1,7 @@
 import Layout from '../components/layout';
-import Head from 'next/head';
+import Seo from '../components/seo';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
-import Quote from '../components/certificate/quote';
 import Certificates from '../components/certificate/certificates';
 import { getPageAndRange } from '../lib/api/home';
 import { getCertificates } from '../lib/api/certificates';
@@ -11,9 +10,11 @@ export default function Certification({ page, range, certificates }) {
   return (
     <>
       <Layout>
-        <Head>
-          <title>DoTEC | Certification</title>
-        </Head>
+        <Seo
+          title='Certification'
+          path='/certification'
+          description='DOTEC Co. Ltd. quality certifications and approvals demonstrating our commitment to international valve manufacturing standards.'
+        />
         {page && (
           <>
             <section
@@ -28,7 +29,6 @@ export default function Certification({ page, range, certificates }) {
               <PageHeader
                 text={page.header.text}
                 subtext={page.header.subtext}
-                image={page.header.image}
               />
             </section>
             <Certificates certificates={certificates} />
@@ -41,10 +41,11 @@ export default function Certification({ page, range, certificates }) {
 
 export async function getStaticProps() {
   const name = 'Certification';
-  const { page, range } = (await getPageAndRange(name)) ?? [];
+  const { page = null, range = [] } = (await getPageAndRange(name)) ?? {};
   const certificates = (await getCertificates()) ?? [];
 
   return {
     props: { page, range, certificates },
+    revalidate: 60,
   };
 }

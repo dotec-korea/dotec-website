@@ -1,5 +1,5 @@
 import Layout from '../components/layout';
-import Head from 'next/head';
+import Seo from '../components/seo';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
 import ContactForm from '../components/contact/contact-form';
@@ -12,9 +12,11 @@ export default function Contact({ page, range }) {
   return (
     <>
       <Layout>
-        <Head>
-          <title>DoTEC | Contact Us</title>
-        </Head>
+        <Seo
+          title='Contact Us'
+          path='/contact'
+          description='Get in touch with DOTEC Co. Ltd. — head office in South Korea and regional contact for South East Asia, Australia and the Middle East.'
+        />
         {page && (
           <section
             className='relative px-5'
@@ -37,9 +39,10 @@ export default function Contact({ page, range }) {
 
 export async function getStaticProps() {
   const name = 'Contact';
-  const { page, range } = (await getPageAndRange(name)) ?? [];
+  const { page = null, range = [] } = (await getPageAndRange(name)) ?? {};
 
   return {
     props: { page, range },
+    revalidate: 60,
   };
 }

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Table = ({ header, body, width }) => {
   const isBodyMaterial = header === 'Body Material';
 
@@ -45,6 +47,12 @@ const Table = ({ header, body, width }) => {
       </div>
     )
   );
+};
+
+Table.propTypes = {
+  header: PropTypes.string,
+  body: PropTypes.array,
+  width: PropTypes.string,
 };
 
 export default Table;

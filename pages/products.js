@@ -1,7 +1,7 @@
 import Layout from '../components/layout';
 import { getPageAndRange } from '../lib/api/home';
 import { getProducts } from '../lib/api/products';
-import Head from 'next/head';
+import Seo from '../components/seo';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
 import Product from '../components/product';
@@ -10,9 +10,11 @@ export default function Products({ page, range, products }) {
   return (
     <>
       <Layout>
-        <Head>
-          <title>DoTEC | Products</title>
-        </Head>
+        <Seo
+          title='Products'
+          path='/products'
+          description='Explore DOTEC&apos;s range of industrial valves — engineered for chemical, petrochemical, thermal, oil-field and refinery applications, onshore and offshore.'
+        />
         {page && (
           <section
             className='relative px-5'
@@ -26,7 +28,6 @@ export default function Products({ page, range, products }) {
             <PageHeader
               text={page.header.text}
               subtext={page.header.subtext}
-              image={page.header.image}
             />
           </section>
         )}
@@ -38,10 +39,11 @@ export default function Products({ page, range, products }) {
 
 export async function getStaticProps() {
   const name = 'Products';
-  const { page, range } = (await getPageAndRange(name)) ?? [];
+  const { page = null, range = [] } = (await getPageAndRange(name)) ?? {};
   const products = (await getProducts()) ?? [];
 
   return {
     props: { page, range, products },
+    revalidate: 60,
   };
 }

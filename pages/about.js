@@ -1,5 +1,5 @@
 import Layout from '../components/layout';
-import Head from 'next/head';
+import Seo from '../components/seo';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
 import Facility from '../components/about/facility';
@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { getPageAndRange } from '../lib/api/home';
 import { getFacilities, getHistory } from '../lib/api/about';
 import { useRouter } from 'next/router';
+import QualityPolicy from '../components/about/quality-policy';
 
 export default function About({ page, range, facilities, history }) {
   const searchParams = useSearchParams();
@@ -30,9 +31,11 @@ export default function About({ page, range, facilities, history }) {
   return (
     <>
       <Layout>
-        <Head>
-          <title>DoTEC | About Us</title>
-        </Head>
+        <Seo
+          title='About Us'
+          path='/about'
+          description='DOTEC Co. Ltd. — a specialist valve manufacturer with a proven track record in design, production, quality control and worldwide service.'
+        />
         {page && (
           <>
             <section
@@ -47,12 +50,12 @@ export default function About({ page, range, facilities, history }) {
               <PageHeader
                 text={page.header.text}
                 subtext={page.header.subtext}
-                image={page.header.image}
               />
             </section>
             <CeoGreetings />
             <History history={history} />
             <Facility facilities={facilities} />
+            <QualityPolicy />
           </>
         )}
       </Layout>
@@ -62,11 +65,12 @@ export default function About({ page, range, facilities, history }) {
 
 export async function getStaticProps() {
   const name = 'About';
-  const { page, range } = (await getPageAndRange(name)) ?? [];
+  const { page = null, range = [] } = (await getPageAndRange(name)) ?? {};
   const facilities = (await getFacilities()) ?? [];
   const history = (await getHistory()) ?? [];
 
   return {
     props: { page, range, facilities, history },
+    revalidate: 60,
   };
 }

@@ -1,26 +1,9 @@
-import { useEffect, useState } from 'react';
-import { getProductRange } from '../../lib/api/products';
+import PropTypes from 'prop-types';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import { cfImage } from '../../utils/image';
 
-const RangeCard = ({ rangeId }) => {
-  const [productRange, setProductRange] = useState({});
-  const [productRangeTables, setProductRangeTables] = useState({});
-
-  useEffect(() => {
-    setProductRange({});
-    if (rangeId) {
-      async function fetchData() {
-        const response = await getProductRange(rangeId);
-        if (response) {
-          setProductRange(response);
-          setProductRangeTables(response.tablesCollection);
-        }
-      }
-      fetchData();
-
-      console.log(productRangeTables);
-    }
-  }, [rangeId]);
+const RangeCard = ({ productRange }) => {
+  const tables = productRange?.tablesCollection;
 
   return (
     <>
@@ -34,8 +17,10 @@ const RangeCard = ({ rangeId }) => {
               <div className='w-full aspect-square'>
                 {productRange?.image?.url && (
                   <img
-                    src={productRange?.image?.url}
-                    alt={productRange?.title}
+                    src={cfImage(productRange.image.url, { width: 800 })}
+                    alt={productRange?.title ?? ''}
+                    loading='lazy'
+                    decoding='async'
                     className='object-center object-contain h-full w-full'
                   />
                 )}
@@ -50,18 +35,20 @@ const RangeCard = ({ rangeId }) => {
           </div>
         </>
       )}
-      {productRangeTables && (
+      {tables?.items?.length > 0 && (
         <div className='w-full p-6 bg-gray-100 mt-4'>
           <h3 className='text-xs lg:text-base font-bold mb-5'>
             {productRange?.tableHeader}
           </h3>
           <div className='grid grid-cols-2 gap-4'>
-            {productRangeTables?.items?.map((item, key) => {
+            {tables.items.map((item, key) => {
               return (
                 <img
-                  key={key}
-                  src={item.url}
-                  alt={productRange?.title + ' ' + key}
+                  key={item.url ?? key}
+                  src={cfImage(item.url, { width: 800 })}
+                  alt={(productRange?.title ?? '') + ' table ' + (key + 1)}
+                  loading='lazy'
+                  decoding='async'
                   className='w-full object-contain'
                 />
               );
@@ -71,6 +58,10 @@ const RangeCard = ({ rangeId }) => {
       )}
     </>
   );
+};
+
+RangeCard.propTypes = {
+  productRange: PropTypes.object,
 };
 
 export default RangeCard;

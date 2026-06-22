@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export default function PageHeader({ text, subtext, isHome }) {
   return (
     <div className={`${isHome ? 'py-12' : 'py-16'}`}>
@@ -20,7 +22,7 @@ export default function PageHeader({ text, subtext, isHome }) {
           <div className='w-3/12 flex justify-end'>
             <img
               src='/valves.webp'
-              alt=''
+              alt='DOTEC industrial valves'
               className='w-2/3 object-contain drop-shadow-2xl'
             />
           </div>
@@ -29,3 +31,9 @@ export default function PageHeader({ text, subtext, isHome }) {
     </div>
   );
 }
+
+PageHeader.propTypes = {
+  text: PropTypes.string,
+  subtext: PropTypes.string,
+  isHome: PropTypes.bool,
+};

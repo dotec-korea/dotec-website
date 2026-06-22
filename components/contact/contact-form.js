@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import PropTypes from 'prop-types';
 import useWeb3Forms from '@web3forms/react';
+
+const apiKeyKorea = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY_KOREA;
+const apiKeySingapore = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY_SINGAPORE;
 
 const ContactForm = ({ isHead }) => {
   const {
@@ -14,10 +18,6 @@ const ContactForm = ({ isHead }) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [message, setMessage] = useState(false);
 
-  const apiKeyKorea = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY_KOREA;
-  const apiKeySingapore =
-    process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY_SINGAPORE;
-
   const onSuccessHandler = (msg) => {
     setIsSuccess(true);
     setMessage(msg + '\n');
@@ -28,29 +28,37 @@ const ContactForm = ({ isHead }) => {
     setMessage(msg + '\n');
   };
 
+  // Hooks must be called at the top level — not inside the submit handler.
+  const { submit: submitKorea } = useWeb3Forms({
+    access_key: apiKeyKorea ?? '',
+    settings: {
+      from_name: 'New Lead for South Korea',
+      subject: 'New Contact Message from your Website',
+    },
+    onSuccess: onSuccessHandler,
+    onError: onErrorHandler,
+  });
+
+  const { submit: submitSingapore } = useWeb3Forms({
+    access_key: apiKeySingapore ?? '',
+    settings: {
+      from_name: 'New Lead for Singapore',
+      subject: 'New Contact Message from your Website',
+    },
+    onSuccess: onSuccessHandler,
+    onError: onErrorHandler,
+  });
+
   const onSubmit = async (data) => {
-    const submitForm = useWeb3Forms({
-      access_key: isHead ? apiKeyKorea : apiKeySingapore,
-      settings: {
-        from_name: 'New Lead for ' + (isHead ? 'South Korea' : 'Singapore'),
-        subject: 'New Contact Message from your Website',
-      },
-      onSuccess: onSuccessHandler,
-      onError: onErrorHandler,
-    }).submit;
+    if (!apiKeyKorea && !apiKeySingapore) {
+      onErrorHandler('Contact form is not configured. Please email us directly.');
+      return;
+    }
 
-    const submitFormCC = useWeb3Forms({
-      access_key: apiKeySingapore,
-      settings: {
-        from_name: 'New Lead for South Korea',
-        subject: 'New Contact Message from your Website',
-      },
-      onSuccess: onSuccessHandler,
-      onError: onErrorHandler,
-    }).submit;
-
-    await submitForm(data);
-    if (isHead) await submitFormCC(data);
+    const primarySubmit = isHead ? submitKorea : submitSingapore;
+    await primarySubmit(data);
+    // Head-office leads are also CC'd to the Singapore inbox.
+    if (isHead) await submitSingapore(data);
 
     reset();
   };
@@ -64,12 +72,21 @@ const ContactForm = ({ isHead }) => {
           </h3>
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className='my-10'>
+          {/* Honeypot: hidden from users, flags bots that fill every field. */}
+          <input
+            type='checkbox'
+            tabIndex={-1}
+            autoComplete='off'
+            className='hidden'
+            style={{ display: 'none' }}
+            {...register('botcheck')}
+          />
           <div className='grid grid-cols-1 lg:grid-cols-2 lg:gap-5'>
             <div className='mb-5'>
               <input
                 type='text'
                 placeholder='Full Name'
-                autoComplete='false'
+                autoComplete='off'
                 className={`w-full px-4 py-3 bg-transparent border-b-2 text-white text-xs lg:text-sm placeholder:uppercase placeholder:text-gray-200 placeholder:opacity-75 outline-none ${
                   errors.name ? 'border-red-600 ' : 'border-gray-300 '
                 }`}
@@ -94,7 +111,7 @@ const ContactForm = ({ isHead }) => {
                 type='email'
                 placeholder='Email Address'
                 name='email'
-                autoComplete='false'
+                autoComplete='off'
                 className={`w-full px-4 py-3 bg-transparent border-b-2 text-white text-xs lg:text-sm placeholder:uppercase placeholder:text-gray-200 placeholder:opacity-75 outline-none  ${
                   errors.email ? 'border-red-600 ' : 'border-gray-300 '
                 }`}
@@ -226,6 +243,10 @@ const ContactForm = ({ isHead }) => {
       </div>
     </div>
   );
+};
+
+ContactForm.propTypes = {
+  isHead: PropTypes.bool,
 };
 
 export default ContactForm;

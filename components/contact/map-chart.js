@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   ComposableMap,
   Geographies,
@@ -57,6 +58,9 @@ const MapChart = ({ setIsHead }) => {
               <path d='M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z' />
             </g>
             <text
+              role='button'
+              tabIndex={0}
+              aria-label={`Show contact details for ${name}`}
               fontSize={10}
               textAnchor='middle'
               y={markerOffset}
@@ -67,6 +71,9 @@ const MapChart = ({ setIsHead }) => {
               }}
               cursor='pointer'
               onClick={() => setIsHead(isHead)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') setIsHead(isHead);
+              }}
             >
               {name}
             </text>
@@ -75,6 +82,10 @@ const MapChart = ({ setIsHead }) => {
       </ComposableMap>
     </div>
   );
+};
+
+MapChart.propTypes = {
+  setIsHead: PropTypes.func,
 };
 
 export default MapChart;

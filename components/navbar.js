@@ -2,12 +2,14 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { MdMenu } from 'react-icons/md';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import MenuItemDesktop from './menu-item-desktop';
 import MenuItemMobile from './menu-item-mobile';
+import { buildMenuItems } from '../lib/menu';
 
 const Navbar = ({ range }) => {
   const pathname = usePathname();
-  const menuItems = getMenuItems(range);
+  const menuItems = buildMenuItems(range);
 
   const [show, setShow] = useState(false);
   const [dropdown, setDropdown] = useState('');
@@ -63,10 +65,14 @@ const Navbar = ({ range }) => {
               </Link>
             </div>
             <div className='h-full w-1/8'>
-              <MdMenu
-                className='text-white text-3xl'
-                onClick={() => showMenu()}
-              />
+              <button
+                type='button'
+                aria-label='Toggle navigation menu'
+                aria-expanded={show}
+                onClick={showMenu}
+              >
+                <MdMenu className='text-white text-3xl' />
+              </button>
             </div>
           </div>
         </div>
@@ -90,63 +96,8 @@ const Navbar = ({ range }) => {
   );
 };
 
-const getMenuItems = (range) => {
-  let menuItems = [
-    {
-      id: 1,
-      title: 'Home',
-      url: '/',
-    },
-    {
-      id: 2,
-      title: 'About Us',
-      url: '/about',
-      submenu: [
-        {
-          title: 'CEO Greetings',
-          url: '/about?q=ceo-greetings',
-        },
-        {
-          title: 'Brief History',
-          url: '/about?q=history',
-        },
-        {
-          title: 'Facility',
-          url: '/about?q=facility',
-        },
-      ],
-    },
-    { id: 4, title: 'Certification', url: '/certification' },
-    { id: 5, title: 'Contact Us', url: '/contact' },
-  ];
-
-  if (range) {
-    const submenu = range
-      .sort((x, y) => x.id - y.id)
-      .map((element) => {
-        const item = {
-          title: element.title,
-          url: '/products?q=' + element.sys.id,
-        };
-        return item;
-      });
-
-    const product = {
-      id: 3,
-      title: 'Products',
-      url: '/products',
-      submenu: submenu,
-    };
-
-    const index = 2;
-    menuItems = [
-      ...menuItems.slice(0, index),
-      product,
-      ...menuItems.slice(index),
-    ];
-  }
-
-  return menuItems;
+Navbar.propTypes = {
+  range: PropTypes.array,
 };
 
 export default Navbar;

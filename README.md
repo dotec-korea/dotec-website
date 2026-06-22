@@ -31,8 +31,8 @@ Follow the instructions below to set up the DoTEC web application locally.
 
 To run this application, you need to have the following installed:
 
-- Node.js (version >= 12)
-- npm or Yarn package manager
+- Node.js (version >= 22)
+- npm package manager
 
 ### Installation
 

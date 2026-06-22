@@ -1,5 +1,5 @@
 import Layout from '../components/layout';
-import Head from 'next/head';
+import Seo from '../components/seo';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
 import Summary from '../components/home/summary';
@@ -12,9 +12,7 @@ export default function Index({ page, range, productRange, clients }) {
   return (
     <>
       <Layout>
-        <Head>
-          <title>DoTEC</title>
-        </Head>
+        <Seo path='/' />
         {page && (
           <>
             <section
@@ -54,11 +52,12 @@ export default function Index({ page, range, productRange, clients }) {
 
 export async function getStaticProps() {
   const name = 'Home';
-  const { page, range } = (await getPageAndRange(name)) ?? [];
+  const { page = null, range = [] } = (await getPageAndRange(name)) ?? {};
   const productRange = (await getProductRanges()) ?? [];
   const clients = (await getClients()) ?? [];
 
   return {
     props: { page, range, productRange, clients },
+    revalidate: 60,
   };
 }

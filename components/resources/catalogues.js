@@ -1,10 +1,6 @@
 import Link from 'next/link';
-import {
-  MdNavigateBefore,
-  MdNavigateNext,
-  MdOpenInNew,
-  MdPictureAsPdf,
-} from 'react-icons/md';
+import PropTypes from 'prop-types';
+import { MdOpenInNew, MdPictureAsPdf } from 'react-icons/md';
 export default function Catalogues({ catalogues }) {
   return (
     catalogues?.length > 0 && (
@@ -28,6 +24,8 @@ export default function Catalogues({ catalogues }) {
                 <Link
                   href={catalogue.file.url}
                   target='_blank'
+                  rel='noopener noreferrer'
+                  aria-label={`Open catalogue ${catalogue.title}`}
                   className='w-1/6 p-3 bg-gray-100 flex justify-center items-center'
                 >
                   <MdOpenInNew className='text-3xl text-gray-700' />
@@ -40,3 +38,7 @@ export default function Catalogues({ catalogues }) {
     )
   );
 }
+
+Catalogues.propTypes = {
+  catalogues: PropTypes.array,
+};

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 import { MdOpenInNew, MdPictureAsPdf } from 'react-icons/md';
 
 export default function Installations({ installations }) {
@@ -24,6 +25,8 @@ export default function Installations({ installations }) {
                 <Link
                   href={installation.file.url}
                   target='_blank'
+                  rel='noopener noreferrer'
+                  aria-label={`Open installation ${installation.title}`}
                   className='w-1/6 p-3 bg-gray-100 flex justify-center items-center'
                 >
                   <MdOpenInNew className='text-3xl text-gray-700' />
@@ -36,3 +39,7 @@ export default function Installations({ installations }) {
     )
   );
 }
+
+Installations.propTypes = {
+  installations: PropTypes.array,
+};

@@ -1,3 +1,6 @@
+import PropTypes from 'prop-types';
+import { cfImage } from '../../utils/image';
+
 export default function FacilityCard({ title, image, text }) {
   return (
     <div className='w-fit snap-start flex-shrink-0 px-2'>
@@ -6,8 +9,10 @@ export default function FacilityCard({ title, image, text }) {
           {image && (
             <img
               className='object-center object-cover h-24 lg:h-64 w-full'
-              src={image}
-              alt='photo'
+              src={cfImage(image, { width: 500 })}
+              alt={title ?? ''}
+              loading='lazy'
+              decoding='async'
             />
           )}
         </div>
@@ -16,12 +21,16 @@ export default function FacilityCard({ title, image, text }) {
             {title}
           </p>
           {text && (
-            <p className='text-xs text-gray-900 font-normal mx-4 mt-2'>
-              {text}
-            </p>
+            <p className='text-xs text-gray-900 font-normal mx-4 mt-2'>{text}</p>
           )}
         </div>
       </div>
     </div>
   );
 }
+
+FacilityCard.propTypes = {
+  title: PropTypes.string,
+  image: PropTypes.string,
+  text: PropTypes.string,
+};

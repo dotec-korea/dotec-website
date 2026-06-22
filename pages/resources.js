@@ -1,5 +1,5 @@
 import Layout from '../components/layout';
-import Head from 'next/head';
+import Seo from '../components/seo';
 import PageHeader from '../components/page-header';
 import Navbar from '../components/navbar';
 import { getPageAndRange } from '../lib/api/home';
@@ -11,9 +11,11 @@ export default function Resources({ page, range, catalogues, installations }) {
   return (
     <>
       <Layout>
-        <Head>
-          <title>DoTEC | Resources</title>
-        </Head>
+        <Seo
+          title='Resources'
+          path='/resources'
+          description='Download DOTEC product catalogues and installation references for our full range of industrial valves.'
+        />
         {page && (
           <>
             <section
@@ -28,7 +30,6 @@ export default function Resources({ page, range, catalogues, installations }) {
               <PageHeader
                 text={page.header.text}
                 subtext={page.header.subtext}
-                image={page.header.image}
               />
             </section>
             <Catalogues catalogues={catalogues} />
@@ -42,11 +43,12 @@ export default function Resources({ page, range, catalogues, installations }) {
 
 export async function getStaticProps() {
   const name = 'Resources';
-  const { page, range } = (await getPageAndRange(name)) ?? [];
+  const { page = null, range = [] } = (await getPageAndRange(name)) ?? {};
   const catalogues = (await getCatalogues()) ?? [];
   const installations = (await getInstallation()) ?? [];
 
   return {
     props: { page, range, catalogues, installations },
+    revalidate: 60,
   };
 }
