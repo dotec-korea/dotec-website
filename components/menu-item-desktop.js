@@ -15,12 +15,18 @@ const MenuItemDesktop = ({ menu, size, active }) => {
     >
       {menu.submenu ? (
         <div className='relative w-full'>
-          <Link
-            href={menu.url}
-            className='block w-full md:px-5 pb-2 transition hover:text-primary uppercase'
-          >
-            {menu.title}
-          </Link>
+          {menu.notClickable ? (
+            <span className='block w-full md:px-5 pb-2 transition hover:text-primary uppercase cursor-default'>
+              {menu.title}
+            </span>
+          ) : (
+            <Link
+              href={menu.url}
+              className='block w-full md:px-5 pb-2 transition hover:text-primary uppercase'
+            >
+              {menu.title}
+            </Link>
+          )}
           {dropdown && <Dropdown submenus={menu.submenu} />}
         </div>
       ) : (

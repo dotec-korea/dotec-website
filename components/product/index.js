@@ -1,18 +1,17 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
 import PropTypes from 'prop-types';
 import SectionSeparator from '../section-separator';
 import ProductTab from './product-tab';
 import ProductCard from './product-card';
 import SideBar from './side-bar';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import RangeCard from './range-card';
 import { useRouter } from 'next/router';
 import { cfImage } from '../../utils/image';
 
 export default function Product({ products = [] }) {
-  const searchParams = useSearchParams();
   const router = useRouter();
+  const q = router.query.q;
 
   const [rangeId, setRangeId] = useState('');
   const [productId, setProductId] = useState('');
@@ -26,19 +25,23 @@ export default function Product({ products = [] }) {
   const productList = selectedRange?.productCollection?.items ?? [];
   const selectedProduct = productList.find((p) => p?.sys?.id === productId);
 
+  // Respond to ?q=<rangeId> from the navbar sub-menu links — crucially this
+  // also fires when navigating between ranges while already on /products,
+  // which a [products]-only effect would miss (products never changes).
   useEffect(() => {
+    if (!router.isReady || !q) return;
+    setRangeId(String(q));
     setProductId('');
+    // Consume the query so the URL stays clean and re-selecting the same
+    // range works.
+    router.replace(router.pathname, undefined, { shallow: true });
+  }, [router.isReady, q]);
 
-    const query = searchParams.get('q');
-    if (query) {
-      setRangeId(query);
-
-      const { pathname } = router;
-      router.push({ pathname }, undefined, { shallow: true });
-    } else {
-      setRangeId(products[0]?.sys?.id ?? '');
-    }
-  }, [products]);
+  // Default to the first range when nothing is selected yet.
+  useEffect(() => {
+    if (!router.isReady || rangeId) return;
+    setRangeId(products[0]?.sys?.id ?? '');
+  }, [router.isReady, rangeId, products]);
 
   useEffect(() => {
     if (!rangeId) return;
@@ -83,23 +86,20 @@ export default function Product({ products = [] }) {
             />
           </div>
           <div className='w-full lg:w-3/4 min-h-[200px]'>
-            <AnimatePresence mode='wait'>
-              {selectionKey && (
-                <motion.div
-                  key={selectionKey}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.15 }}
-                >
-                  {productId ? (
-                    <ProductCard product={selectedProduct} />
-                  ) : (
-                    <RangeCard productRange={selectedRange} />
-                  )}
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {selectionKey && (
+              <motion.div
+                key={selectionKey}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.15 }}
+              >
+                {productId ? (
+                  <ProductCard product={selectedProduct} />
+                ) : (
+                  <RangeCard productRange={selectedRange} />
+                )}
+              </motion.div>
+            )}
           </div>
         </div>
         <div className='w-full flex'>

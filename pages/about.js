@@ -5,28 +5,25 @@ import Navbar from '../components/navbar';
 import Facility from '../components/about/facility';
 import History from '../components/about/history';
 import CeoGreetings from '../components/about/ceo-greetings';
-import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { getPageAndRange } from '../lib/api/home';
 import { getFacilities, getHistory } from '../lib/api/about';
 import { useRouter } from 'next/router';
 import QualityPolicy from '../components/about/quality-policy';
 
 export default function About({ page, range, facilities, history }) {
-  const searchParams = useSearchParams();
   const router = useRouter();
+  const q = router.query.q;
 
+  // Scroll to the requested section. Depends on the query (not just `page`) so
+  // it also works when navigating between About sub-sections while already on
+  // this page.
   useEffect(() => {
-    const query = searchParams.get('q');
-    if (query) {
-      const element = document.getElementById(query);
-
-      element.scrollIntoView({ behavior: 'smooth' });
-
-      const { pathname } = router;
-      router.push({ pathname }, undefined, { shallow: true });
-    }
-  }, [page]);
+    if (!router.isReady || !q) return;
+    const element = document.getElementById(String(q));
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
+    router.replace(router.pathname, undefined, { shallow: true });
+  }, [router.isReady, q]);
 
   return (
     <>
