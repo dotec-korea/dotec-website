@@ -8,6 +8,7 @@ import SideBar from './side-bar';
 import { AnimatePresence, motion } from 'framer-motion';
 import RangeCard from './range-card';
 import { useRouter } from 'next/router';
+import { cfImage } from '../../utils/image';
 
 export default function Product({ products = [] }) {
   const searchParams = useSearchParams();
@@ -15,7 +16,6 @@ export default function Product({ products = [] }) {
 
   const [rangeId, setRangeId] = useState('');
   const [productId, setProductId] = useState('');
-  const [showCard, setShowCard] = useState(false);
 
   // All data is fetched at build time, so selection is pure lookup — no
   // client-side requests.
@@ -27,7 +27,6 @@ export default function Product({ products = [] }) {
   const selectedProduct = productList.find((p) => p?.sys?.id === productId);
 
   useEffect(() => {
-    setShowCard(false);
     setProductId('');
 
     const query = searchParams.get('q');
@@ -54,12 +53,21 @@ export default function Product({ products = [] }) {
     }
   }, [rangeId]);
 
+  // Warm the browser + Contentful image caches for the current range so that
+  // clicking a product swaps the card image instantly instead of waiting a
+  // few seconds for the full-size transform to download on click.
   useEffect(() => {
-    if (rangeId || productId) {
-      const timer = setTimeout(() => setShowCard(true), 300);
-      return () => clearTimeout(timer);
-    }
-  }, [productId, rangeId]);
+    if (typeof window === 'undefined') return;
+    productList.forEach((p) => {
+      const url = p?.image?.url;
+      if (url) {
+        const img = new window.Image();
+        img.src = cfImage(url, { width: 800 });
+      }
+    });
+  }, [productList]);
+
+  const selectionKey = productId || rangeId;
 
   return (
     <section className='px-5'>
@@ -72,21 +80,17 @@ export default function Product({ products = [] }) {
               setRangeId={setRangeId}
               productId={productId}
               setProductId={setProductId}
-              setShowCard={setShowCard}
             />
           </div>
-          <div className='w-full lg:w-3/4'>
-            <AnimatePresence>
-              {showCard && (
+          <div className='w-full lg:w-3/4 min-h-[200px]'>
+            <AnimatePresence mode='wait'>
+              {selectionKey && (
                 <motion.div
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.9, opacity: 0 }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 260,
-                    damping: 20,
-                  }}
+                  key={selectionKey}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.15 }}
                 >
                   {productId ? (
                     <ProductCard product={selectedProduct} />
@@ -110,7 +114,6 @@ export default function Product({ products = [] }) {
                     product={item}
                     productId={productId}
                     setProductId={setProductId}
-                    setShowCard={setShowCard}
                   />
                 );
               })}

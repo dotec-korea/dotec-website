@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
 import { cfImage } from '../../utils/image';
 
-const ProductTab = ({ product, productId, setProductId, setShowCard }) => {
+const ProductTab = ({ product, productId, setProductId }) => {
   const image = product?.image?.url;
 
   const setProduct = () => {
-    setShowCard(false);
     setProductId(product.sys.id);
   };
 
@@ -42,7 +41,6 @@ ProductTab.propTypes = {
   product: PropTypes.object,
   productId: PropTypes.string,
   setProductId: PropTypes.func,
-  setShowCard: PropTypes.func,
 };
 
 export default ProductTab;

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import DOMPurify from 'isomorphic-dompurify';
+import DOMPurify from 'dompurify';
 import SectionSeparator from '../section-separator';
 import Table from './table';
 import { cfImage } from '../../utils/image';
@@ -8,6 +8,8 @@ const ProductCard = ({ product }) => {
   if (!product?.sys?.id) return null;
 
   // CMS-authored HTML — sanitize before injecting to prevent stored XSS.
+  // This component only renders client-side, so the browser-native (non-jsdom)
+  // build of DOMPurify is used, which bundles cleanly in serverless runtimes.
   const description = DOMPurify.sanitize(product?.description ?? '');
   const specification = DOMPurify.sanitize(product?.specification ?? '');
 
@@ -18,9 +20,9 @@ const ProductCard = ({ product }) => {
           <div className='w-full aspect-square'>
             {product?.image?.url && (
               <img
+                key={product.sys.id}
                 src={cfImage(product.image.url, { width: 800 })}
                 alt={product?.title ?? ''}
-                loading='lazy'
                 decoding='async'
                 className={`object-center object-contain h-full w-full ${
                   [1, 2].includes(product?.id) ? 'p-12' : 'p-20'

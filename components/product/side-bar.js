@@ -6,11 +6,8 @@ const SideBar = ({
   setRangeId,
   productId,
   setProductId,
-  setShowCard,
 }) => {
   const setRangeAndProduct = (product, id) => {
-    setShowCard(false);
-
     setProductId(id);
     setRangeId(product.sys.id);
   };
@@ -72,7 +69,6 @@ SideBar.propTypes = {
   setRangeId: PropTypes.func,
   productId: PropTypes.string,
   setProductId: PropTypes.func,
-  setShowCard: PropTypes.func,
 };
 
 export default SideBar;
